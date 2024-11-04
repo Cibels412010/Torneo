@@ -5,7 +5,7 @@ body {
     background-repeat: no-repeat;
     position: relative; 
     margin: 0; 
-    height: 100vh; 
+    height: 100%; 
    
 }
 
@@ -45,7 +45,7 @@ body::before {
     display: flex  ;
     text-align: right;
     justify-content: flex-end;
-    padding-top: 10%;
+    padding: 5%;
 }
 
 #labelFormulario{
@@ -91,7 +91,7 @@ body::before {
 }
 
 .footer {
-    position: relative; /* Cambia de absolute a relative */
+    position: fixed; /* Cambia de absolute a relative */
     bottom: 0;
     width: 100%;
 }
