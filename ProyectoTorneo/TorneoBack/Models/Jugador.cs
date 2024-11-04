@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TorneoApi.Models;
 
@@ -17,31 +18,32 @@ public partial class Jugador
 
     public int? IdEquipo { get; set; }
 
-    public int? IdObraSocial { get; set; }
+    public int? IdObraSocial { get; set; } = 1; //combo
 
-    public int? IdCiudad { get; set; }
+    public int? IdCiudad { get; set; } = 1; //combo
 
     public DateTime? FechaNacimiento { get; set; }
 
-    public int? IdPosicion { get; set; }
+    public int? IdPosicion { get; set; } = 1; //combo
 
-    public int? Rol { get; set; }
+    public int? Rol { get; set; } = 1; //combo
 
-    public virtual ICollection<ContactosJugadore> ContactosJugadores { get; set; } = new List<ContactosJugadore>();
-
-    public virtual ICollection<Evaluacione> Evaluaciones { get; set; } = new List<Evaluacione>();
-
-    public virtual ICollection<Evento> Eventos { get; set; } = new List<Evento>();
-
-    public virtual Ciudad? IdCiudadNavigation { get; set; }
-
-    public virtual Equipo? IdEquipoNavigation { get; set; }
-
-    public virtual ObrasSociale? IdObraSocialNavigation { get; set; }
-
-    public virtual PosicionesJuego? IdPosicionNavigation { get; set; }
-
-    public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
-
-    public virtual TiposRole? RolNavigation { get; set; }
+    [JsonIgnore]
+    public virtual ICollection<ContactosJugadore>? ContactosJugadores { get; set; } = null;
+    [JsonIgnore]
+    public virtual ICollection<Evaluacione>? Evaluaciones { get; set; } = null;
+    [JsonIgnore]
+    public virtual ICollection<Evento>? Eventos { get; set; } = null;
+    [JsonIgnore]
+    public virtual Ciudad? IdCiudadNavigation { get; set; } = null;
+    [JsonIgnore]
+    public virtual Equipo? IdEquipoNavigation { get; set; } = null;
+    [JsonIgnore]
+    public virtual ObrasSociale? IdObraSocialNavigation { get; set; } = null;
+    [JsonIgnore]
+    public virtual PosicionesJuego? IdPosicionNavigation { get; set; } = null;
+    [JsonIgnore]
+    public virtual ICollection<Pago> Pagos { get; set; } =null;
+    [JsonIgnore]
+    public virtual TiposRole? RolNavigation { get; set; } = null;
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TorneoApi.Models;
+using TorneoBack.DTOs;
 using TorneoBack.Repository;
 using TorneoBack.Repository.Contracts;
 
@@ -22,9 +23,9 @@ namespace TorneoBack.Service
             _equiposRepository = equiposRepository;
         }
 
-        public bool AddEquipo(Equipo equipo)
+        public bool AddEquipoConJugadores(EquipoDto equipoDto)
         {
-            return _equiposRepository.Add(equipo);
+            return _equiposRepository.AddEquipoConJugadores(equipoDto);
         }
 
         public bool AddJugador(Jugador jugador)

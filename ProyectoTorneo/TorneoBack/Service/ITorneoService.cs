@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TorneoApi.Models;
+using TorneoBack.DTOs;
 
 namespace TorneoBack.Repository.Contracts
 {
@@ -17,7 +18,7 @@ namespace TorneoBack.Repository.Contracts
         Torneo getTorneoById(int id);
 
         //equipos
-        bool AddEquipo(Equipo equipo);
+        bool AddEquipoConJugadores(EquipoDto equipoDto);
         List<Equipo> GetAllEquipos();
         bool UpdateEquipo(Equipo equipo);
         bool DeleteEquipo(int id);

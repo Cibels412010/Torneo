@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using TorneoApi.Models;
+using TorneoBack.DTOs;
 using TorneoBack.Repository.Contracts;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TorneoBack.Repository
 {
@@ -16,31 +14,50 @@ namespace TorneoBack.Repository
         {
             _context = context;
         }
-        public bool Add(Equipo equipo)
+        
+
+        public bool AddEquipoConJugadores(EquipoDto equipoDto)
         {
-
-            if (equipo != null)
+            using var transaction = _context.Database.BeginTransaction(); // Inicia la transacción
+            try
             {
-
-                _context.Equipos.Add(equipo);
+                var equipo = new Equipo
+                {
+                    Nombre = equipoDto.Nombre,
+                    FechaFundacion = equipoDto.FechaFundacion
+                };
                 
-                return _context.SaveChanges() >0 ;
+                _context.Equipos.Add(equipo);
+                _context.SaveChanges(); // Guarda el torneo primero para obtener el ID
+
+                
+                foreach (var jugadorDTO in equipoDto.Jugadores)
+                {
+                    var j = new Jugador
+                    {
+                        Nombre = jugadorDTO.Nombre,
+                        Apellido = jugadorDTO.Apellido,
+                        Dni = jugadorDTO.Dni,
+                        FichaMedica = jugadorDTO.FichaMedica,
+                        FechaNacimiento = jugadorDTO.FechaNacimiento,
+                        IdEquipo = equipo.IdEquipo,
+                        IdPosicion = jugadorDTO.IdPosicion,
+                        Rol = jugadorDTO.Rol
+                    };
+
+                    _context.Jugadores.Add(j);
+                }
+
+                _context.SaveChanges(); // Guarda los jugadores
+                transaction.Commit(); // Confirmo
+                return true;
             }
-            return false;
-
+            catch (Exception)
+            {
+                transaction.Rollback(); // Revierte la transacción en caso de error
+                return false;
+            }
         }
-
-        //public bool Delete(int id)
-        //{
-        //    var equipo = _context.Equipos.Find(id);
-
-        //    if (equipo != null)
-        //    {
-        //        _context.Equipos.Remove(equipo);
-        //        return _context.SaveChanges() > 0;
-        //    }
-        //    return false;
-        //}
 
         public List<Equipo> GetAll()
         {
@@ -57,5 +74,8 @@ namespace TorneoBack.Repository
             }
             return false;
         }
+
+
+        
     }
 }
