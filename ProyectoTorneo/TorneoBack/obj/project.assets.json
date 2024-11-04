@@ -3041,11 +3041,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
       "projectName": "TorneoBack",
-      "projectPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
+      "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3109,7 +3109,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
