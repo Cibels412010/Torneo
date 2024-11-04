@@ -1,0 +1,13 @@
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.AssemblyInfoInputs.cache
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.AssemblyInfo.cs
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\bin\Debug\net8.0\TorneoBack.deps.json
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\bin\Debug\net8.0\TorneoBack.dll
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\bin\Debug\net8.0\TorneoBack.pdb
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.dll
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\refint\TorneoBack.dll
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.pdb
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\ref\TorneoBack.dll
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.csproj.AssemblyReference.cache
+C:\Users\Usuario\OneDrive\Escritorio\programacion\programacion ii\ejercicios\TorneoApi\ProyectoTorneo\TorneoBack\obj\Debug\net8.0\TorneoBack.sourcelink.json
