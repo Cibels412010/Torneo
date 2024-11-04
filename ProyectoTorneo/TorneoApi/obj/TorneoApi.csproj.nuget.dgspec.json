@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj": {}
+    "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj": {
+    "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj",
+        "projectUniqueName": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj",
         "projectName": "TorneoApi",
-        "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj",
+        "projectPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoApi\\TorneoApi.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoApi\\obj\\",
+        "outputPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj"
+              "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj": {
+                "projectPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj"
               }
             }
           }
@@ -92,18 +92,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj": {
+    "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
+        "projectUniqueName": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
         "projectName": "TorneoBack",
-        "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
+        "projectPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\TorneoBack.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\programacion\\programacion ii\\ejercicios\\TorneoApi\\ProyectoTorneo\\TorneoBack\\obj\\",
+        "outputPath": "E:\\Pedro\\UTN\\2do cuatrimestre\\Programacion II\\TPI\\Torneo\\ProyectoTorneo\\TorneoBack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -167,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
