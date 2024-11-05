@@ -59,9 +59,25 @@ namespace TorneoBack.Repository
             }
         }
 
+        public bool Delete(int id)
+        {
+            if (_context.Equipos.Any(t => t.IdEquipo == id))
+            {
+                var equipo = _context.Equipos.Find(id);
+                equipo.Borrado = true;
+                return _context.SaveChanges() > 0;
+            }
+            return false;
+        }
+
         public List<Equipo> GetAll()
         {
-            return _context.Equipos.Include(e => e.Jugadores).ToList();
+            return _context.Equipos.Where(t => t.Borrado != true).ToList();
+        }
+
+        public Equipo GetById(int id)
+        {
+            return _context.Equipos.Find(id);
         }
 
         public bool Update(Equipo equipo)

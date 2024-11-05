@@ -37,11 +37,7 @@ namespace TorneoBack.Service
         {
             return _torneoRepository.Add(torneo);
         }
-
-        public bool DeleteEquipo(int id)
-        {
-            throw new NotImplementedException();
-        }
+            
 
         public bool DeleteJugador(int id)
         {
@@ -53,10 +49,10 @@ namespace TorneoBack.Service
             return _torneoRepository.Delete(id);
         }
 
-        //public bool DeleteEquipo(int id)
-        //{
-        //    return _equiposRepository.Delete(id);
-        //}
+        public bool DeleteEquipo(int id)
+        {
+            return _equiposRepository.Delete(id);
+        }
 
         //public bool DeleteJugador(int id)
         //{
@@ -96,6 +92,11 @@ namespace TorneoBack.Service
         public bool UpdateTorneo(Torneo torneo)
         {
             return _torneoRepository.Update(torneo);
+        }
+
+        public Equipo GetEquipoById(int id)
+        {
+            return _equiposRepository.GetById(id);
         }
     }
 }

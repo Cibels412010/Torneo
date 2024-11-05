@@ -61,5 +61,31 @@ namespace TorneoApi.Controllers
             }
         }
 
+        [HttpDelete("Eliminar/{id}")]
+        public IActionResult DeleteEquipo(int id)
+        {
+            try
+            {
+                var existEquip = _servicio.GetEquipoById(id);
+                if (existEquip == null)
+                {
+                    return NotFound($"El equipo con ID '{id}' no fue encontrado.");
+                }
+
+                bool equipoEliminado = _servicio.DeleteEquipo(id);
+
+                if (!equipoEliminado)
+                {
+                    return BadRequest($"No se pudo eliminar el equipo con ID '{id}'. Verifique los datos e intente nuevamente.");
+                }
+
+                return Ok(new { mensaje = "Equipo eliminado exitosamente.", Equipo = existEquip });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
     }
 }

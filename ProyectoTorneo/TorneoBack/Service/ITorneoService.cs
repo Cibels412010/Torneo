@@ -22,6 +22,7 @@ namespace TorneoBack.Repository.Contracts
         List<Equipo> GetAllEquipos();
         bool UpdateEquipo(Equipo equipo);
         bool DeleteEquipo(int id);
+        Equipo GetEquipoById(int id);
 
         //jugadores
         bool AddJugador(Jugador jugador);

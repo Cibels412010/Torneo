@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 alert("Torneo generado correctamente!");
                 form.reset();
+               
             } else {
                 alert("Error al generar torneo");
             }

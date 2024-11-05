@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 actionsCell.innerHTML = `
                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);">Editar</button>
-                        <button type="button" class="btn btn-danger" style="opacity: 0.7">Borrar</button>
+                        <button type="button" class="btn btn-danger" data-id="${equipo.idEquipo}" onclick="borrarEquipo(this)" style="opacity: 0.7">Borrar</button>
                     </div>
 
                 `;
