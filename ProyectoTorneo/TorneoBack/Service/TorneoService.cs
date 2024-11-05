@@ -45,12 +45,12 @@ namespace TorneoBack.Service
 
         public bool DeleteJugador(int id)
         {
-            throw new NotImplementedException();
+            return _jugadorRepository.Delete(id);
         }
 
         public bool DeleteTorneo(int id)
         {
-            throw new NotImplementedException();
+            return _torneoRepository.Delete(id);
         }
 
         //public bool DeleteEquipo(int id)

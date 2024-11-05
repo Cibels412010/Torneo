@@ -63,8 +63,8 @@ namespace TorneoApi.Controllers
             }
         }
 
-        [HttpDelete("Eliminar")]
-        public IActionResult DeleteTorneo([FromBody] int id){
+        [HttpDelete("Eliminar/{id}")]
+        public IActionResult DeleteTorneo(int id){
             try
             {
                 var existTorneo = _servicio.getTorneoById(id);
