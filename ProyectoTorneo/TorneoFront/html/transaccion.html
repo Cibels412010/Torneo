@@ -79,10 +79,10 @@
                         <label for="fechaFundacion" class="form-label" id="labelFormulario">Fecha de Fundación</label>
                         <input type="date" class="form-control" id="fechaFundacion" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Agregar Equipo</button>
+                    <button type="submit" class="btn btn-primary" id="guardarEquipoBtn">Agregar Equipo</button>
                 </form>
 
-                <form id="jugadorForm" class="mb-4">
+                <form id="jugadorForm" class="mb-4 opacity-50">
                     <h2 class="text-white">Agregar Jugadores al Equipo</h2>
                     <div class="mb-3">
                         <label for="nombreJugador" class="form-label" id="labelFormulario">Nombre del Jugador</label>
@@ -96,10 +96,20 @@
                         <label for="dniJugador" class="form-label" id="labelFormulario">DNI del Jugador</label>
                         <input type="number" class="form-control" id="dniJugador" placeholder="DNI del jugador" required>
                     </div>
-                    <div class="mb-3 form-check form-switch form-check">
-                        <label for="flexSwitchCheck" class="form-check-label" id="labelFormulario">Ficha Médica</label>
-                        <input type="checkbox" class="form-check-input" id="flexSwitchCheck"required>
-                    </div>
+                
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1" id="labelFormulario">
+                          Con Ficha Médica
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2" id="labelFormulario">
+                          Sin Ficha Médica
+                        </label>
+                      </div>
+
                     <div class="mb-3">
                         <label for="fechaNacimientoJugador" class="form-label" id="labelFormulario">Fecha de Nacimiento</label>
                         <input type="date" class="form-control" id="fechaNacimientoJugador"required>
@@ -108,7 +118,7 @@
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="posicionJugador">Posición</label>
                         <select class="form-select" id="posicionJugador">
-                          <option selected>Seleccione una posición</option>
+                          <option selected></option>
                           <option value="1">Arquero</option>
                           <option value="2">Defensor</option>
                           <option value="3">Delantero</option>
@@ -119,7 +129,7 @@
                       <div class="input-group mb-3">
                         <label class="input-group-text" for="rolJugador">Rol</label>
                         <select class="form-select" id="rolJugador">
-                          <option selected>--</option>
+                          <option selected></option>
                           <option value="1">Capitán</option>
                           <option value="2">Sub Capitán</option>
                           <option value="3">Delegado</option>
@@ -150,6 +160,7 @@
                         
                     </tbody>
                 </table>
+                <button type="submit" class="btn btn-primary" id="guardarCambiosBtn">Guardar Cambios</button>
             </div>
         </div>
     </div>
