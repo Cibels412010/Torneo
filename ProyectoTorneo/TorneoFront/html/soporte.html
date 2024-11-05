@@ -28,7 +28,7 @@
             width="50"
             height="50"
           />
-          <a class="navbar-brand" href="#">TorneoApp</a>
+          <a class="navbar-brand" href="/ProyectoTorneo/TorneoFront/html/index.html">TorneoApp</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -225,30 +225,31 @@
         </div>
       </form>
       <div class="col-md-6">
-        <h2 class="text-white text-start">Jugadores del Equipo</h2>
+        <h2 class="text-white text-start">Torneos</h2>
+        
         <table class="table table-striped table-bordered text-white mt-3">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hasta</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody id="torneosTableBody">
+          <thead>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td class="btn-edit-delete">
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-                    <button type="submit" class="btn btn-primary" style="background: rgb(45, 126, 231)">Editar</button>
-                    <button type="reset" class="btn btn-primary" style="background-color: #20212b">Borrar</button>
-                  </div>
-                </td>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Desde</th>
+                  <th scope="col">Hasta</th>
+                  <th scope="col"></th>
               </tr>
-            </tbody>
-        </table>
+          </thead>
+          <tbody id="torneosTableBody">
+            <tr>
+              <th scope="row" id="nombre-torneo"></th>
+              <td id="desde"></td>
+              <td id="hasta"></td>
+              <td class="btn-edit-delete">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
+                  <button type="edit" class="btn btn-primary" style="background: rgb(45, 126, 231)">Editar</button>
+                  <button type="delete" class="btn btn-primary" style="background-color: #20212b">Borrar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+      </table>
     </div>
       </div>
     </div>
@@ -261,5 +262,11 @@
       </div>
     </footer>
     <script src="/ProyectoTorneo/TorneoFront/js/alta_torneo.js"></script>
+    <script src="/ProyectoTorneo/TorneoFront/js/traer_torneos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchTorneos();
+        });
+    </script>
   </body>
 </html>
