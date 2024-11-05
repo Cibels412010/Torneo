@@ -30,7 +30,11 @@ async function fetchTorneos() {
             actionsCell.className = 'btn-edit-delete';
             actionsCell.innerHTML = `
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
+<<<<<<< HEAD
                     <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231)" onclick="actualizarTorneo(${torneo.idTorneo})">Editar</button>
+=======
+                    <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231)"  onclick="window.location.href='actualizar-torneo.html?id=${torneo.id}'">Editar</button>
+>>>>>>> e0ddb19ea1195948ac7e0aea39a963fd4c00b00b
                     <button type="button" class="btn btn-primary" id="botonEditar" data-id="${torneo.idTorneo}" onclick="borrarTorneo(this)" style="background-color: #20212b">Borrar</button>
                 </div>
             `;
