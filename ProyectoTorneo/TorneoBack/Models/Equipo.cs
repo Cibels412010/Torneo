@@ -11,19 +11,20 @@ public partial class Equipo
     public string? Nombre { get; set; }
 
     public DateTime? FechaFundacion { get; set; }
-
     [JsonIgnore]
     public int? IdCiudad { get; set; } = null;
+
+    public bool? Borrado { get; set; } = false;
     [JsonIgnore]
     public virtual ICollection<DirectoresTecnico>? DirectoresTecnicos { get; set; } = null;
     [JsonIgnore]
-    public virtual Ciudad? IdCiudadNavigation { get; set; } = null;
+    public virtual Ciudade? IdCiudadNavigation { get; set; } = null;
     [JsonIgnore]
-    public virtual ICollection<Jugador>? Jugadores { get; set; } = null;
+    public virtual ICollection<Jugador>? Jugadores { get; set; } = new List<Jugador>();
     [JsonIgnore]
     public virtual ICollection<Partido>? PartidoEquipo1Navigations { get; set; } = null;
     [JsonIgnore]
     public virtual ICollection<Partido>? PartidoEquipo2Navigations { get; set; } = null;
     [JsonIgnore]
-    public virtual ICollection<TorneosXEquipo> ? TorneosXEquipos { get; set; } = null;
+    public virtual ICollection<TorneosXEquipo>? TorneosXEquipos { get; set; } = null;
 }

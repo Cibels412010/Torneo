@@ -17,5 +17,6 @@ namespace TorneoBack.DTOs
         public int IdEquipo { get; set; }
         public int IdPosicion { get; set; } = 1;
         public int Rol { get; set; } = 1;
+        public bool Borrado { get; set; } = false;
     }
 }

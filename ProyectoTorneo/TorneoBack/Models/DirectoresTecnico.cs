@@ -21,7 +21,7 @@ public partial class DirectoresTecnico
 
     public virtual ICollection<ContactosDirectore> ContactosDirectores { get; set; } = new List<ContactosDirectore>();
 
-    public virtual Ciudad? IdCiudadNavigation { get; set; }
+    public virtual Ciudade? IdCiudadNavigation { get; set; }
 
     public virtual Equipo? IdEquipoNavigation { get; set; }
 }

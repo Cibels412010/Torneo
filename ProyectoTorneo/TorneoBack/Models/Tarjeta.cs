@@ -3,19 +3,13 @@ using System.Collections.Generic;
 
 namespace TorneoApi.Models;
 
-public partial class VRendimientoJugador
+public partial class Tarjeta
 {
-    public int IdJugador { get; set; }
+    public int? IdJugador { get; set; }
 
     public string? Jugador { get; set; }
 
     public string? Equipo { get; set; }
-
-    public int? PartidosJugados { get; set; }
-
-    public int? Goles { get; set; }
-
-    public int? Asistencias { get; set; }
 
     public int? TarjetasAmarillas { get; set; }
 

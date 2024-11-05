@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace TorneoApi.Models;
 
@@ -18,7 +19,7 @@ public partial class TorneoContext : DbContext
 
     public virtual DbSet<Cancha> Canchas { get; set; }
 
-    public virtual DbSet<Ciudad> Ciudades { get; set; }
+    public virtual DbSet<Ciudade> Ciudades { get; set; }
 
     public virtual DbSet<ContactosArbitro> ContactosArbitros { get; set; }
 
@@ -40,7 +41,7 @@ public partial class TorneoContext : DbContext
 
     public virtual DbSet<FormasPago> FormasPagos { get; set; }
 
-    public virtual DbSet<VGoleador> Goleadores { get; set; }
+    public virtual DbSet<Goleadore> Goleadores { get; set; }
 
     public virtual DbSet<Jugador> Jugadores { get; set; }
 
@@ -58,7 +59,7 @@ public partial class TorneoContext : DbContext
 
     public virtual DbSet<Servicio> Servicios { get; set; }
 
-    public virtual DbSet<VTarjeta> Tarjetas { get; set; }
+    public virtual DbSet<Tarjeta> Tarjetas { get; set; }
 
     public virtual DbSet<TiposContacto> TiposContactos { get; set; }
 
@@ -80,7 +81,7 @@ public partial class TorneoContext : DbContext
 
     public virtual DbSet<VGolesRecibido> VGolesRecibidos { get; set; }
 
-    public virtual DbSet<VRendimientoJugador> VRendimientoJugadors { get; set; }
+    public virtual DbSet<VRendimientoJugadore> VRendimientoJugadors { get; set; }
 
     public virtual DbSet<VRendimientoJugadore> VRendimientoJugadores { get; set; }
 
@@ -91,7 +92,8 @@ public partial class TorneoContext : DbContext
     public virtual DbSet<VVerificacionArbitro> VVerificacionArbitros { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-E045RR5\\SQLEXPRESS;Initial Catalog=Torneo;Integrated Security=True;Trust Server Certificate=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-E045RR5\\SQLEXPRESS;Initial Catalog=TORNEO;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -128,12 +130,12 @@ public partial class TorneoContext : DbContext
                 .HasColumnName("fecha_ult_mant");
         });
 
-        modelBuilder.Entity<Ciudad>(entity =>
+        modelBuilder.Entity<Ciudade>(entity =>
         {
             entity.HasKey(e => e.IdCiudad).HasName("PK__Ciudades__B7DC4CD5F97494DF");
 
             entity.Property(e => e.IdCiudad).HasColumnName("id_ciudad");
-            entity.Property(e => e.Ciudads)
+            entity.Property(e => e.Ciudad)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("ciudad");
@@ -302,6 +304,7 @@ public partial class TorneoContext : DbContext
             entity.HasIndex(e => e.Nombre, "UQ__Equipos__72AFBCC6152FFAFF").IsUnique();
 
             entity.Property(e => e.IdEquipo).HasColumnName("id_equipo");
+            entity.Property(e => e.Borrado).HasColumnName("borrado");
             entity.Property(e => e.FechaFundacion)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_fundacion");
@@ -373,7 +376,7 @@ public partial class TorneoContext : DbContext
                 .HasColumnName("descripcion");
         });
 
-        modelBuilder.Entity<VGoleador>(entity =>
+        modelBuilder.Entity<Goleadore>(entity =>
         {
             entity
                 .HasNoKey()
@@ -400,6 +403,7 @@ public partial class TorneoContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("apellido");
+            entity.Property(e => e.Borrado).HasColumnName("borrado");
             entity.Property(e => e.Dni).HasColumnName("dni");
             entity.Property(e => e.FechaNacimiento)
                 .HasColumnType("datetime")
@@ -573,7 +577,7 @@ public partial class TorneoContext : DbContext
             entity.Property(e => e.Precio).HasColumnName("PRECIO");
         });
 
-        modelBuilder.Entity<VTarjeta>(entity =>
+        modelBuilder.Entity<Tarjeta>(entity =>
         {
             entity
                 .HasNoKey()
@@ -736,7 +740,7 @@ public partial class TorneoContext : DbContext
             entity.Property(e => e.TotalGolesRecibidos).HasColumnName("Total_Goles_Recibidos");
         });
 
-        modelBuilder.Entity<VRendimientoJugador>(entity =>
+        modelBuilder.Entity<VRendimientoJugadore>(entity =>
         {
             entity
                 .HasNoKey()

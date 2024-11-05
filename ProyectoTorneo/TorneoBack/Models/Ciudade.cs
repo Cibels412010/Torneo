@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace TorneoApi.Models;
 
-public partial class Ciudad
+public partial class Ciudade
 {
     public int IdCiudad { get; set; }
 
     public int? IdProvincia { get; set; }
 
-    public string? Ciudads { get; set; }
+    public string? Ciudad { get; set; }
 
     public virtual ICollection<Arbitro> Arbitros { get; set; } = new List<Arbitro>();
 

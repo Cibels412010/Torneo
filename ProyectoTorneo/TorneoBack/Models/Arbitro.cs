@@ -17,7 +17,7 @@ public partial class Arbitro
 
     public virtual ICollection<ContactosArbitro> ContactosArbitros { get; set; } = new List<ContactosArbitro>();
 
-    public virtual Ciudad? IdCiudadNavigation { get; set; }
+    public virtual Ciudade? IdCiudadNavigation { get; set; }
 
     public virtual ICollection<Partido> Partidos { get; set; } = new List<Partido>();
 }

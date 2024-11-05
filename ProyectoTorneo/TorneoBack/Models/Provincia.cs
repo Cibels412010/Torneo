@@ -11,7 +11,7 @@ public partial class Provincia
 
     public string? Provincia1 { get; set; }
 
-    public virtual ICollection<Ciudad> Ciudades { get; set; } = new List<Ciudad>();
+    public virtual ICollection<Ciudade> Ciudades { get; set; } = new List<Ciudade>();
 
     public virtual Paise? IdPaisNavigation { get; set; }
 }

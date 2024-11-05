@@ -27,6 +27,7 @@ public partial class Jugador
     public int? IdPosicion { get; set; } = 1; //combo
 
     public int? Rol { get; set; } = 1; //combo
+    public bool? Borrado { get; set; } = false;
 
     [JsonIgnore]
     public virtual ICollection<ContactosJugadore>? ContactosJugadores { get; set; } = null;
@@ -35,7 +36,7 @@ public partial class Jugador
     [JsonIgnore]
     public virtual ICollection<Evento>? Eventos { get; set; } = null;
     [JsonIgnore]
-    public virtual Ciudad? IdCiudadNavigation { get; set; } = null;
+    public virtual Ciudade? IdCiudadNavigation { get; set; } = null;
     [JsonIgnore]
     public virtual Equipo? IdEquipoNavigation { get; set; } = null;
     [JsonIgnore]

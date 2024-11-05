@@ -12,5 +12,6 @@ namespace TorneoBack.DTOs
         public string Nombre { get; set; }
         public DateTime FechaFundacion { get; set; }
         public List<JugadorDto> Jugadores { get; set; }
+        public bool Borrado { get; set; }
     }
 }
