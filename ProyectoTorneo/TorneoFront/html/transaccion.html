@@ -82,7 +82,7 @@
                     <button type="submit" class="btn btn-primary">Agregar Equipo</button>
                 </form>
 
-                <form class="mb-4">
+                <form id="jugadorForm" class="mb-4">
                     <h2 class="text-white">Agregar Jugadores al Equipo</h2>
                     <div class="mb-3">
                         <label for="nombreJugador" class="form-label" id="labelFormulario">Nombre del Jugador</label>
@@ -96,10 +96,42 @@
                         <label for="dniJugador" class="form-label" id="labelFormulario">DNI del Jugador</label>
                         <input type="number" class="form-control" id="dniJugador" placeholder="DNI del jugador" required>
                     </div>
+                    <div class="mb-3 form-check form-switch form-check">
+                        <label for="flexSwitchCheck" class="form-check-label" id="labelFormulario">Ficha Médica</label>
+                        <input type="checkbox" class="form-check-input" id="flexSwitchCheck"required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaNacimientoJugador" class="form-label" id="labelFormulario">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimientoJugador"required>
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="posicionJugador">Posición</label>
+                        <select class="form-select" id="posicionJugador">
+                          <option selected>Seleccione una posición</option>
+                          <option value="1">Arquero</option>
+                          <option value="2">Defensor</option>
+                          <option value="3">Delantero</option>
+                            <option value="4">Centrocampista</option>
+                        </select>
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <label class="input-group-text" for="rolJugador">Rol</label>
+                        <select class="form-select" id="rolJugador">
+                          <option selected>--</option>
+                          <option value="1">Capitán</option>
+                          <option value="2">Sub Capitán</option>
+                          <option value="3">Delegado</option>
+                        </select>
+                      </div>
+
                     <button type="submit" class="btn btn-primary">Agregar Jugador</button>
                 </form>
             </div>
             <div class="col-md-1"></div>
+
+
             <div class="col-md-6">
                 <h2 class="text-white mt-4">Jugadores del Equipo</h2>
                 <table class="table table-striped table-bordered text-white mt-3">
@@ -109,16 +141,19 @@
                             <th scope="col">Apellido</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Ficha Médica</th>
+                            <th scope="col">Fecha Nacimiento</th>
+                            <th scope="col">Posición</th>
+                            <th scope="col">Rol</th>
                         </tr>
                     </thead>
                     <tbody id="jugadoresTableBody">
-                        <!-- Aquí se mostrarán los datos de los jugadores -->
+                        
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="position: relative; bottom: 0; width: 100%;">
+    <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%;">
         <div class="container">
             <span class="text-muted">TUP-UTN Programación II.</span>
         </div>

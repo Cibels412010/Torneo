@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         try {
-            const response = await fetch('http://localhost:5014/Api/Torneo', {
+            const response = await fetch('http://localhost:5014/Api/Torneo/Crear', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
