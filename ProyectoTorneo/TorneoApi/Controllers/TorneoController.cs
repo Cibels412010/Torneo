@@ -63,6 +63,32 @@ namespace TorneoApi.Controllers
             }
         }
 
+        [HttpDelete("Eliminar")]
+        public IActionResult DeleteTorneo([FromBody] int id){
+            try
+            {
+                var existTorneo = _servicio.getTorneoById(id);
+                if (existTorneo == null)
+                {
+                    return NotFound($"El torneo con ID '{id}' no fue encontrado.");
+                }
+
+                bool torneoEliminado = _servicio.DeleteTorneo(id);
+
+                if (!torneoEliminado)
+                {
+                    return BadRequest($"No se pudo eliminar el torneo con ID '{id}'. Verifique los datos e intente nuevamente.");
+                }
+
+                return Ok(new { mensaje = "Torneo eliminado exitosamente.", torneo = existTorneo });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
+
         //[HttpPost("Editar")]
         //public IActionResult UpdateTorneo([FromBody] Torneo torneo)
         //{

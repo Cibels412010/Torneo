@@ -29,6 +29,16 @@ namespace TorneoBack.Repository
             return false;
         }
 
+        public bool Delete(int id){
+            var jugador = _context.Jugadores.Find(id);
+            if (jugador != null)
+            {
+                jugador.Borrado = true;
+                return _context.SaveChanges() > 0;
+            }
+            return false;
+        }
+
         //public bool Delete(int id)
         //{
         //    var jugador = _context.Jugadores.Find(id);

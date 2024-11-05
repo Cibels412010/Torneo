@@ -28,13 +28,18 @@ namespace TorneoBack.Repository
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
-            //aca hacer una baja logica
+            if(_context.Torneos.Any(t => t.IdTorneo == id))
+            {
+                var torneo = _context.Torneos.Find(id);
+                torneo.Borrado = true;
+                return _context.SaveChanges() > 0;
+            }
+            return false;
         }
 
         public List<Torneo> GetAll()
         {
-            return _context.Torneos.ToList();
+            return _context.Torneos.Where(t => t.Borrado != true).ToList();
         }
 
         public Torneo GetById(int id)

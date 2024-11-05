@@ -13,5 +13,6 @@ namespace TorneoBack.Repository.Contracts
         //bool Delete(int id); este deberia ser una baja logica
         public List<Jugador> GetByEquipoId(int equipoId);
         bool Update(Jugador jugador);
+        bool Delete(int id);
     }
 }

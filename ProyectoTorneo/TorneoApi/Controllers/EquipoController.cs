@@ -17,6 +17,24 @@ namespace TorneoApi.Controllers
         }
 
 
+        [HttpGet("Equipos")]
+        public IActionResult GetEquipos()
+        {
+            try
+            {
+                var equipos = _servicio.GetAllEquipos();
+                if (equipos.Count == 0)
+                {
+                    return NotFound("No se encontraron equipos.");
+                }
+
+                return Ok(equipos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
         [HttpPost("CrearTransaction")]
         public IActionResult CreateEquipo([FromBody] EquipoDto equipoDto)
         {
