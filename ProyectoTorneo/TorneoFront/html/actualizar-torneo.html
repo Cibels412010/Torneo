@@ -126,8 +126,9 @@
             <div class="mb-3">
               <button
                 class="btn btn-primary"
+                id="botonAceptar"
                 style="background: rgb(45, 126, 231)"
-                type="submit"
+                type="button"
               >
                 <i class="fas fa-save"></i> Enviar
               </button>
@@ -142,3 +143,22 @@
             </div>
           </form>
     </div>
+    <footer
+    class="footer mt-auto py-2 bg-body-tertiary text-center"
+    style="bottom: 0; width: 100%"
+  >
+    <div class="container">
+      <span class="text-muted">TUP-UTN Programación II.</span>
+    </div>
+  </footer>
+  <script src="/ProyectoTorneo/TorneoFront/js/alta_torneo.js"></script>
+  <script src="/ProyectoTorneo/TorneoFront/js/traer_torneos.js"></script>
+  <script src="/ProyectoTorneo/TorneoFront/js/borrar_torneo.js"></script>
+  <script src="/ProyectoTorneo/TorneoFront/js/editar_torneo.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          fetchTorneos();
+      });
+  </script>
+</body>
+</html>

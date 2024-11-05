@@ -19,32 +19,41 @@ async function cargarDatosTorneo(id) {
         // Mostrar un mensaje al usuario, por ejemplo, en un alert
         alert("Hubo un problema al cargar los datos del torneo. Inténtalo más tarde.");
     }
-    // Función para actualizar el torneo
+}
+
+// Función para actualizar el torneo
 async function actualizarTorneo() {
-    const nombre = document.getElementById('nombre').value;
+    const nombre = document.getElementById('nombreTorneo').value;
     const fechaInicio = document.getElementById('fechaInicio').value;
     const fechaFin = document.getElementById('fechaFin').value;
 
-    // Aquí harías la llamada a tu API para hacer un PUT
-    fetch(`http://localhost:5014/Api/Torneo/Actualizar/${tournamentId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            nombre,
-            fechaInicio,
-            fechaFin
-        })
-    })
-    console.log('Actualizando torneo:', { id: tournamentId, nombre, fechaInicio, fechaFin });
+    try {
+        const response = await fetch(`http://localhost:5014/Api/Torneo/Actualizar/${tournamentId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre,
+                fechaInicio,
+                fechaFin
+            })
+        });
 
-    // Simular un PUT exitoso
-    
-    alert('Torneo actualizado con éxito');
+        if (!response.ok) {
+            throw new Error('Error en la BD: ' + response.statusText);
+        }
 
-    // Redirigir a la página principal o a donde necesites
-    window.location.href = 'index.html';
+        console.log('Actualizando torneo:', { id: tournamentId, nombre, fechaInicio, fechaFin });
+
+        alert('Torneo actualizado con éxito');
+
+        // Redirigir a la página principal o a donde necesites
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Error en operación fetch: ', error);
+        alert("Hubo un problema al actualizar el torneo. Inténtalo más tarde.");
+    }
 }
 
 // Al cargar el documento, cargamos los datos del torneo
@@ -56,5 +65,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Asignar la función al botón Aceptar
     document.getElementById('botonAceptar').addEventListener('click', actualizarTorneo);
 });
-
-}
