@@ -31,6 +31,8 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     const fechaNacimiento = document.getElementById('fechaNacimientoJugador').value;
     const posicion = parseInt(document.getElementById('posicionJugador').value); // Asegúrate de que la posición es un número
     const rol = parseInt(document.getElementById('rolJugador').value); // Asegúrate de que el rol es un número
+    // const acciones = <button type="delete" class="btn btn-primary" style="background: rgb(45, 126, 231)"><i class="bi bi-trash3"></i></button>
+    const acciones = `<button type="button" class="btn btn-outline-danger" onclick="removePlayer(this)"><i class="bi bi-trash3"></i></button>`;
 
     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
     const jugadores = [];
@@ -58,6 +60,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
         <td>${fechaNacimiento}</td>
         <td>${posicion}</td>
         <td>${rol}</td>
+        <td>${acciones}</td>
     </tr>`;
 
     document.getElementById('jugadoresTableBody').insertAdjacentHTML('beforeend', nuevaFila);
@@ -124,3 +127,13 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
         alert("Ocurrió un error al intentar cargar el torneo");
     }
 });
+
+function removePlayer(button) {
+    // Obtener la fila (tr) padre del botón
+    const row = button.closest('tr'); // Encuentra el elemento <tr> más cercano
+    if (row) {
+        row.remove(); // Eliminar la fila de la tabla
+    }
+}
+
+
