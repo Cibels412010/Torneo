@@ -31,7 +31,7 @@ async function fetchTorneos() {
             actionsCell.innerHTML = `
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
                     <button type="edit" class="btn btn-primary" style="background: rgb(45, 126, 231)">Editar</button>
-                    <button type="delete" class="btn btn-primary" style="background-color: #20212b">Borrar</button>
+                    <button type="delete" class="btn btn-primary" style="background-color: #20212b" data-id="${torneo.id}" onclick="borrarTorneo(this)">Borrar</button>
                 </div>
             `;
             row.appendChild(actionsCell);
