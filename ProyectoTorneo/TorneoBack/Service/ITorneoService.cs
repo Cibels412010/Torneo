@@ -17,6 +17,10 @@ namespace TorneoBack.Repository.Contracts
         bool DeleteTorneo(int id);
         Torneo getTorneoById(int id);
 
+        //vista posiciones
+        List<VTablaPosicione> GetAllPosiciones();
+
+
         //equipos
         bool AddEquipoConJugadores(EquipoDto equipoDto);
         List<Equipo> GetAllEquipos();

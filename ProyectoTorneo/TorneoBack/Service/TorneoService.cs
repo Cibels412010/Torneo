@@ -98,5 +98,10 @@ namespace TorneoBack.Service
         {
             return _equiposRepository.GetById(id);
         }
+        public List<VTablaPosicione> GetAllPosiciones()
+        {
+            return _torneoRepository.GetAllPosiciones();
+        }
+
     }
 }

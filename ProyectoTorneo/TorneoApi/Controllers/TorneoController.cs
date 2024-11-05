@@ -42,6 +42,25 @@ namespace TorneoApi.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+        [HttpGet("Posiciones")]
+        public IActionResult GetPosiciones()
+        {
+            try
+            {
+                var torneos = _servicio.GetAllPosiciones();
+                if (torneos.Count == 0)
+                {
+                    return NotFound("No se encontraron resultados.");
+                }
+
+                return Ok(torneos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
 
         [HttpGet("Torneos")]
 

@@ -69,41 +69,44 @@
       </div>
     </nav>
   </header>
-      <div class="col-md-6">
-        <h2 class="text-white text-start">Tabla de posiciones</h2>
-        <table class="table table-striped table-bordered text-white mt-3">
-          <thead>
-              <tr>
-                  <th scope="col">Equipo</th>
-                  <th scope="col">PJ</th>
-                  <th scope="col">G</th>
-                  <th scope="col">E</th>
-                  <th scope="col">P</th>
-                  <th scope="col">DG</th>
-                  <th scope="col">Pts</th>
-              </tr>
-          </thead>
-          <tbody id="posicionesTableBody">
-            <tr>
-              <th scope="row" id="nombre-equipo"></th>
-              <td id="partidos-jugados"></td>
-              <td id="ganados"></td>
-              <td class="empatados"></td>
-              <td class="perdidos"></td>
-              <td class="diferencia-goles"></td>
-              <td class="puntos"></td>
-            </tr>
-          </tbody>
-      </table>
-        //
-
-        //
+  <div class="container d-flex justify-content-center mt-5">
+    <div class="col-lg-10">
+        <h2 class="text-white text-center mb-4">Tabla de posiciones</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered text-white">
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col">Equipo</th>
+                        <th scope="col">PJ</th>
+                        <th scope="col">G</th>
+                        <th scope="col">E</th>
+                        <th scope="col">P</th>
+                        <th scope="col">DG</th>
+                        <th scope="col">Pts</th>
+                    </tr>
+                </thead>
+                <tbody id="posicionesTableBody" class="text-center">
+                    <tr>
+                        <th scope="row" id="nombre-equipo">Equipo 1</th>
+                        <td id="partidos-jugados">10</td>
+                        <td id="ganados">6</td>
+                        <td class="empatados">2</td>
+                        <td class="perdidos">2</td>
+                        <td class="diferencia-goles">+8</td>
+                        <td class="puntos">20</td>
+                    </tr>
+                    <!-- Más filas de ejemplo o generadas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
+
       <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%;">
         <div class="container">
           <span class="text-muted">TUP-UTN Programación II.</span>
         </div>
       </footer>
-    <script src="/js/scripts.js"></script>
+      <script src="../js/traer_posiciones.js"></script>
 </body>
 </html>
