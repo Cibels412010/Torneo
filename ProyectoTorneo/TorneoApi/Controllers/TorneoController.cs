@@ -127,20 +127,14 @@ namespace TorneoApi.Controllers
         }
 
 
-        [HttpPut("Editar/{torneo}")]
-        public IActionResult UpdateTorneo(Torneo torneo)
+        [HttpPut("Editar")]
+        public IActionResult UpdateTorneo([FromBody]Torneo torneo)
         {
            try
            {
                if (torneo.FechaInicio > torneo.FechaFin)
                {
                    return BadRequest("La fecha de inicio no puede ser posterior a la fecha de finalización.");
-               }
-
-               var existTorneo = _servicio.getTorneoById(torneo.IdTorneo);
-               if (existTorneo == null)
-               {
-                   return NotFound($"El torneo con ID '{torneo.IdTorneo}' no fue encontrado.");
                }
 
                bool torneoActualizado = _servicio.UpdateTorneo(torneo);

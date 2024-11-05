@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,16 +50,26 @@ namespace TorneoBack.Repository
         public Torneo GetById(int id)
         {
             return _context.Torneos.Find(id);
-        }    
+        }
 
         public bool Update(Torneo torneo)
         {
-            if (torneo!=null)
+            var torneoActualizado = _context.Torneos.Find(torneo.IdTorneo);
+            if (torneoActualizado != null)
             {
-                _context.Torneos.Update(torneo);
+                
+                torneoActualizado.Nombre = torneo.Nombre;
+                torneoActualizado.FechaInicio = torneo.FechaInicio;
+                torneoActualizado.FechaFin = torneo.FechaFin;
+                torneoActualizado.Borrado = torneo.Borrado;
+
+                _context.Entry(torneoActualizado).State = EntityState.Modified;
+
                 return _context.SaveChanges() > 0;
             }
             return false;
         }
+
+
     }
 }

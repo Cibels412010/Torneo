@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 alert("Torneo generado correctamente!");
                 form.reset();
+               fetchTorneos();
                
             } else {
                 alert("Error al generar torneo");
@@ -59,5 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error:", error);
             alert("Ocurrió un error al intentar cargar el torneo");
         }
+        
     });
 });
