@@ -96,8 +96,27 @@ body::before {
     left: -100px;
 }
 
+#boxForm{
+    display: flex;
+    justify-content: space-around;
+}
+
 .footer {
     position: fixed; /* Cambia de absolute a relative */
     bottom: 0;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    #boxForm{
+        flex-direction: column;
+    }
+}
+
+@media(min-width: 768px){
+    .md-4{
+        width: 35%;
+    } .md-7{
+        width: 55%;
+    }
 }
