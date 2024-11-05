@@ -165,93 +165,98 @@
         </div>
       </nav>
     </header>
-    <div class="container-sm d-flex justify-content-evenly my-4" id="FormularioBox">
-      <form
-        class="Formulario"
-        id="altaTorneoForm"
-        style="color: white"
-        method="post"
-        action="javascript:void(0);"
-      >
-        <div class="mb-3">
-          <label class="form-label" for="nombre">Nombre Torneo:</label>
-          <input
-            class="form-control"
-            type="text"
-            id="nombreTorneo"
-            name="NombreTorneo"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" id="labelFormulario" for="fechaInicio"
-            >Fecha Inicio:</label
-          >
-          <input
-            class="form-control"
-            type="date"
-            id="fechaInicio"
-            name="fechaInicio"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label" id="labelFormulario" for="fechaFin"
-            >Fecha Fin:</label
-          >
-          <input
-            class="form-control"
-            type="date"
-            id="fechaFin"
-            name="fechaFin"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <button
-            class="btn btn-primary"
-            style="background: rgb(45, 126, 231)"
-            type="submit"
-          >
-            <i class="fas fa-save"></i> Enviar
-          </button>
-          <button
-            class="btn btn-primary"
-            style="background-color: #20212b"
-            type="reset"
-          >
-            Limpiar
-          </button>
-        </div>
-      </form>
-      <div class="col-md-6">
-        <h2 class="text-white text-start">Torneos</h2>
-        
-        <table class="table table-striped table-bordered text-white mt-3">
-          <thead>
-              <tr>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Desde</th>
-                  <th scope="col">Hasta</th>
-                  <th scope="col"></th>
-              </tr>
-          </thead>
-          <tbody id="torneosTableBody">
-            <tr>
-              <th scope="row" id="nombre-torneo"></th>
-              <td id="desde"></td>
-              <td id="hasta"></td>
-              <td class="btn-edit-delete">
-                <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-                  <button type="edit" class="btn btn-primary" style="background: rgb(45, 126, 231)">Editar</button>
-                  <button type="delete" class="btn btn-primary" style="background-color: #20212b">Borrar</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
+    <div class="d-flex container-sm py-4" id="boxForm">
+      
+          <div class="md-4">
+                      <form
+                  class="Formulario"
+                  id="altaTorneoForm"
+                  style="color: white"
+                  method="post"
+                  action="javascript:void(0);"
+                >
+                  <div class="mb-3">
+                    <label class="form-label" for="nombre">Nombre Torneo:</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="nombreTorneo"
+                      name="NombreTorneo"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" id="labelFormulario" for="fechaInicio"
+                      >Fecha Inicio:</label
+                    >
+                    <input
+                      class="form-control"
+                      type="date"
+                      id="fechaInicio"
+                      name="fechaInicio"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" id="labelFormulario" for="fechaFin"
+                      >Fecha Fin:</label
+                    >
+                    <input
+                      class="form-control"
+                      type="date"
+                      id="fechaFin"
+                      name="fechaFin"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <button
+                      class="btn btn-primary"
+                      style="background: rgb(45, 126, 231)"
+                      type="submit"
+                    >
+                      <i class="fas fa-save"></i> Enviar
+                    </button>
+                    <button
+                      class="btn btn-primary"
+                      style="background-color: #20212b"
+                      type="reset"
+                    >
+                      Limpiar
+                    </button>
+                  </div>
+                </form>
+          </div>
+          <div class="md-7">
+            <div class="col-md-6">
+              <h2 class="text-white text-start">Torneos</h2>
+              
+              <table class="table table-striped table-bordered text-white mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Desde</th>
+                        <th scope="col">Hasta</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="torneosTableBody">
+                  <tr>
+                    <th scope="row" id="nombre-torneo"></th>
+                    <td id="desde"></td>
+                    <td id="hasta"></td>
+                    <td class="btn-edit-delete">
+                      <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
+                        <button type="edit" class="btn btn-primary" style="background: rgb(45, 126, 231)">Editar</button>
+                        <button type="delete" class="btn btn-primary" style="background-color: #20212b">Borrar</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
       </div>
+    </div>
     </div>
     <footer
       class="footer mt-auto py-2 bg-body-tertiary text-center"

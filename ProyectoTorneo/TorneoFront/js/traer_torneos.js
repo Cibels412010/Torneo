@@ -1,6 +1,6 @@
 async function fetchTorneos() {
     try {
-        const response = await fetch('http://localhost:5014/Api/Torneo');
+        const response = await fetch('http://localhost:5014/Api/Torneo/Torneos');
         if (!response.ok) {
             throw new Error('Error en la BD' + response.statusText);
         }
@@ -19,11 +19,11 @@ async function fetchTorneos() {
             row.appendChild(nombreCell);
 
             const desdeCell = document.createElement('td');
-            desdeCell.textContent = torneo.fecha_incio;
+            desdeCell.textContent = torneo.fechaInicio.substring(0, 10);
             row.appendChild(desdeCell);
 
             const hastaCell = document.createElement('td');
-            hastaCell.textContent = torneo.fecha_hasta;
+            hastaCell.textContent = torneo.fechaFin.substring(0, 10);            ;
             row.appendChild(hastaCell);
 
             const actionsCell = document.createElement('td');
@@ -40,7 +40,7 @@ async function fetchTorneos() {
         });
 
     } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
+        console.error('Error en operación fetch: ', error);
     }
 }
 

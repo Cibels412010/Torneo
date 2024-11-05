@@ -43,6 +43,26 @@ namespace TorneoApi.Controllers
             }
         }
 
+        [HttpGet("Torneos")]
+
+        public IActionResult GetTorneos()
+        {
+            try
+            {
+                var torneos = _servicio.GetAllTorneos();
+                if (torneos.Count == 0)
+                {
+                    return NotFound("No se encontraron torneos.");
+                }
+
+                return Ok(torneos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
         //[HttpPost("Editar")]
         //public IActionResult UpdateTorneo([FromBody] Torneo torneo)
         //{
