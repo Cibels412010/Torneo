@@ -36,17 +36,17 @@ namespace TorneoApi.Controllers
             }
         }
         [HttpPost("CrearTransaction")]
-        public IActionResult CreateEquipo([FromBody] EquipoDto equipoDto)
+        public IActionResult AddEquipo([FromBody] EquipoDto equipoDto)
         {
             try
             {
                 
                 if (equipoDto.FechaFundacion > DateTime.Now)
                 {
-                    return BadRequest("La fecha de fundación no puede ser posterior a la fecha de hoy.");
+                    return BadRequest(new { mensaje = "La fecha de fundación no puede ser posterior a la fecha de hoy." });
                 }
 
-                bool eqCreado = _servicio.AddEquipoConJugadores(equipoDto);
+                bool eqCreado = _servicio.SaveEquipo(equipoDto);
 
                 if (!eqCreado)
                 {

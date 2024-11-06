@@ -15,8 +15,8 @@ namespace TorneoBack.DTOs
         public bool FichaMedica { get; set; } = true;
         public DateTime FechaNacimiento { get; set; }
         public int IdEquipo { get; set; }
-        public int IdPosicion { get; set; } = 1;
-        public int Rol { get; set; } = 1;
+        public int? IdPosicion { get; set; } = 1;
+        public int? Rol { get; set; } = 1;
         public bool Borrado { get; set; } = false;
     }
 }

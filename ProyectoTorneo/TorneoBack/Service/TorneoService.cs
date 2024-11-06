@@ -23,10 +23,7 @@ namespace TorneoBack.Service
             _equiposRepository = equiposRepository;
         }
 
-        public bool AddEquipoConJugadores(EquipoDto equipoDto)
-        {
-            return _equiposRepository.AddEquipoConJugadores(equipoDto);
-        }
+        
 
         public bool AddJugador(Jugador jugador)
         {
@@ -54,10 +51,6 @@ namespace TorneoBack.Service
             return _equiposRepository.Delete(id);
         }
 
-        //public bool DeleteJugador(int id)
-        //{
-        //    return _jugadorRepository.Delete(id);
-        //}
 
         public List<Equipo> GetAllEquipos()
         {
@@ -79,10 +72,7 @@ namespace TorneoBack.Service
             return _torneoRepository.GetById(id);
         }
 
-        public bool UpdateEquipo(Equipo equipo)
-        {
-           return _equiposRepository.Update(equipo);
-        }
+       
 
         public bool UpdateJugador(Jugador jugador)
         {
@@ -110,6 +100,11 @@ namespace TorneoBack.Service
         public List<VFairPlay> GetAllFairPlay()
         {
             return _torneoRepository.GetAllFairPlay();
+        }
+
+        public bool SaveEquipo(EquipoDto equipoDto)
+        {
+           return _equiposRepository.Save(equipoDto);
         }
     }
 }
