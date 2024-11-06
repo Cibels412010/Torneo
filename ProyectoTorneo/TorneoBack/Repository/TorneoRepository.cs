@@ -69,7 +69,14 @@ namespace TorneoBack.Repository
             }
             return false;
         }
+        public List<VGoleador> GetAllGoleadores()
+        {
+            return _context.Goleadores.OrderByDescending(g => g.GolesMarcados).ToList();
+        }
 
-
+        public List<VFairPlay> GetAllFairPlay()
+        {
+            return _context.VFairPlays.OrderByDescending(f => f.Puntaje).ToList();
+        }
     }
 }

@@ -61,6 +61,43 @@ namespace TorneoApi.Controllers
             }
         }
 
+        [HttpGet("Goleadores")]
+        public IActionResult GetGoleadores()
+        {
+            try
+            {
+                var goleadores = _servicio.GetAllGoleadores();
+                if (goleadores.Count == 0)
+                {
+                    return NotFound("No se encontraron resultados.");
+                }
+
+                return Ok(goleadores);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
+        [HttpGet("GetFairPlay")]
+        public IActionResult GetFairPlay()
+        {
+            try
+            {
+                var equipos = _servicio.GetAllFairPlay();
+                if (equipos.Count == 0)
+                {
+                    return NotFound("No se encontraron resultados.");
+                }
+
+                return Ok(equipos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
 
         [HttpGet("Torneos")]
 

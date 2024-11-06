@@ -102,6 +102,14 @@ namespace TorneoBack.Service
         {
             return _torneoRepository.GetAllPosiciones();
         }
+        public List<VGoleador> GetAllGoleadores()
+        {
+            return _torneoRepository.GetAllGoleadores();
+        }
 
+        public List<VFairPlay> GetAllFairPlay()
+        {
+            return _torneoRepository.GetAllFairPlay();
+        }
     }
 }

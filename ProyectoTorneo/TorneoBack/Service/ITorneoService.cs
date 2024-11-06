@@ -17,8 +17,10 @@ namespace TorneoBack.Repository.Contracts
         bool DeleteTorneo(int id);
         Torneo getTorneoById(int id);
 
-        //vista posiciones
+        //vistas dashboard
         List<VTablaPosicione> GetAllPosiciones();
+        List<VGoleador> GetAllGoleadores();
+        List<VFairPlay> GetAllFairPlay();
 
 
         //equipos
