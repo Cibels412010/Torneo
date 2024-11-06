@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const equipoId = urlParams.get('id');
     console.log(equipoId);
     if (equipoId) {
+        
+        modificacionesEditarHtml();
         try {
-
+            
             // Llama a la API para obtener los datos del equipo
             const response = await fetch(`http://localhost:5014/Api/Equipo/Equipo/${equipoId}`);
             if (!response.ok) {
@@ -16,47 +18,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const equipo = await response.json();
 
-            // Carga los datos del equipo en el formulario
-            document.getElementById('idEquipo').value = equipo.idEquipo;
-            document.getElementById('nombreEquipo').value = equipo.nombre;
-            document.getElementById('fechaFundacion').value = equipo.fechaFundacion.substring(0, 10);
+            cargarEquiposEnFormulario(equipo);
 
-            // Carga los datos de cada jugador en el formulario de jugadores
-           const jugadoresTableBody = document.getElementById('jugadoresTableBody');
-                jugadoresTableBody.innerHTML = ''; // Limpia la tabla antes de agregar jugadores
-
-                equipo.jugadores.forEach(jugador => {
-                    // Crear una nueva fila para el jugador
-                    const nuevaFila = document.createElement('tr');
-
-                    // Crear celdas para cada dato del jugador
-                    const nombreCelda = document.createElement('td');
-                    nombreCelda.textContent = jugador.nombre;
-                    nuevaFila.appendChild(nombreCelda);
-
-                    const apellidoCelda = document.createElement('td');
-                    apellidoCelda.textContent = jugador.apellido;
-                    nuevaFila.appendChild(apellidoCelda);
-
-                    const dniCelda = document.createElement('td');
-                    dniCelda.textContent = jugador.dni;
-                    nuevaFila.appendChild(dniCelda);
-
-                    const fechaNacimientoCelda = document.createElement('td');
-                    fechaNacimientoCelda.textContent = jugador.fechaNacimiento.substring(0, 10);
-                    nuevaFila.appendChild(fechaNacimientoCelda);
-
-                    const posicionCelda = document.createElement('td');
-                    posicionCelda.textContent = jugador.idPosicion;
-                    nuevaFila.appendChild(posicionCelda);
-
-                    const rolCelda = document.createElement('td');
-                    rolCelda.textContent = jugador.rol;
-                    nuevaFila.appendChild(rolCelda);
-
-                    // Añadir la fila completa al cuerpo de la tabla
-                    jugadoresTableBody.appendChild(nuevaFila);
-                });
+            cargarJugadoresEnFormulario(equipo);
+           
 
         } catch (error) {
             console.error('Error al cargar los datos del equipo:', error);
@@ -80,6 +45,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
         alert('Por favor complete todos los campos');
         return;
     }
+
     window.idEquipo = idEquipo;
     window.equipoNombre = nombreEquipo;
     window.equipoFechaFundacion = fechaFundacion;
@@ -89,21 +55,33 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
     document.querySelectorAll(' #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
         element.disabled = false;
     });
-    alert(`Equipo '${nombreEquipo}' creado. Agrega jugadores a continuación.`);
+    alert(`Equipo '${nombreEquipo}' parcialmente guardado. Agregue jugadores a continuación o presione GUARDAR CAMBIOS para confirmar.`);
 });
 
 // Agregar evento para el formulario de jugadores
 document.getElementById('jugadorForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario
+
+    const id = document.getElementById('idJugador').value || 0;
     const nombre = document.getElementById('nombreJugador').value;
     const apellido = document.getElementById('apellidoJugador').value;
-    const dni = parseInt(document.getElementById('dniJugador').value); // Asegúrate de que el DNI es un número
+    const dni = parseInt(document.getElementById('dniJugador').value); 
     const fichaMedica = document.getElementById('flexRadioDefault1').checked;
     const fechaNacimiento = document.getElementById('fechaNacimientoJugador').value;
-    const posicion = parseInt(document.getElementById('posicionJugador').value); // Asegúrate de que la posición es un número
-    const rol = parseInt(document.getElementById('rolJugador').value); // Asegúrate de que el rol es un número
+    const posicion = parseInt(document.getElementById('posicionJugador').value) || 0;
+    const rol = parseInt(document.getElementById('rolJugador').value) || 0;
     // const acciones = <button type="delete" class="btn btn-primary" style="background: rgb(45, 126, 231)"><i class="bi bi-trash3"></i></button>
-    const acciones = `<button type="button" class="btn btn-outline-danger" onclick="removePlayer(this)"><i class="bi bi-trash3"></i></button>`;
+    const acciones =  `
+    <button 
+        type="button" 
+        class="btn btn-primary me-2" 
+        style="background: rgb(45, 126, 231);" 
+        data-id="${equipo.idEquipo}" 
+        onclick="editarEquipo(${equipo.idEquipo})" 
+        id="botonEditarEquipo">
+        <i class="bi bi-pencil-square"></i>
+    </button>
+<button type="button" class="btn btn-outline-danger" onclick="removePlayer(this)"><i class="bi bi-trash3"></i></button>`;
 
     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
     const jugadores = [];
@@ -124,6 +102,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     }
 
     const nuevaFila = `<tr>
+        <td style="display: none;">${id}</td>
         <td>${nombre}</td>
         <td>${apellido}</td>
         <td>${dni}</td>
@@ -148,15 +127,15 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
         const cells = row.querySelectorAll('td');
 
         const jugador = {
-            idJugador: 0,
-            nombre: cells[0].innerText,
-            apellido: cells[1].innerText,
-            dni: parseInt(cells[2].innerText),
-            fichaMedica: cells[3].innerText === 'Sí',
-            fechaNacimiento: cells[4].innerText,
+            idJugador: parseInt(cells[0].innerText), // Asegúrate de que el ID del jugador es un número
+            nombre: cells[1].innerText,
+            apellido: cells[2].innerText,
+            dni: parseInt(cells[3].innerText),
+            fichaMedica: cells[4].innerText === 'Sí',
+            fechaNacimiento: cells[5].innerText,
             idEquipo: 0,
-            idPosicion: parseInt(cells[5].innerText), // Asegúrate de que la posición es un número
-            rol: parseInt(cells[6].innerText), // Asegúrate de que el rol es un número
+            idPosicion: parseInt(cells[6].innerText), // Asegúrate de que la posición es un número
+            rol: parseInt(cells[7].innerText), // Asegúrate de que el rol es un número
         };
 
         // Verificar si el jugador ya está en la lista antes de agregarlo
@@ -208,3 +187,118 @@ function removePlayer(button) {
     }
 }
 
+
+function editarEquipo(idEquipo) {
+    const confirmar = confirm("¿Estás seguro de que quieres editar este equipo?");
+    console.log(idEquipo);
+    if (confirmar) {
+        location.href = `../html/transaccion.html?id=${idEquipo}`;
+        
+    }
+
+}
+
+function cargarEquiposEnFormulario(equipo){
+     // Carga los datos del equipo en el formulario
+     document.getElementById('idEquipo').value = equipo.idEquipo;
+     document.getElementById('nombreEquipo').value = equipo.nombre;
+     document.getElementById('fechaFundacion').value = equipo.fechaFundacion.substring(0, 10);
+}
+
+function cargarJugadoresEnFormulario(equipo){
+    const jugadoresTableBody = document.getElementById('jugadoresTableBody');
+            jugadoresTableBody.innerHTML = ''; // Limpia la tabla antes de agregar jugadores
+
+                equipo.jugadores.forEach(jugador => {
+                    // Crear una nueva fila para el jugador
+                    const nuevaFila = document.createElement('tr');
+
+                    const idJugador = jugador.idJugador;
+                    const idJugadorCelda = document.createElement('td');
+                    idJugadorCelda.textContent = idJugador;
+                    idJugadorCelda.style.display = 'none'; // Ocultar la celda en el front
+                    nuevaFila.appendChild(idJugadorCelda);
+                    // Crear celdas para cada dato del jugador
+                    const nombreCelda = document.createElement('td');
+                    nombreCelda.textContent = jugador.nombre;
+                    nuevaFila.appendChild(nombreCelda);
+
+                    const apellidoCelda = document.createElement('td');
+                    apellidoCelda.textContent = jugador.apellido;
+                    nuevaFila.appendChild(apellidoCelda);
+
+                    const dniCelda = document.createElement('td');
+                    dniCelda.textContent = jugador.dni;
+                    nuevaFila.appendChild(dniCelda);
+                    
+                    const fichaMedicaCelda = document.createElement('td');
+                    fichaMedicaCelda.textContent = jugador.fichaMedica ? 'Sí' : 'No';
+                    nuevaFila.appendChild(fichaMedicaCelda);
+
+                    const fechaNacimientoCelda = document.createElement('td');
+                    fechaNacimientoCelda.textContent = jugador.fechaNacimiento.substring(0, 10);
+                    nuevaFila.appendChild(fechaNacimientoCelda);
+
+                    const posicionCelda = document.createElement('td');
+                    posicionCelda.textContent = jugador.idPosicion;
+                    switch (jugador.idPosicion) {
+                        case 1:
+                            posicionCelda.textContent = 'Portero';
+                            break;
+                        case 2:
+                            posicionCelda.textContent = 'Defensa';
+                            break;
+                        case 3:
+                            posicionCelda.textContent = 'Centrocampista';
+                            break;
+                        case 4:
+                            posicionCelda.textContent = 'Delantero';
+                            break;
+                        default:
+                            posicionCelda.textContent = 'Sin posición';
+                    }
+                    nuevaFila.appendChild(posicionCelda);
+
+                    const rolCelda = document.createElement('td');
+                    rolCelda.textContent = jugador.rol || 'Sin rol';
+                    rolCelda.style.whiteSpace = 'nowrap';
+                    nuevaFila.appendChild(rolCelda);
+
+                    const actionsCell = document.createElement('td');
+                actionsCell.className = 'btn-edit-delete';
+                actionsCell.innerHTML = `
+                                <button 
+                                    type="button" 
+                                    class="btn btn-primary me-2" 
+                                    style="background: rgb(45, 126, 231);" 
+                                    data-id="${equipo.idEquipo}" 
+                                    onclick="editarEquipo(${equipo.idEquipo})" 
+                                    id="botonEditarEquipo">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+
+                                <button type="button"
+                                class="btn btn-danger"
+                                data-id="${equipo.idEquipo}"
+                                onclick="borrarEquipo(this)"
+                                style="opacity: 0.7">
+                                <i class="bi bi-trash3"></i></button>
+                                </div>
+
+                `;
+                nuevaFila.appendChild(actionsCell);
+
+                    // Añadir la fila completa al cuerpo de la tabla
+                    jugadoresTableBody.appendChild(nuevaFila);
+                });
+}
+
+function modificacionesEditarHtml(){
+
+    // ? CAMBIAR EN EL HTML SI ESTOY EDITANDO?
+    document.getElementById('tituloCargarEditar').textContent = 'Editar equipo';
+    document.getElementById('verEquiposVolver').textContent = 'Volver a equipos';
+    document.getElementById('JugadoresTituloForm').textContent = 'Nuevo Jugador';
+    document.getElementById('guardarEquipoBtn').textContent = 'Editar Equipo';
+    document.getElementById('idJugador').style.opacity = 0.5;
+}

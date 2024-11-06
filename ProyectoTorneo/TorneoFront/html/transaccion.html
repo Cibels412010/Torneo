@@ -72,31 +72,41 @@
       </header>
     <div class="container-sm py-4" id="boxForm">
         <div class="row">
-            <div class="col-md-5">
-                <form id="equipoForm" class="mb-4">
-                    <h2 class="text-white">Cargar equipo</h2>
-                    <div class="mb-3" style="opacity: 0.5;">
-                      <label for="idEquipo" class="form-label" id="labelFormulario">Id del Equipo</label>
-                      <input type="text" class="form-control" id="idEquipo" placeholder="Id equipo" disabled>
-                  </div>
-                    <div class="mb-3">
-                        <label for="nombreEquipo" class="form-label" id="labelFormulario">Nombre del Equipo</label>
-                        <input type="text" class="form-control" id="nombreEquipo" placeholder="Nombre del equipo" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fechaFundacion" class="form-label" id="labelFormulario">Fecha de Fundación</label>
-                        <input type="date" class="form-control" id="fechaFundacion" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="guardarEquipoBtn">Agregar Equipo</button>
-                </form>
+            <div class="col-md-4">
+              <form id="equipoForm" class="mb-4">
+                <div class="d-flex justify-content-between">
+                  <h2 id="tituloCargarEditar" class="text-white">Cargar equipo</h2>
+                  <a href="../html/Equipos.html" 
+                     class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" 
+                     style="color: white;"
+                     id="verEquiposVolver">
+                     Ver Equipos
+                  </a>
+              </div>
+                <div class="mb-3" style="opacity: 0.5;">
+                    <label for="idEquipo" class="form-label" id="labelFormulario">Id del Equipo</label>
+                    <input type="text" class="form-control" id="idEquipo" placeholder="Id equipo" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="nombreEquipo" class="form-label" id="labelFormulario">Nombre del Equipo</label>
+                    <input type="text" class="form-control" id="nombreEquipo" placeholder="Nombre del equipo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaFundacion" class="form-label" id="labelFormulario">Fecha de Fundación</label>
+                    <input type="date" class="form-control" id="fechaFundacion" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="guardarEquipoBtn">Agregar Equipo</button>
+                
+            </form>
+            
                
             <div id="jugadorContainer">
 
                 <form id="jugadorForm" class="mb-4" style="opacity: 0.5;">
-                    <h2 class="text-white">Agregar Jugadores al Equipo</h2>
+                    <h2 id="JugadoresTituloForm" class="text-white">Agregar Jugadores al Equipo</h2>
                     <div class="mb-3">
                       <label for="idJugador" class="form-label" id="labelFormulario">Id del Jugador</label>
-                      <input type="text" class="form-control" id="idJugador" placeholder="Id jugador" disabled>
+                      <input type="text" class="form-control" id="idJugador" placeholder="0" disabled>
                   </div>
                     <div class="mb-3">
                         <label for="nombreJugador" class="form-label" id="labelFormulario">Nombre del Jugador</label>
@@ -154,10 +164,8 @@
                 </form>
               </div>
             </div>
-            <div class="col-md-1"></div>
-
-
-            <div class="col-md-6">
+           
+            <div class="col-md-7" style="margin-left: 20px;">
                 <h2 class="text-white mt-4">Jugadores del Equipo</h2>
                 <table class="table table-striped table-bordered text-white mt-3">
                     <thead>
@@ -177,7 +185,6 @@
                     </tbody>
                 </table>
                 <button type="submit" class="btn btn-primary" id="guardarCambiosBtn">Guardar Cambios</button>
-            </div>
         </div>
     </div>
     <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%;">
