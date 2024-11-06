@@ -1,11 +1,78 @@
 // URL de la API
 const API_URL = "http://localhost:5014/Api/Equipo";
 
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const equipoId = urlParams.get('id');
+    console.log(equipoId);
+    if (equipoId) {
+        try {
+
+            // Llama a la API para obtener los datos del equipo
+            const response = await fetch(`http://localhost:5014/Api/Equipo/Equipo/${equipoId}`);
+            if (!response.ok) {
+                throw new Error('Error al obtener el equipo');
+            }
+
+            const equipo = await response.json();
+
+            // Carga los datos del equipo en el formulario
+            document.getElementById('idEquipo').value = equipo.idEquipo;
+            document.getElementById('nombreEquipo').value = equipo.nombre;
+            document.getElementById('fechaFundacion').value = equipo.fechaFundacion.substring(0, 10);
+
+            // Carga los datos de cada jugador en el formulario de jugadores
+           const jugadoresTableBody = document.getElementById('jugadoresTableBody');
+                jugadoresTableBody.innerHTML = ''; // Limpia la tabla antes de agregar jugadores
+
+                equipo.jugadores.forEach(jugador => {
+                    // Crear una nueva fila para el jugador
+                    const nuevaFila = document.createElement('tr');
+
+                    // Crear celdas para cada dato del jugador
+                    const nombreCelda = document.createElement('td');
+                    nombreCelda.textContent = jugador.nombre;
+                    nuevaFila.appendChild(nombreCelda);
+
+                    const apellidoCelda = document.createElement('td');
+                    apellidoCelda.textContent = jugador.apellido;
+                    nuevaFila.appendChild(apellidoCelda);
+
+                    const dniCelda = document.createElement('td');
+                    dniCelda.textContent = jugador.dni;
+                    nuevaFila.appendChild(dniCelda);
+
+                    const fechaNacimientoCelda = document.createElement('td');
+                    fechaNacimientoCelda.textContent = jugador.fechaNacimiento.substring(0, 10);
+                    nuevaFila.appendChild(fechaNacimientoCelda);
+
+                    const posicionCelda = document.createElement('td');
+                    posicionCelda.textContent = jugador.idPosicion;
+                    nuevaFila.appendChild(posicionCelda);
+
+                    const rolCelda = document.createElement('td');
+                    rolCelda.textContent = jugador.rol;
+                    nuevaFila.appendChild(rolCelda);
+
+                    // Añadir la fila completa al cuerpo de la tabla
+                    jugadoresTableBody.appendChild(nuevaFila);
+                });
+
+        } catch (error) {
+            console.error('Error al cargar los datos del equipo:', error);
+        }
+    }
+});
+
+
+
 // Agregar evento para el formulario de equipo
 document.getElementById('equipoForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario
 
     // Obtener los datos del equipo
+    
+    const idEquipo = document.getElementById('idEquipo').value || 0;
     const nombreEquipo = document.getElementById('nombreEquipo').value;
     const fechaFundacion = document.getElementById('fechaFundacion').value;
 
@@ -13,11 +80,15 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
         alert('Por favor complete todos los campos');
         return;
     }
+    window.idEquipo = idEquipo;
     window.equipoNombre = nombreEquipo;
     window.equipoFechaFundacion = fechaFundacion;
 
     // Habilitar el formulario de jugadores
     document.getElementById('jugadorForm').style.opacity = 1;
+    document.querySelectorAll(' #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
+        element.disabled = false;
+    });
     alert(`Equipo '${nombreEquipo}' creado. Agrega jugadores a continuación.`);
 });
 
@@ -97,6 +168,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
     });
 
     const equipoData = {
+        idEquipo: window.idEquipo,
         nombre: window.equipoNombre,
         fechaFundacion: window.equipoFechaFundacion,
         jugadores: jugadores
@@ -135,5 +207,4 @@ function removePlayer(button) {
         row.remove(); // Eliminar la fila de la tabla
     }
 }
-
 

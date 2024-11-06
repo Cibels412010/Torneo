@@ -35,6 +35,27 @@ namespace TorneoApi.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+
+        [HttpGet("Equipo/{id}")]
+        public IActionResult GetEquipoById(int id)
+        {
+            try
+            {
+                var equipo = _servicio.GetEquipoById(id);
+                if (equipo == null)
+                {
+                    return NotFound($"El equipo con ID '{id}' no fue encontrado.");
+                }
+
+                return Ok(equipo);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+
+
         [HttpPost("CrearTransaction")]
         public IActionResult AddEquipo([FromBody] EquipoDto equipoDto)
         {

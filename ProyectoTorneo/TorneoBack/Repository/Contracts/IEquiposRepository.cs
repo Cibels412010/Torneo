@@ -13,7 +13,7 @@ namespace TorneoBack.Repository.Contracts
         
         List<Equipo> GetAll();
         bool Save(EquipoDto equipo);
-        Equipo GetById(int id);
+        EquipoDto GetById(int id);
 
         bool Delete(int id);
     }

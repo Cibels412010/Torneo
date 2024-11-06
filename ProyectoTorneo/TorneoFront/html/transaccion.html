@@ -75,6 +75,10 @@
             <div class="col-md-5">
                 <form id="equipoForm" class="mb-4">
                     <h2 class="text-white">Cargar equipo</h2>
+                    <div class="mb-3" style="opacity: 0.5;">
+                      <label for="idEquipo" class="form-label" id="labelFormulario">Id del Equipo</label>
+                      <input type="text" class="form-control" id="idEquipo" placeholder="Id equipo" disabled>
+                  </div>
                     <div class="mb-3">
                         <label for="nombreEquipo" class="form-label" id="labelFormulario">Nombre del Equipo</label>
                         <input type="text" class="form-control" id="nombreEquipo" placeholder="Nombre del equipo" required>
@@ -85,30 +89,36 @@
                     </div>
                     <button type="submit" class="btn btn-primary" id="guardarEquipoBtn">Agregar Equipo</button>
                 </form>
+               
+            <div id="jugadorContainer">
 
                 <form id="jugadorForm" class="mb-4" style="opacity: 0.5;">
                     <h2 class="text-white">Agregar Jugadores al Equipo</h2>
                     <div class="mb-3">
+                      <label for="idJugador" class="form-label" id="labelFormulario">Id del Jugador</label>
+                      <input type="text" class="form-control" id="idJugador" placeholder="Id jugador" disabled>
+                  </div>
+                    <div class="mb-3">
                         <label for="nombreJugador" class="form-label" id="labelFormulario">Nombre del Jugador</label>
-                        <input type="text" class="form-control" id="nombreJugador" placeholder="Nombre del jugador" required>
+                        <input type="text" class="form-control" id="nombreJugador" placeholder="Nombre del jugador" required disabled>
                     </div>
                     <div class="mb-3">
                         <label for="apellidoJugador" class="form-label" id="labelFormulario">Apellido del Jugador</label>
-                        <input type="text" class="form-control" id="apellidoJugador" placeholder="Apellido del jugador" required>
+                        <input type="text" class="form-control" id="apellidoJugador" placeholder="Apellido del jugador" required disabled>
                     </div>
                     <div class="mb-3">
                         <label for="dniJugador" class="form-label" id="labelFormulario">DNI del Jugador</label>
-                        <input type="number" class="form-control" id="dniJugador" placeholder="DNI del jugador" required>
+                        <input type="number" class="form-control" id="dniJugador" placeholder="DNI del jugador" required disabled>
                     </div>
                 
                     <div class="mb-3 form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" disabled>
                         <label class="form-check-label" for="flexRadioDefault1" id="labelFormulario">
                           Con Ficha Médica
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked disabled>
                         <label class="form-check-label" for="flexRadioDefault2" id="labelFormulario">
                           Sin Ficha Médica
                         </label>
@@ -116,12 +126,12 @@
 
                     <div class="mb-3">
                         <label for="fechaNacimientoJugador" class="form-label" id="labelFormulario">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" id="fechaNacimientoJugador"required>
+                        <input type="date" class="form-control" id="fechaNacimientoJugador"required disabled>
                     </div>
                     
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="posicionJugador">Posición</label>
-                        <select class="form-select" id="posicionJugador">
+                        <select class="form-select" id="posicionJugador" disabled>
                           <option selected></option>
                           <option value="1">Arquero</option>
                           <option value="2">Defensor</option>
@@ -132,7 +142,7 @@
 
                       <div class="input-group mb-3">
                         <label class="input-group-text" for="rolJugador">Rol</label>
-                        <select class="form-select" id="rolJugador">
+                        <select class="form-select" id="rolJugador" disabled>
                           <option selected></option>
                           <option value="1">Capitán</option>
                           <option value="2">Sub Capitán</option>
@@ -140,8 +150,9 @@
                         </select>
                       </div>
 
-                    <button type="submit" class="btn btn-primary">Agregar Jugador</button>
+                    <button id="AgregarJugador" type="submit" class="btn btn-primary" disabled>Agregar Jugador</button>
                 </form>
+              </div>
             </div>
             <div class="col-md-1"></div>
 

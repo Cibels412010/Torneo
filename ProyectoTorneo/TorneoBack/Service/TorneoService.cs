@@ -84,7 +84,7 @@ namespace TorneoBack.Service
             return _torneoRepository.Update(torneo);
         }
 
-        public Equipo GetEquipoById(int id)
+        public EquipoDto GetEquipoById(int id)
         {
             return _equiposRepository.GetById(id);
         }

@@ -32,11 +32,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 const actionsCell = document.createElement('td');
                 actionsCell.className = 'btn-edit-delete';
                 actionsCell.innerHTML = `
-                   <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);" 
-                        data-id="${equipo.idEquipo}" href="../html/updateEquipo.html" id="botonEditarEquipo">Editar</button>
-                        <button type="button" class="btn btn-danger" data-id="${equipo.idEquipo}" onclick="borrarEquipo(this)" style="opacity: 0.7">Borrar</button>
-                    </div>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-primary me-2" 
+                                    style="background: rgb(45, 126, 231);" 
+                                    data-id="${equipo.idEquipo}" 
+                                    onclick="editarEquipo(${equipo.idEquipo})" 
+                                    id="botonEditarEquipo">
+                                    Editar
+                                </button>
+
+                                <button type="button"
+                                class="btn btn-danger"
+                                data-id="${equipo.idEquipo}"
+                                onclick="borrarEquipo(this)"
+                                style="opacity: 0.7">
+                                Borrar</button>
+                                </div>
 
                 `;
                 row.appendChild(actionsCell);

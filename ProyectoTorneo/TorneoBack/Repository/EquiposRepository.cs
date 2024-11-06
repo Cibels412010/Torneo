@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Net;
+using TorneoApi.Controllers;
 using TorneoApi.Models;
 using TorneoBack.DTOs;
 using TorneoBack.Repository.Contracts;
@@ -32,9 +33,41 @@ namespace TorneoBack.Repository
             return _context.Equipos.Where(t => t.Borrado != true).ToList();
         }
 
-        public Equipo GetById(int id)
+        public EquipoDto GetById(int id)
         {
-            return _context.Equipos.Find(id);
+            var equipo = _context.Equipos.First(e=>e.IdEquipo == id);
+            List<Jugador> juadores = _context.Jugadores.Where(j => j.IdEquipo == id).ToList();
+            List<JugadorDto> jugadoresDto = new List<JugadorDto>();
+
+            foreach (Jugador j in juadores)
+            {
+                var jugadorDto = new JugadorDto
+                {
+                    IdJugador = j.IdJugador,
+                    Nombre = j.Nombre,
+                    Apellido = j.Apellido,
+                    Dni = j.Dni,
+                    FichaMedica = j.FichaMedica,
+                    FechaNacimiento = j.FechaNacimiento,
+                    IdEquipo = id,
+                    IdPosicion = j.IdPosicion,
+                    Rol = j.Rol,
+                    Borrado = j.Borrado
+                };
+                jugadoresDto.Add(jugadorDto);
+
+            }
+
+            var equipoDto = new EquipoDto
+            {
+                IdEquipo = equipo.IdEquipo,
+                Nombre = equipo.Nombre,
+                FechaFundacion = equipo.FechaFundacion,
+                Jugadores = jugadoresDto
+            };
+
+            
+            return equipoDto ;
         }
 
         public bool Save(EquipoDto equipoDto)
