@@ -70,7 +70,7 @@ namespace TorneoBack.Service
         {
             return _torneoRepository.GetAllPosiciones();
         }
-        public List<VGoleador> GetAllGoleadores()
+        public List<Goleadore> GetAllGoleadores()
         {
             return _torneoRepository.GetAllGoleadores();
         }

@@ -19,7 +19,7 @@ namespace TorneoBack.Repository.Contracts
 
         //vistas dashboard
         List<VTablaPosicione> GetAllPosiciones();
-        List<VGoleador> GetAllGoleadores();
+        List<Goleadore> GetAllGoleadores();
         List<VFairPlay> GetAllFairPlay();
 
 

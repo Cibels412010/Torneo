@@ -15,7 +15,7 @@ namespace TorneoBack.Repository.Contracts
         List<Torneo> GetAll();
         Torneo GetById(int id);
         List<VTablaPosicione> GetAllPosiciones();
-        List<VGoleador> GetAllGoleadores();
+        List<Goleadore> GetAllGoleadores();
         List<VFairPlay> GetAllFairPlay();
     }
 }

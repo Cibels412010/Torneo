@@ -69,7 +69,7 @@ namespace TorneoBack.Repository
             }
             return false;
         }
-        public List<VGoleador> GetAllGoleadores()
+        public List<Goleadore> GetAllGoleadores()
         {
             return _context.Goleadores.OrderByDescending(g => g.GolesMarcados).ToList();
         }

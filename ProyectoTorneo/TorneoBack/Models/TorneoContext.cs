@@ -40,8 +40,8 @@ public partial class TorneoContext : DbContext
     public virtual DbSet<Evento> Eventos { get; set; }
 
     public virtual DbSet<FormasPago> FormasPagos { get; set; }
-    //public virtual DbSet<Goleadore> Goleadores { get; set; }
-    public virtual DbSet<VGoleador> Goleadores { get; set; }
+    public virtual DbSet<Goleadore> Goleadores { get; set; }
+    //public virtual DbSet<VGoleador> Goleadores { get; set; }
 
     public virtual DbSet<Jugador> Jugadores { get; set; }
 
@@ -378,18 +378,19 @@ public partial class TorneoContext : DbContext
                 .HasColumnName("descripcion");
         });
 
-        //Goleadore decia antes
-        modelBuilder.Entity<VGoleador>(entity =>
+        //V_Goleadores decia antes
+        modelBuilder.Entity<Goleadore>(entity =>
         {
             entity
                 .HasNoKey()
-                .ToView("V_Goleadores");//.ToView("Goleadores");
+                //.ToView("V_Goleadores");
+                .ToView("Goleadores");
 
             entity.Property(e => e.Equipo)
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.GolesMarcados).HasColumnName("Goles_marcados");
-            entity.Property(e => e.IdJugador).HasColumnName("Id_Jugador");
+            entity.Property(e => e.IdJugador).HasColumnName("Id Jugador");
             entity.Property(e => e.Jugador)
                 .HasMaxLength(102)
                 .IsUnicode(false);
