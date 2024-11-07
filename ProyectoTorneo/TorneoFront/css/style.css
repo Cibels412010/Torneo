@@ -87,7 +87,7 @@ body::before {
     border:rgba(0, 0, 0, 0.3);
 }
 
-.btn-edit-delete{
+.btn-edit-deleteEquipos .btn-edit-delete-Jugadores{
     display: flex;
     justify-content: center;
 }

@@ -261,18 +261,17 @@ function cargarJugadoresEnTabla(equipo){
                     nuevaFila.appendChild(rolCelda);
 
                     const actionsCell = document.createElement('td');
-                actionsCell.className = 'btn-edit-delete';
+                actionsCell.className = 'btn-edit-delete-Jugadores';
                 actionsCell.innerHTML = `
     <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);" 
-            data-id="${jugador.idJugador}" onclick="editarJugador(${jugador.idJugador})" id="botonEditarEquipo">
-        Editar
+            data-id="${jugador.idJugador}" onclick="editarJugador(${jugador.idJugador})" id="botonEditarJugador">
+        <i class="bi bi-pencil"></i>
     </button>
     <button type="button" class="btn btn-danger" data-id="${jugador.idJugador}"  style="opacity: 0.7"
     onclick="removePlayer(this)">
-        Borrar
+       <i class="bi bi-trash"></i> 
     </button>
 `;
-
                 nuevaFila.appendChild(actionsCell);
 
                     // Añadir la fila completa al cuerpo de la tabla

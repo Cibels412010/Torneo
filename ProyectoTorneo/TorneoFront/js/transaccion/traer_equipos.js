@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.appendChild(FechaFundacionCell);
     
                 const actionsCell = document.createElement('td');
-                actionsCell.className = 'btn-edit-delete';
+                actionsCell.className = 'btn-edit-deleteEquipos';
                 actionsCell.innerHTML = `
                                 <button 
                                     type="button" 
