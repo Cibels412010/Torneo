@@ -31,10 +31,7 @@ namespace TorneoBack.Repository.Contracts
         EquipoDto GetEquipoById(int id);
 
         //jugadores
-        bool AddJugador(Jugador jugador);
-        bool DeleteJugador(int id);
-        public List<Jugador> GetJugadorByEquipoId(int equipoId);
-        bool UpdateJugador(Jugador jugador);
+        JugadorDto GetJugadorById(int id);
     }
 }
 

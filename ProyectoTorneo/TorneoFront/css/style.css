@@ -102,7 +102,7 @@ body::before {
 }
 
 .footer {
-   position: absolute;  /*  Cambia de absolute a relative */
+   position: fixed;  /*  Cambia de absolute a relative */
     bottom: 0;
     width: 100%;
 }

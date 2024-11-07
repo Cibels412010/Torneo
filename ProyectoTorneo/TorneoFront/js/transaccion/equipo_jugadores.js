@@ -8,10 +8,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (equipoId) {
         
         modificacionesEditarHtml();
+
         try {
             
             // Llama a la API para obtener los datos del equipo
             const response = await fetch(`http://localhost:5014/Api/Equipo/Equipo/${equipoId}`);
+
             if (!response.ok) {
                 throw new Error('Error al obtener el equipo');
             }
@@ -56,6 +58,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
         element.disabled = false;
     });
     alert(`Equipo '${nombreEquipo}' parcialmente guardado. Agregue jugadores a continuación o presione GUARDAR CAMBIOS para confirmar.`);
+
 });
 
 // Agregar evento para el formulario de jugadores
@@ -70,18 +73,10 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     const fechaNacimiento = document.getElementById('fechaNacimientoJugador').value;
     const posicion = parseInt(document.getElementById('posicionJugador').value) || 0;
     const rol = parseInt(document.getElementById('rolJugador').value) || 0;
-    // const acciones = <button type="delete" class="btn btn-primary" style="background: rgb(45, 126, 231)"><i class="bi bi-trash3"></i></button>
-    const acciones =  `
-    <button 
-        type="button" 
-        class="btn btn-primary me-2" 
-        style="background: rgb(45, 126, 231);" 
-        data-id="${equipo.idEquipo}" 
-        onclick="editarEquipo(${equipo.idEquipo})" 
-        id="botonEditarEquipo">
-        <i class="bi bi-pencil-square"></i>
-    </button>
-<button type="button" class="btn btn-outline-danger" onclick="removePlayer(this)"><i class="bi bi-trash3"></i></button>`;
+    const acciones = `
+    <button type="button" class="btn btn-primary" style="background: rgb(45, 126, 231)">
+        <i class="bi bi-trash3"></i>
+    </button>`;
 
     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
     const jugadores = [];
@@ -163,6 +158,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
             },
             body: JSON.stringify(equipoData)
         });
+        
 
         if (response.ok) {
             alert("Torneo generado correctamente!");
@@ -267,25 +263,16 @@ function cargarJugadoresEnFormulario(equipo){
                     const actionsCell = document.createElement('td');
                 actionsCell.className = 'btn-edit-delete';
                 actionsCell.innerHTML = `
-                                <button 
-                                    type="button" 
-                                    class="btn btn-primary me-2" 
-                                    style="background: rgb(45, 126, 231);" 
-                                    data-id="${equipo.idEquipo}" 
-                                    onclick="editarEquipo(${equipo.idEquipo})" 
-                                    id="botonEditarEquipo">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
+    <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);" 
+            data-id="${equipo.idEquipo}" onclick="editarEquipo(${equipo.idEquipo})" id="botonEditarEquipo">
+        Editar
+    </button>
+    <button type="button" class="btn btn-danger" data-id="${equipo.idEquipo}" 
+            onclick="borrarEquipo(this)" style="opacity: 0.7">
+        Borrar
+    </button>
+`;
 
-                                <button type="button"
-                                class="btn btn-danger"
-                                data-id="${equipo.idEquipo}"
-                                onclick="borrarEquipo(this)"
-                                style="opacity: 0.7">
-                                <i class="bi bi-trash3"></i></button>
-                                </div>
-
-                `;
                 nuevaFila.appendChild(actionsCell);
 
                     // Añadir la fila completa al cuerpo de la tabla
@@ -300,5 +287,6 @@ function modificacionesEditarHtml(){
     document.getElementById('verEquiposVolver').textContent = 'Volver a equipos';
     document.getElementById('JugadoresTituloForm').textContent = 'Nuevo Jugador';
     document.getElementById('guardarEquipoBtn').textContent = 'Editar Equipo';
+
     document.getElementById('idJugador').style.opacity = 0.5;
 }

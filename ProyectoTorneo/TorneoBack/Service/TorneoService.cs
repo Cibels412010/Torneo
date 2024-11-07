@@ -23,24 +23,12 @@ namespace TorneoBack.Service
             _equiposRepository = equiposRepository;
         }
 
-        
-
-        public bool AddJugador(Jugador jugador)
-        {
-            return _jugadorRepository.Add(jugador);
-        }
-
+               
         public bool AddTorneo(Torneo torneo)
         {
             return _torneoRepository.Add(torneo);
-        }
-            
-
-        public bool DeleteJugador(int id)
-        {
-            return _jugadorRepository.Delete(id);
-        }
-
+        }            
+               
         public bool DeleteTorneo(int id)
         {
             return _torneoRepository.Delete(id);
@@ -61,24 +49,14 @@ namespace TorneoBack.Service
         {
             return _torneoRepository.GetAll();
         }
-
-        public List<Jugador> GetJugadorByEquipoId(int equipoId)
-        {
-            return _jugadorRepository.GetByEquipoId(equipoId);
-        }
+               
 
         public Torneo getTorneoById(int id)
         {
             return _torneoRepository.GetById(id);
         }
 
-       
-
-        public bool UpdateJugador(Jugador jugador)
-        {
-            return _jugadorRepository.Update(jugador);
-        }
-
+      
         public bool UpdateTorneo(Torneo torneo)
         {
             return _torneoRepository.Update(torneo);
@@ -105,6 +83,11 @@ namespace TorneoBack.Service
         public bool SaveEquipo(EquipoDto equipoDto)
         {
            return _equiposRepository.Save(equipoDto);
+        }
+
+        public JugadorDto GetJugadorById(int id)
+        {
+            return _jugadorRepository.GetById(id);
         }
     }
 }
