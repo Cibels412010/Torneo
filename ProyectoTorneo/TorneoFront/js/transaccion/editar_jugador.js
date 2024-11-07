@@ -17,6 +17,89 @@ async function editarJugador(jugadorId) {
     }
 }
 
+// ! funcion para remplazar al jugador editado en l tbla pra no mandrlo en el json dos veces
+
+function actualizarJugadorEnTabla(jugador) {
+    const rows = document.querySelectorAll('#jugadoresTableBody tr');  // Esto obtiene las filas de la tabla
+    Array.from(rows).some(row => {
+        const cells = row.querySelectorAll('td');
+        const idJugador = parseInt(cells[0].textContent.trim(), 10);  // Convertir a número
+       
+        if ( idJugador === parseInt(jugador.id, 10)) {
+          
+            const celdas = row.querySelectorAll('td');
+            celdas[1].textContent = jugador.nombre;
+            celdas[2].textContent = jugador.apellido;
+            celdas[3].textContent = jugador.dni;
+            celdas[4].textContent = jugador.fichaMedica ? 'Sí' : 'No';
+            celdas[5].textContent = jugador.fechaNacimiento.substring(0, 10);
+            switch (jugador.idPosicion) {
+                case 1:
+                    celdas[6].textContent = 'Portero';
+                    break;
+                case 2:
+                    celdas[6].textContent = 'Defensa';
+                    break;
+                case 3:
+                    celdas[6].textContent = 'Centrocampista';
+                    break;
+                case 4:
+                    celdas[6].textContent = 'Delantero';
+                    break;
+                default:
+                    celdas[6].textContent = '-';
+                    break;
+            }
+            celdas[7].textContent = jugador.rol; 
+            switch (jugador.rol) {
+                case 1:
+                    celdas[7].textContent = 'Capitán';
+                    break;
+                case 2:
+                    celdas[7].textContent = 'Subcapitán';
+                    break;
+                case 3:
+                    celdas[7].textContent = 'Delegado';
+                    break;
+                default:
+                    celdas[7].textContent = '-';
+                    break;
+            }
+            
+            
+        }
+        
+    });
+}
+
+
+// Función que puedes usar para agregar un jugador si no está en la tabla
+function agregarJugadorATabla(jugador) {
+    const nuevaFila = `<tr>
+        <td style="display: none;">${jugador.idJugador}</td>
+        <td>${jugador.nombre}</td>
+        <td>${jugador.apellido}</td>
+        <td>${jugador.dni}</td>
+        <td>${jugador.fichaMedica ? 'Sí' : 'No'}</td>
+        <td>${jugador.fechaNacimiento}</td>
+        <td>${jugador.idPosicion}</td>
+        <td>${jugador.rol}</td>
+        <td>
+            <button type="button" class="btn btn-primary" onclick="editarJugador(${jugador.idJugador})">
+                <i class="bi bi-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-danger" onclick="removePlayer(this)">
+                <i class="bi bi-trash"></i>
+            </button>
+        </td>
+    </tr>`;
+    document.getElementById('jugadoresTableBody').insertAdjacentHTML('beforeend', nuevaFila);
+}
+
+
+
+
+
 
 
 // ! Cargar los datos del jugador en el formulario
