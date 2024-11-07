@@ -2,7 +2,7 @@
 async function editarJugador(jugadorId) {
     console.log('Editar jugador con id:', jugadorId);
     document.getElementById('jugadorForm').style.opacity = 1;
-    document.querySelectorAll(' #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
+    document.querySelectorAll('#guardarCambiosBtn, #botonEditarJugador, #botonBorrarJugadores, #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
         element.disabled = false;
     });
     try {

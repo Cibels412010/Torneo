@@ -39,8 +39,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 document.getElementById('equipoForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    document.querySelectorAll(' #guardarCambiosBtn, #botonEditarJugador, #botonBorrarJugadores, #AgregarJugador').forEach(element => {
+        element.disabled = false;
+    });
     // Obtener los datos del equipo
-    
+   
     const idEquipo = document.getElementById('idEquipo').value || 0;
     const nombreEquipo = document.getElementById('nombreEquipo').value;
     const fechaFundacion = document.getElementById('fechaFundacion').value;
@@ -89,13 +92,11 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     const idJugadorExistente = parseInt(cells[0].textContent.trim(), 10);
     const dniExistente = parseInt(cells[3].textContent.trim(), 10); // DNI del jugador existente
 
+    document.getElementById('jugadorForm').reset();
     // Si el jugador ya existe por ID o DNI
     return idJugadorExistente !== jugador.id && dniExistente === jugador.dni;
-});
 
-    
-    
-    
+});
     
     if (duplicado) {
         
@@ -260,11 +261,11 @@ function cargarJugadoresEnTabla(equipo){
                 actionsCell.className = 'btn-edit-delete-Jugadores';
                 actionsCell.innerHTML = `
     <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);" 
-            data-id="${jugador.idJugador}" onclick="editarJugador(${jugador.idJugador})" id="botonEditarJugador">
+            data-id="${jugador.idJugador}" onclick="editarJugador(${jugador.idJugador})" id="botonEditarJugador" disabled>
         <i class="bi bi-pencil"></i>
     </button>
-    <button type="button" class="btn btn-danger" data-id="${jugador.idJugador}"  style="opacity: 0.7"
-    onclick="removePlayer(this)">
+    <button type="button" class="btn btn-danger" data-id="${jugador.idJugador}" id="botonBorrarJugadores"  style="opacity: 0.7"
+    onclick="removePlayer(this)" disabled>
        <i class="bi bi-trash"></i> 
     </button>
 `;
