@@ -1,6 +1,8 @@
 // URL de la API
 const API_URL = "http://localhost:5014/Api/Equipo";
 
+
+// ! si tengo id de equipo, cargo los datos del equipo en el formulario y el de los jugadores en la tabla
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const equipoId = urlParams.get('id');
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             cargarEquiposEnFormulario(equipo);
 
-            cargarJugadoresEnFormulario(equipo);
+            cargarJugadoresEnTabla(equipo);
            
 
         } catch (error) {
@@ -33,9 +35,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-// Agregar evento para el formulario de equipo
+// ! Envio el formulario de equipo, habilito el formulario de jugadores
 document.getElementById('equipoForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío del formulario
+    event.preventDefault();
 
     // Obtener los datos del equipo
     
@@ -61,9 +63,9 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
 
 });
 
-// Agregar evento para el formulario de jugadores
+// ! este me carga los jugadores del formulario a la tbla de jugadores
 document.getElementById('jugadorForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el envío del formulario
+    event.preventDefault(); 
 
     const id = document.getElementById('idJugador').value || 0;
     const nombre = document.getElementById('nombreJugador').value;
@@ -74,7 +76,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     const posicion = parseInt(document.getElementById('posicionJugador').value) || 0;
     const rol = parseInt(document.getElementById('rolJugador').value) || 0;
     const acciones = `
-    <button type="button" class="btn btn-primary" style="background: rgb(45, 126, 231)">
+    <button type="button" class="btn btn-primary" style="background: rgb(45, 126, 231)" onclick="removePlayer(this)">
         <i class="bi bi-trash3"></i>
     </button>`;
 
@@ -113,11 +115,15 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
     document.getElementById('jugadorForm').reset();
 });
 
-// Funcionalidad para guardar el equipo con sus jugadores
+
+
+// ! mando el equipo con sus jugdores al backend cuando toco gurdar cambios
 document.getElementById('guardarCambiosBtn').addEventListener('click', async () => {
     const jugadores = [];
     const rows = document.querySelectorAll('#jugadoresTableBody tr');
     
+
+    // ! por cad fila de la tabla de jugadores, cargo un objeto jugador en el array jugadores (este va al json)
     rows.forEach(row => {
         const cells = row.querySelectorAll('td');
 
@@ -167,7 +173,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
             document.getElementById('jugadoresTableBody').innerHTML = '';
             document.getElementById('jugadorForm').style.opacity = 0.5;
         } else {
-            alert("Error al generar torneo");
+            alert("Error al enviar el torneo");
         }
     } catch (error) {
         console.error("Error:", error);
@@ -175,6 +181,8 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
     }
 });
 
+
+// ! borra un jugador de la tabla
 function removePlayer(button) {
     // Obtener la fila (tr) padre del botón
     const row = button.closest('tr'); // Encuentra el elemento <tr> más cercano
@@ -184,16 +192,7 @@ function removePlayer(button) {
 }
 
 
-function editarEquipo(idEquipo) {
-    const confirmar = confirm("¿Estás seguro de que quieres editar este equipo?");
-    console.log(idEquipo);
-    if (confirmar) {
-        location.href = `../html/transaccion.html?id=${idEquipo}`;
-        
-    }
-
-}
-
+// !Aca cargo los datos del equipo en el formulario
 function cargarEquiposEnFormulario(equipo){
      // Carga los datos del equipo en el formulario
      document.getElementById('idEquipo').value = equipo.idEquipo;
@@ -201,7 +200,8 @@ function cargarEquiposEnFormulario(equipo){
      document.getElementById('fechaFundacion').value = equipo.fechaFundacion.substring(0, 10);
 }
 
-function cargarJugadoresEnFormulario(equipo){
+// !Aca cargo los jugadores a la tabla
+function cargarJugadoresEnTabla(equipo){
     const jugadoresTableBody = document.getElementById('jugadoresTableBody');
             jugadoresTableBody.innerHTML = ''; // Limpia la tabla antes de agregar jugadores
 
@@ -264,11 +264,11 @@ function cargarJugadoresEnFormulario(equipo){
                 actionsCell.className = 'btn-edit-delete';
                 actionsCell.innerHTML = `
     <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);" 
-            data-id="${equipo.idEquipo}" onclick="editarEquipo(${equipo.idEquipo})" id="botonEditarEquipo">
+            data-id="${jugador.idJugador}" onclick="editarJugador(${jugador.idJugador})" id="botonEditarEquipo">
         Editar
     </button>
-    <button type="button" class="btn btn-danger" data-id="${equipo.idEquipo}" 
-            onclick="borrarEquipo(this)" style="opacity: 0.7">
+    <button type="button" class="btn btn-danger" data-id="${jugador.idJugador}"  style="opacity: 0.7"
+    onclick="removePlayer(this)">
         Borrar
     </button>
 `;
@@ -280,6 +280,7 @@ function cargarJugadoresEnFormulario(equipo){
                 });
 }
 
+// ! prepara la pagina de edicion de jugador
 function modificacionesEditarHtml(){
 
     // ? CAMBIAR EN EL HTML SI ESTOY EDITANDO?

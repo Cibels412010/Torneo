@@ -62,3 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     fetchEquipos();
 });
+
+// ! redirige a la pagina de edicion de equipo
+function editarEquipo(idEquipo) {
+    const confirmar = confirm("¿Estás seguro de que quieres editar este equipo?");
+    console.log(idEquipo);
+    if (confirmar) {
+        location.href = `../html/transaccion.html?id=${idEquipo}`;
+        
+    }
+
+}
