@@ -2,7 +2,7 @@
 async function editarJugador(jugadorId) {
     console.log('Editar jugador con id:', jugadorId);
     document.getElementById('jugadorForm').style.opacity = 1;
-    document.querySelectorAll('#guardarCambiosBtn, #botonEditarJugador, #botonBorrarJugadores, #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
+    document.querySelectorAll(' #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
         element.disabled = false;
     });
     try {
@@ -77,13 +77,13 @@ function actualizarJugadorEnTabla(jugador) {
 function agregarJugadorATabla(jugador) {
     const nuevaFila = `<tr>
         <td style="display: none;">${jugador.idJugador}</td>
-        <td>${jugador.nombre}</td>
-        <td>${jugador.apellido}</td>
-        <td>${jugador.dni}</td>
+       <td>${jugador.nombre || ''}</td>
+        <td>${jugador.apellido || ''}</td>
+        <td>${jugador.dni || 123 }</td>
         <td>${jugador.fichaMedica ? 'Sí' : 'No'}</td>
         <td>${jugador.fechaNacimiento}</td>
-        <td>${jugador.idPosicion}</td>
-        <td>${jugador.rol}</td>
+        <td>${jugador.idPosicion || ''}</td>
+        <td>${jugador.rol || ''}</td>
         <td>
             <button type="button" class="btn btn-primary" onclick="editarJugador(${jugador.idJugador})">
                 <i class="bi bi-pencil"></i>
@@ -110,7 +110,7 @@ function cargarJugadorEnFormulario(jugador) {
     document.getElementById('fechaNacimientoJugador').value = jugador.fechaNacimiento.substring(0, 10);
     switch (jugador.posicion) {
         case 1:
-            document.getElementById('posicionJugador').value = 'Portero';
+            document.getElementById('posicionJugador').value = 'Arquero';
             break;
         case 2:
             document.getElementById('posicionJugador').value = 'Defensa';
@@ -120,9 +120,6 @@ function cargarJugadorEnFormulario(jugador) {
             break;
         case 4:
             document.getElementById('posicionJugador').value = 'Delantero';
-            break;
-        default:
-            document.getElementById('posicionJugador').value = 'Desconocido';
             break;
     }
     document.getElementById('dniJugador').value = jugador.dni;

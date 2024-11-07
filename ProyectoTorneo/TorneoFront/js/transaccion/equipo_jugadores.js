@@ -125,7 +125,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
         const cells = row.querySelectorAll('td');
 
         const jugador = {
-            idJugador: parseInt(cells[0].innerText), // Asegúrate de que el ID del jugador es un número
+            idJugador: parseInt(cells[0].innerText) || 0, // Asegúrate de que el ID del jugador es un número
             nombre: cells[1].innerText,
             apellido: cells[2].innerText,
             dni: parseInt(cells[3].innerText),
@@ -133,7 +133,8 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
             fechaNacimiento: cells[5].innerText,
             idEquipo: 0,
             // Asegúrate de que la posición es un número
-            rol: cells[7].innerText === 'Sin rol' || parseInt(cells[7].innerText) === 0 ? null : parseInt(cells[7].innerText), // Asegúrate de que el rol es un número
+            idPosicion: cells[6].innerText === 'Arquero' ? 1 : cells[6].innerText === 'Defensa' ? 2 : cells[6].innerText === 'Centrocampista' ? 3 : cells[6].innerText === 'Delantero' ? 4 : 0,
+            rol: cells[7].innerText === '' || parseInt(cells[7].innerText) === 0 ? null : parseInt(cells[7].innerText), // Asegúrate de que el rol es un número
         };
 
         // Verificar si el jugador ya está en la lista antes de agregarlo
