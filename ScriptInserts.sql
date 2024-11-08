@@ -1593,3 +1593,5 @@ insert into Detalles_Evaluacion (id_tipo_evaluacion, id_evaluacion, evaluacion) 
 insert into Detalles_Evaluacion (id_tipo_evaluacion, id_evaluacion, evaluacion) values (2, 16, 7);
 insert into Detalles_Evaluacion (id_tipo_evaluacion, id_evaluacion, evaluacion) values (1, 14, 4);
 --
+
+INSERT INTO Roles (NombreRol) VALUES ('Admin'), ('Árbitro'), ('Jugador');

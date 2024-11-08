@@ -1,25 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TorneoApi.Models;
+using TorneoBack.Service.Contracts;
 
-[Route("Api/[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly AuthService _authService;
+    private readonly TorneoContext _context;
+    private readonly IAuthService _authService;
 
-    public AuthController(AuthService authService)
+    public AuthController(TorneoContext context, IAuthService authService)
     {
+        _context = context;
         _authService = authService;
     }
 
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginModel login)
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] Usuario usuarioDto)
     {
-        var token = _authService.Authenticate(login.Username, login.Password);
+        if (_context.Usuarios.Any(u => u.NombreUsuario == usuarioDto.NombreUsuario))
+            return BadRequest("El nombre de usuario ya existe.");
+
+        var usuario = new Usuario
+        {
+            NombreUsuario = usuarioDto.NombreUsuario,
+            RolId = usuarioDto.RolId,
+            Contraseña = BCrypt.Net.BCrypt.HashPassword(usuarioDto.Contraseña)
+        };
+
+        _context.Usuarios.Add(usuario);
+        await _context.SaveChangesAsync();
+
+        return Ok("Usuario registrado exitosamente.");
+    }
+
+    [HttpPost("login")]
+    public IActionResult Login([FromBody] Usuario model)
+    {
+        var token = _authService.Authenticate(model.NombreUsuario, model.Contraseña);
 
         if (token == null)
-        {
             return Unauthorized("Credenciales incorrectas");
-        }
 
         return Ok(new { Token = token });
     }

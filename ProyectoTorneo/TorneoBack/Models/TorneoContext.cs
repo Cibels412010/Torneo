@@ -15,6 +15,7 @@ public partial class TorneoContext : DbContext
     {
     }
 
+    public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<Arbitro> Arbitros { get; set; }
 
     public virtual DbSet<Cancha> Canchas { get; set; }

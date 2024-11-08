@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TorneoApi.Models;
 using TorneoBack.DTOs;
-using TorneoBack.Repository.Contracts;
+using TorneoBack.Service.Contracts;
 
 namespace TorneoApi.Controllers
 {

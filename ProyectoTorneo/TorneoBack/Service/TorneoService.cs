@@ -7,10 +7,11 @@ using TorneoApi.Models;
 using TorneoBack.DTOs;
 using TorneoBack.Repository;
 using TorneoBack.Repository.Contracts;
+using TorneoBack.Service.Contracts;
 
 namespace TorneoBack.Service
 {
-   
+
     public class TorneoService : ITorneoService
     {
         private readonly ITorneoRepository _torneoRepository;

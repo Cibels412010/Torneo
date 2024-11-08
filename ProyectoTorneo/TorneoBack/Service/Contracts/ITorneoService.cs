@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TorneoApi.Models;
 using TorneoBack.DTOs;
 
-namespace TorneoBack.Repository.Contracts
+namespace TorneoBack.Service.Contracts
 {
     public interface ITorneoService
     {
@@ -26,7 +26,7 @@ namespace TorneoBack.Repository.Contracts
         //equipos
         bool SaveEquipo(EquipoDto equipoDto);
         List<Equipo> GetAllEquipos();
-        
+
         bool DeleteEquipo(int id);
         EquipoDto GetEquipoById(int id);
 

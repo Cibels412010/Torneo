@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TorneoBack.Repository.Contracts;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TorneoBack.Service.Contracts;
 
 namespace TorneoApi.Controllers
 {
+    [Authorize]
+
     [ApiController]
     [Route("Api/[controller]")]
     public class JugadorController : Controller
@@ -32,5 +35,8 @@ namespace TorneoApi.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+
+
+
     }
 }

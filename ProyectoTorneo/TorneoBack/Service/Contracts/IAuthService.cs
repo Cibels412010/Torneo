@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TorneoBack.Service
+namespace TorneoBack.Service.Contracts
 {
-    internal interface IAuthService
+    public interface IAuthService
     {
         string Authenticate(string username, string password);
     }
+
 }

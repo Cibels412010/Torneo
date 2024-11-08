@@ -1,49 +1,49 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using TorneoBack.Service;
+using BCrypt.Net;
+using Microsoft.Extensions.Configuration;
+using TorneoApi.Models;
+using TorneoBack.Service.Contracts;
 
 public class AuthService : IAuthService
 {
     private readonly IConfiguration _configuration;
+    private readonly TorneoContext _context;
 
-    public AuthService(IConfiguration configuration)
+    public AuthService(IConfiguration configuration, TorneoContext context)
     {
         _configuration = configuration;
+        _context = context;
     }
 
     public string Authenticate(string username, string password)
     {
-        // Aquí deberías verificar las credenciales del usuario (desde la base de datos, por ejemplo).
-        // Este ejemplo usa credenciales fijas para simplificar:
-        if (username != "admin" || password != "password123") // Cambia por lógica real
-        {
-            return null;
-        }
+        var user = _context.Usuarios.SingleOrDefault(u => u.NombreUsuario == username);
 
-        // Crear los claims (información sobre el usuario)
+        if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Contraseña))
+            return null;
+
         var claims = new[]
         {
-            new Claim(ClaimTypes.Name, username),
-            new Claim(ClaimTypes.Role, "Admin")
+            new Claim(ClaimTypes.Name, user.NombreUsuario),
+            new Claim(ClaimTypes.Role, user.RolId.ToString())
         };
 
-        // Crear la clave de seguridad
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        // Crear el token
         var token = new JwtSecurityToken(
             issuer: _configuration["Jwt:Issuer"],
             audience: _configuration["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.Now.AddHours(1),  // Expiración del token
+            expires: DateTime.Now.AddHours(1),
             signingCredentials: credentials
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }
+
+

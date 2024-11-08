@@ -6,10 +6,12 @@ using TorneoApi.Models;
 using TorneoBack.Repository;
 using TorneoBack.Repository.Contracts;
 using TorneoBack.Service;
+using TorneoBack.Service.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configurar JWT Bearer
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -17,7 +19,6 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -29,6 +30,15 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("ArbitroOnly", policy => policy.RequireRole("Arbitro"));
+    options.AddPolicy("JugadorOnly", policy => policy.RequireRole("Jugador"));
+});
+
 
 // Agregar servicios al contenedor.
 builder.Services.AddControllers();
@@ -44,6 +54,9 @@ builder.Services.AddScoped<IJugadorRepository, JugadorRepository>();
 builder.Services.AddScoped<ITorneoRepository, TorneoRepository>();
 builder.Services.AddScoped<IEquiposRepository, EquiposRepository>();
 builder.Services.AddScoped<ITorneoService, TorneoService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+
 
 
 // Configuración de CORS para permitir todos los orígenes, métodos y encabezados.
