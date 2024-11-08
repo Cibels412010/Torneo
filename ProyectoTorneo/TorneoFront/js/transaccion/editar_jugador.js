@@ -44,7 +44,7 @@ function actualizarJugadorEnTabla(jugador) {
             celdas[5].textContent = jugador.fechaNacimiento.substring(0, 10);
             switch (jugador.idPosicion) {
                 case 1:
-                    celdas[6].textContent = 'Portero';
+                    celdas[6].textContent = 'Arquero';
                     break;
                 case 2:
                     celdas[6].textContent = 'Defensa';
@@ -117,18 +117,18 @@ function cargarJugadorEnFormulario(jugador) {
     document.getElementById('nombreJugador').value = jugador.nombre;
     document.getElementById('apellidoJugador').value = jugador.apellido;
     document.getElementById('fechaNacimientoJugador').value = jugador.fechaNacimiento.substring(0, 10);
-    switch (jugador.posicion) {
+    switch (jugador.idPosicion) {
         case 1:
-            document.getElementById('posicionJugador').value = 'Arquero';
+            document.getElementById('posicionJugador').value = 1;
             break;
         case 2:
-            document.getElementById('posicionJugador').value = 'Defensa';
+            document.getElementById('posicionJugador').value = 2;
             break;
         case 3:
-            document.getElementById('posicionJugador').value = 'Centrocampista';
+            document.getElementById('posicionJugador').value = 3;
             break;
         case 4:
-            document.getElementById('posicionJugador').value = 'Delantero';
+            document.getElementById('posicionJugador').value = 4;
             break;
     }
     document.getElementById('dniJugador').value = jugador.dni;
@@ -137,16 +137,16 @@ function cargarJugadorEnFormulario(jugador) {
     
     switch (jugador.rol) {
         case 1:
-            document.getElementById('rolJugador').value = 'Capitán';
+            document.getElementById('rolJugador').value = 1;
             break;
         case 2:
-            document.getElementById('rolJugador').value = 'Subcapitán';
+            document.getElementById('rolJugador').value = 2;
             break;
         case 3:
-            document.getElementById('rolJugador').value = 'Jugador';
+            document.getElementById('rolJugador').value = 3;
             break;
         default:
-            document.getElementById('rolJugador').value = 'Desconocido';
+            document.getElementById('rolJugador').value = '-';
             break;
     }
 

@@ -77,10 +77,35 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
         dni: parseInt(document.getElementById('dniJugador').value), 
         fichaMedica: document.getElementById('flexRadioDefault1').checked,
         fechaNacimiento: document.getElementById('fechaNacimientoJugador').value,
-        posicion: parseInt(document.getElementById('posicionJugador').value) || 0,
-        rol: parseInt(document.getElementById('rolJugador').value) || 0,
+        posicion: (() => {
+            const posicionValue = parseInt(document.getElementById('posicionJugador').value) || 0;
+            switch (posicionValue) {
+                case 1:
+                    return 'Arquero';
+                case 2:
+                    return 'Defensa';
+                case 3:
+                    return 'Centrocampista';
+                case 4:
+                    return 'Delantero';
+                default:
+                    return '-';
+            }
+        })(),
+        rol: (() => {
+            const rolValue = parseInt(document.getElementById('rolJugador').value) || 0;
+            switch (rolValue) {
+                case 1:
+                    return 'Capitán';
+                case 2:
+                    return 'Subcapitán';
+                case 3:
+                    return 'Delegado';
+                default:
+                    return '-';
+            }
+        })(),
         accions: ''
-    
     };
     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
    
@@ -237,7 +262,7 @@ function cargarJugadoresEnTabla(equipo){
                     posicionCelda.textContent = jugador.idPosicion;
                     switch (jugador.idPosicion) {
                         case 1:
-                            posicionCelda.textContent = 'Portero';
+                            posicionCelda.textContent = 'Arquero';
                             break;
                         case 2:
                             posicionCelda.textContent = 'Defensa';
@@ -249,18 +274,30 @@ function cargarJugadoresEnTabla(equipo){
                             posicionCelda.textContent = 'Delantero';
                             break;
                         default:
-                            posicionCelda.textContent = 'Sin posición';
+                            posicionCelda.textContent = '-';
                     }
                     nuevaFila.appendChild(posicionCelda);
 
                     const rolCelda = document.createElement('td');
-                    rolCelda.textContent = jugador.rol || 'Sin rol';
+                    switch (jugador.rol) {
+                        case 1:
+                            rolCelda.textContent = 'Capitán';
+                            break;
+                        case 2:
+                            rolCelda.textContent = 'Subcapitán';
+                            break;
+                        case 3:
+                            rolCelda.textContent = 'Delegado';
+                            break;
+                        default:
+                            rolCelda.textContent = '-';
+                    }
                     rolCelda.style.whiteSpace = 'nowrap';
                     nuevaFila.appendChild(rolCelda);
 
                     const actionsCell = document.createElement('td');
                 actionsCell.className = 'btn-edit-delete-Jugadores';
-                actionsCell.innerHTML = `
+                actionsCell.innerHTML = `<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
     <button type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);" 
             data-id="${jugador.idJugador}" onclick="editarJugador(${jugador.idJugador})" id="botonEditarJugador" disabled>
         <i class="bi bi-pencil"></i>
@@ -268,7 +305,7 @@ function cargarJugadoresEnTabla(equipo){
     <button type="button" class="btn btn-danger" data-id="${jugador.idJugador}" id="botonBorrarJugadores"  style="opacity: 0.7"
     onclick="removePlayer(this)" disabled>
        <i class="bi bi-trash"></i> 
-    </button>
+    </button></div>
 `;
                 nuevaFila.appendChild(actionsCell);
 
