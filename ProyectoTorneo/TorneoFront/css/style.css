@@ -92,10 +92,12 @@ body::before {
 
 .modal-content {
     background-color: #f8f9fa; /* Cambia el color de fondo si es necesario */
+    text-align: left;
 }
 
 .modal-backdrop {
     opacity: 0.5; /* Ajusta la opacidad del fondo, si es muy oscuro, cambia este valor */
+    --bs-backdrop-zindex: 0;
 }
 
 
@@ -112,6 +114,8 @@ body::before {
     display: flex;
     justify-content: space-around;
 }
+
+
 
 .footer {
    position: fixed;  /*  Cambia de absolute a relative */
