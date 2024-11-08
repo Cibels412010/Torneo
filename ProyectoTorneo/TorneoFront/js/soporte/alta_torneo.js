@@ -1,5 +1,34 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const API_URL = "http://localhost:5014/Api/Torneo";
+//URL de la API
+const API_URL = "http://localhost:5014/Api/Torneo";
+
+
+//Si la URL contiene un id de torneo, lo traigo
+document.addEventListener("DOMContentLoaded", async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    var torneoId = urlParams.get('id');
+    console.log(torneoId);
+
+    if (torneoId) {
+
+        htmlModoEditar();
+        try{
+            const response = await fetch(`${API_URL}/Torneo/${torneoId}`);
+            if (!response.ok) {
+                throw new Error('Error en la BD' + response.statusText);
+            }
+
+            const torneo = await response.json();
+
+            cargarTorneoEnFormulario(torneo);
+        }
+        catch (error) {
+            console.error("Error en operación fetch: ", error);
+            alert("Hubo un problema al cargar el torneo. Inténtalo más tarde.");
+        }
+
+    }else{
+        torneoId = 0;
+    }
 
     const form = document.getElementById("altaTorneoForm");
 
@@ -21,12 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const beginDate = new Date(fechaInicio);
         const endDate = new Date(fechaFin);
 
-        if (fechaInicio === "" || beginDate <= today) {
+        if (torneoId === 0 && (fechaInicio === "" || beginDate <= today)) {
             alert("El torneo debe empezar en el futuro.");
             isValid = false;
         }
 
-        if (fechaFin === "" || beginDate >= endDate) {
+        if (torneoId === 0 && (fechaFin === "" || beginDate >= endDate)) {
             alert("La fecha de fin debe ser posterior a la fecha de inicio.");
             isValid = false;
         }
@@ -41,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    idTorneo: torneoId,
                     nombre: document.getElementById('nombreTorneo').value,
                     fechaInicio: document.getElementById('fechaInicio').value,
                     fechaFin: document.getElementById('fechaFin').value
@@ -49,17 +79,29 @@ document.addEventListener("DOMContentLoaded", () => {
             
 
             if (response.ok) {
-                alert("Torneo generado correctamente!");
+                alert("Operación exitosa!");
                 form.reset();
                fetchTorneos();
                
             } else {
-                alert("Error al generar torneo");
+                alert("Error, intente nuevamente en un momento.");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Ocurrió un error al intentar cargar el torneo");
+            alert("Ocurrió un error al intentar guardar el torneo");
         }
         
     });
 });
+
+function htmlModoEditar() {
+    document.getElementById("tituloForm").textContent = "Editar Torneo";
+    document.getElementById("btnCancelar").classList.toggle("d-none", false);
+}
+
+function cargarTorneoEnFormulario(torneo) {
+    document.getElementById("nombreTorneo").value = torneo.nombre;
+    document.getElementById("fechaInicio").value = torneo.fechaInicio.substring(0, 10);
+    document.getElementById("fechaFin").value = torneo.fechaFin.substring(0, 10);
+}
+

@@ -47,4 +47,13 @@ async function fetchTorneos() {
 }
 
 // Llamar a la función al cargar la página
-document.addEventListener("DOMContentLoaded", fetchTorneos);
+//document.addEventListener("DOMContentLoaded", fetchTorneos);
+
+//Redirigir a otra URL para editar el torneo
+function actualizarTorneo(idTorneo) {
+    const confirmar = confirm("¿Desea editar el torneo?");
+    console.log(idTorneo);
+    if(confirmar){
+        window.location.href = `../html/soporte.html?id=${idTorneo}`;
+    }
+}

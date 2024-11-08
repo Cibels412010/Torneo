@@ -79,60 +79,60 @@
 
 
    
-async function actualizarTorneo(idTorneo) {
-    console.log('ID del torneo:', idTorneo); // Verifica el ID
-    if (!idTorneo) {
-        console.error("El ID del torneo no es válido.");
-        return;
-    }
-    try {
-        const response = await fetch(`http://localhost:5014/Api/Torneo/Torneo/${idTorneo}`);
-        if (!response.ok) {
-            throw new Error('Error al obtener el torneo: ' + response.statusText);
-        }
-        const torneo = await response.json();
+// async function actualizarTorneo(idTorneo) {
+//     console.log('ID del torneo:', idTorneo); // Verifica el ID
+//     if (!idTorneo) {
+//         console.error("El ID del torneo no es válido.");
+//         return;
+//     }
+//     try {
+//         const response = await fetch(`http://localhost:5014/Api/Torneo/Torneo/${idTorneo}`);
+//         if (!response.ok) {
+//             throw new Error('Error al obtener el torneo: ' + response.statusText);
+//         }
+//         const torneo = await response.json();
 
-        // Llenar el formulario con los datos del torneo
-        document.getElementById('nombreTorneo').value = torneo.nombre;
-        document.getElementById('fechaInicio').value = torneo.fechaInicio.substring(0, 10);
-        document.getElementById('fechaFin').value = torneo.fechaFin.substring(0, 10);
+//         // Llenar el formulario con los datos del torneo
+//         document.getElementById('nombreTorneo').value = torneo.nombre;
+//         document.getElementById('fechaInicio').value = torneo.fechaInicio.substring(0, 10);
+//         document.getElementById('fechaFin').value = torneo.fechaFin.substring(0, 10);
 
-        document.getElementById('btnEnviar').className = 'btn btn-primary disabled';
-        document.getElementById('btnGuardar').className = 'btn btn-primary';
+//         document.getElementById('btnEnviar').className = 'btn btn-primary disabled';
+//         document.getElementById('btnGuardar').className = 'btn btn-primary';
 
-        // Cambiar el botón de enviar para que actualice el torneo
-        const form = document.getElementById('updateTorneoForm');
+//         // Cambiar el botón de enviar para que actualice el torneo
+//         const form = document.getElementById('updateTorneoForm');
 
-        form.onsubmit = async function(event) {
-            event.preventDefault();
+//         form.onsubmit = async function(event) {
+//             event.preventDefault();
 
-            const updatedTorneo = {
-                idTorneo: idTorneo, // Asegúrate de que el objeto incluya el ID
-                nombre: document.getElementById('nombreTorneo').value,
-                fechaInicio: document.getElementById('fechaInicio').value,
-                fechaFin: document.getElementById('fechaFin').value,
-            };
+//             const updatedTorneo = {
+//                 idTorneo: idTorneo, // Asegúrate de que el objeto incluya el ID
+//                 nombre: document.getElementById('nombreTorneo').value,
+//                 fechaInicio: document.getElementById('fechaInicio').value,
+//                 fechaFin: document.getElementById('fechaFin').value,
+//             };
 
-            const putResponse = await fetch('http://localhost:5014/Api/Torneo/Editar', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updatedTorneo)
-            });
+//             const putResponse = await fetch('http://localhost:5014/Api/Torneo/Editar', {
+//                 method: 'PUT',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify(updatedTorneo)
+//             });
 
-            if (!putResponse.ok) {
-                throw new Error('Error al actualizar el torneo: ' + putResponse.statusText);
-            }
+//             if (!putResponse.ok) {
+//                 throw new Error('Error al actualizar el torneo: ' + putResponse.statusText);
+//             }
 
-            alert('Torneo actualizado con éxito');
-            window.location.href = 'index.html'; // Redirige después de actualizar
-        };
+//             alert('Torneo actualizado con éxito');
+//             window.location.href = 'index.html'; // Redirige después de actualizar
+//         };
 
        
 
-    } catch (error) {
-        console.error('Error en operación fetch: ', error);
-        alert("Hubo un problema al cargar los datos del torneo. Inténtalo más tarde.");
-    }
-}
+//     } catch (error) {
+//         console.error('Error en operación fetch: ', error);
+//         alert("Hubo un problema al cargar los datos del torneo. Inténtalo más tarde.");
+//     }
+// }

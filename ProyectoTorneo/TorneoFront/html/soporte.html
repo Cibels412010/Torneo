@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 
-<body class="flex align-items-center py-4" style="background-color: #2d4354">
+<body class="flex align-items-center pt-4" style="background-color: #2d4354">
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary w-100">
       <div class="container-fluid">
@@ -84,6 +84,7 @@
   <div class="d-flex container-sm py-4" id="boxForm">
 
     <div class="md-4">
+      <h2 class="text-white text-start" id="tituloForm">Alta Torneo</h2>
       <form class="Formulario" id="altaTorneoForm" style="color: white" method="post">
         <div class="mb-3">
           <label class="form-label" for="nombre">Nombre Torneo:</label>
@@ -101,8 +102,8 @@
           <button class="btn btn-primary" style="background: rgb(45, 126, 231)" type="submit" id="btnEnviar">
             <i class="fas fa-save"></i> Enviar
           </button>
-          <button class="btn btn-primary disabled" style="background-color: #20212b" type="submit" id="btnGuardar">
-            Guardar Cambios
+          <button class="btn btn-danger d-none" type="button" id="btnCancelar">
+            <a href="soporte.html" style="color: inherit; text-decoration: none;">Cancelar</a>
           </button>
           <button class="btn btn-primary" style="background-color: #20212b" type="reset">
             Limpiar
@@ -141,7 +142,7 @@
     </div>
   </div>
   </div>
-  <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%">
+  <footer class="position-relative mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%">
     <div class="container">
       <span class="text-muted">TUP-UTN Programación II.</span>
     </div>
