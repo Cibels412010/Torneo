@@ -58,7 +58,8 @@ namespace TorneoBack.Repository
         }
         public List<VTablaPosicione> GetAllPosiciones()
         {
-            return _context.VTablaPosiciones.OrderByDescending(t => t.Puntos).ToList();
+            return _context.VTablaPosiciones.Where(t => t.PartidosJugados > 0)
+                .OrderByDescending(t => t.Puntos).ToList();
         }
 
         public List<Torneo> GetAll()
