@@ -69,7 +69,6 @@ function editarEquipo(idEquipo) {
     console.log(idEquipo);
     if (confirmar) {
         location.href = `../html/transaccion.html?id=${idEquipo}`;
-        
     }
 
 }

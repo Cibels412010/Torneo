@@ -21,10 +21,29 @@ namespace TorneoBack.Repository
         {
             if (torneo != null)
             {
-                _context.Torneos.Add(torneo);
-                return _context.SaveChanges()>0;
+                if (torneo.IdTorneo == 0)
+                {
+                    _context.Torneos.Add(torneo);
+                    return _context.SaveChanges() > 0;
+                }
+                else
+                {
+                    var torneoActualizado = _context.Torneos.Find(torneo.IdTorneo);
+                        torneoActualizado.Nombre = torneo.Nombre;
+                        torneoActualizado.FechaInicio = torneo.FechaInicio;
+                        torneoActualizado.FechaFin = torneo.FechaFin;
+                        torneoActualizado.Borrado = torneo.Borrado;
+
+                        _context.Entry(torneoActualizado).State = EntityState.Modified;
+
+                        return _context.SaveChanges() > 0;
+                
+                }
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         public bool Delete(int id)
