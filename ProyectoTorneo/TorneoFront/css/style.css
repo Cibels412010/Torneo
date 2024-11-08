@@ -90,6 +90,14 @@ body::before {
     display: none; /* Oculta la flecha */
 }
 
+.modal-content {
+    background-color: #f8f9fa; /* Cambia el color de fondo si es necesario */
+}
+
+.modal-backdrop {
+    opacity: 0.5; /* Ajusta la opacidad del fondo, si es muy oscuro, cambia este valor */
+}
+
 
 .btn-edit-deleteEquipos .btn-edit-delete-Jugadores{
     display: flex;
