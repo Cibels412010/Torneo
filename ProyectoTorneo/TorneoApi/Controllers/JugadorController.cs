@@ -4,7 +4,7 @@ using TorneoBack.Service.Contracts;
 
 namespace TorneoApi.Controllers
 {
-    [Authorize]
+    
 
     [ApiController]
     [Route("Api/[controller]")]
