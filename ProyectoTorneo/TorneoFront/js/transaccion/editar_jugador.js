@@ -5,12 +5,21 @@ async function editarJugador(jugadorId) {
     document.querySelectorAll(' #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
         element.disabled = false;
     });
+
+    const token = localStorage.getItem("jwtToken");
     try {
-        const response = await fetch(`http://localhost:5014/Api/Jugador/Jugador/${jugadorId}`);
+        const response = await fetch(`http://localhost:5014/Api/Jugador/Jugador/${jugadorId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                    }
+        });
+        
         if (!response.ok) {
-            throw new Error('Error al cargar los datos del jugador');
+            throw new Error('No autorizado o token expirado');
         }
         const jugador = await response.json();
+        console.log('Jugador:', jugador);
         cargarJugadorEnFormulario(jugador); 
     } catch (error) {
         console.error('Error al cargar los datos del jugador:', error);

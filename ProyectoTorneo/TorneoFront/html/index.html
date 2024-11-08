@@ -53,17 +53,21 @@
               <button type="button" id="miBoton" class="btn btn-primary dropdown-toggle ms-auto" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" style="background-color: #20212B;">
                   Iniciar sesión
               </button>
-              <form class="dropdown-menu py-4 p-4" id="formularioInicioSesion">
-                  <div class="mb-3">
-                      <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
-                  </div>
-                  <div class="mb-3" id="password-container">
-                      <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
-                  </div>
-                  <button type="submit" class="btn btn-primary" style="background-color: #20212B;">Sign in</button>
-              </form>
+              <form class="dropdown-menu py-4 p-4" id="formularioInicioSesion" onsubmit="login(event)">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nombre de usuario</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Ingrese su nombre de usuario" required>
+                </div>
+                <div class="mb-3" id="password-container">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
+                </div>
+                <button type="button" class="btn btn-primary" id="loginButton" style="background-color: #20212B;" onclick="login()">Iniciar sesión</button>
+                <!-- <button type="button" class="btn btn-primary" id="logoutButton" style="background-color: #20212B;">Cerrar Sesión</button> -->
+                <!-- <div class="text-center mt-3">
+                    <a href="#" onclick="redirectToRegister()">¿No tienes cuenta? Regístrate</a>
+                </div> -->
+            </form>
           </div>
         </div>
       </div>
@@ -78,6 +82,7 @@
            <button class="btn btn-primary" style="background-color: #20212B;" onclick="location.href='../html/dashboard.html'">Comenzar</button>
      </div>
    </div>
+   <script src="../js/iniciosesion.js"></script>
   </div>
 
   <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%;">
@@ -85,7 +90,6 @@
       <span class="text-muted">TUP-UTN Programación II.</span>
     </div>
   </footer>
-
 
 </body>
 </html>

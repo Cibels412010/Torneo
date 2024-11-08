@@ -4,7 +4,7 @@ using TorneoBack.Service.Contracts;
 
 namespace TorneoApi.Controllers
 {
-    
+    //[Authorize] c le digo que este controlador requiere utorizcion, lo dejo inhabilitado para que no les de error
 
     [ApiController]
     [Route("Api/[controller]")]
