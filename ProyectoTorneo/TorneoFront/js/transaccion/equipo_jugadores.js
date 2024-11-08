@@ -165,7 +165,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
         
 
         if (response.ok) {
-            alert("Torneo generado correctamente!");
+            alert("Equipo generado correctamente!");
             document.getElementById('jugadorForm').reset();
             document.getElementById('equipoForm').reset();
             document.getElementById('jugadoresTableBody').innerHTML = '';
@@ -175,7 +175,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Ocurrió un error al intentar cargar el torneo");
+        alert("Ocurrió un error al intentar cargar el Equipo");
     }
 });
 
