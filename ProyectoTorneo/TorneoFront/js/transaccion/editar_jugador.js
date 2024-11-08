@@ -86,20 +86,44 @@ function actualizarJugadorEnTabla(jugador) {
 function agregarJugadorATabla(jugador) {
     const nuevaFila = `<tr>
         <td style="display: none;">${jugador.idJugador}</td>
-       <td>${jugador.nombre || ''}</td>
+        <td>${jugador.nombre || ''}</td>
         <td>${jugador.apellido || ''}</td>
         <td>${jugador.dni || 123 }</td>
         <td>${jugador.fichaMedica ? 'Sí' : 'No'}</td>
         <td>${jugador.fechaNacimiento}</td>
-        <td>${jugador.idPosicion || ''}</td>
-        <td>${jugador.rol || ''}</td>
-        <td>
+        <td>${(() => {
+            switch (jugador.idPosicion) {
+                case 1:
+                    return 'Arquero';
+                case 2:
+                    return 'Defensa';
+                case 3:
+                    return 'Centrocampista';
+                case 4:
+                    return 'Delantero';
+                default:
+                    return '-';
+            }
+        })()}</td>
+        <td>${(() => {
+            switch (jugador.rol) {
+                case 1:
+                    return 'Capitán';
+                case 2:
+                    return 'Subcapitán';
+                case 3:
+                    return 'Delegado';
+                default:
+                    return '-';
+            }
+        })()}</td>
+        <td><div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
             <button type="button" class="btn btn-primary" onclick="editarJugador(${jugador.idJugador})">
                 <i class="bi bi-pencil"></i>
             </button>
             <button type="button" class="btn btn-danger" onclick="removePlayer(this)">
                 <i class="bi bi-trash"></i>
-            </button>
+            </button></div>
         </td>
     </tr>`;
     document.getElementById('jugadoresTableBody').insertAdjacentHTML('beforeend', nuevaFila);

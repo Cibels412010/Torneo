@@ -77,34 +77,8 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
         dni: parseInt(document.getElementById('dniJugador').value), 
         fichaMedica: document.getElementById('flexRadioDefault1').checked,
         fechaNacimiento: document.getElementById('fechaNacimientoJugador').value,
-        posicion: (() => {
-            const posicionValue = parseInt(document.getElementById('posicionJugador').value) || 0;
-            switch (posicionValue) {
-                case 1:
-                    return 'Arquero';
-                case 2:
-                    return 'Defensa';
-                case 3:
-                    return 'Centrocampista';
-                case 4:
-                    return 'Delantero';
-                default:
-                    return '-';
-            }
-        })(),
-        rol: (() => {
-            const rolValue = parseInt(document.getElementById('rolJugador').value) || 0;
-            switch (rolValue) {
-                case 1:
-                    return 'Capitán';
-                case 2:
-                    return 'Subcapitán';
-                case 3:
-                    return 'Delegado';
-                default:
-                    return '-';
-            }
-        })(),
+        posicion:  parseInt(document.getElementById('posicionJugador').value) || 0,
+        rol: parseInt(document.getElementById('rolJugador').value) || 0,
         accions: ''
     };
     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
