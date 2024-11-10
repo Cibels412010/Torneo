@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TorneoApi.Models;
+using TorneoBack.Dtos;
 using TorneoBack.DTOs;
 
 namespace TorneoBack.Service.Contracts
@@ -32,6 +33,9 @@ namespace TorneoBack.Service.Contracts
 
         //jugadores
         JugadorDto GetJugadorById(int id);
+
+        //partidos
+        List<PartidoDto> GetAllPartidos();
     }
 }
 

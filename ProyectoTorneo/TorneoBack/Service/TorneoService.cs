@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TorneoApi.Models;
+using TorneoBack.Dtos;
 using TorneoBack.DTOs;
 using TorneoBack.Repository;
 using TorneoBack.Repository.Contracts;
@@ -17,11 +18,13 @@ namespace TorneoBack.Service
         private readonly ITorneoRepository _torneoRepository;
         private readonly IEquiposRepository _equiposRepository;
         private readonly IJugadorRepository _jugadorRepository;
-        public TorneoService(ITorneoRepository torneoRepository, IJugadorRepository jugadorRepository, IEquiposRepository equiposRepository)
+        private readonly IPartidosRepository _partidosRepository;
+        public TorneoService(ITorneoRepository torneoRepository, IJugadorRepository jugadorRepository, IEquiposRepository equiposRepository, IPartidosRepository partidosRepository)
         {
             _torneoRepository = torneoRepository;
             _jugadorRepository = jugadorRepository;
             _equiposRepository = equiposRepository;
+            _partidosRepository = partidosRepository;
         }
 
                
@@ -89,6 +92,11 @@ namespace TorneoBack.Service
         public JugadorDto GetJugadorById(int id)
         {
             return _jugadorRepository.GetById(id);
+        }
+
+        public List<PartidoDto> GetAllPartidos()
+        {
+            return _partidosRepository.GetAllPartidos();
         }
     }
 }

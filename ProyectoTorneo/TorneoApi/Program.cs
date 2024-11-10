@@ -55,6 +55,7 @@ builder.Services.AddScoped<ITorneoRepository, TorneoRepository>();
 builder.Services.AddScoped<IEquiposRepository, EquiposRepository>();
 builder.Services.AddScoped<ITorneoService, TorneoService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPartidosRepository, PartidosRepository>();
 
 
 
