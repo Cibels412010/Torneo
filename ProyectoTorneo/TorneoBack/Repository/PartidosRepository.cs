@@ -34,5 +34,12 @@ namespace TorneoBack.Repository
                 })
         .ToList();
         }
+
+        public List<VResultadoPartido> GetAllResultados()
+        {
+            return _context.VResultadoPartidos
+                .OrderByDescending(r => r.IdPartido) // Ordena por ID en orden descendente
+                .ToList();
+        }
     }
 }

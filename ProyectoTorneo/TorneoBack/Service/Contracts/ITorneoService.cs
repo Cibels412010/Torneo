@@ -36,6 +36,7 @@ namespace TorneoBack.Service.Contracts
 
         //partidos
         List<PartidoDto> GetAllPartidos();
+        List<VResultadoPartido> GetAllResultados();
     }
 }
 

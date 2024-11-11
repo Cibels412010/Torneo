@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -97,6 +98,11 @@ namespace TorneoBack.Service
         public List<PartidoDto> GetAllPartidos()
         {
             return _partidosRepository.GetAllPartidos();
+        }
+
+        public List<VResultadoPartido> GetAllResultados()
+        {
+            return _partidosRepository.GetAllResultados();
         }
     }
 }
