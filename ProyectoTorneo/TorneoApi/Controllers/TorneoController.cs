@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TorneoApi.Models;
 using TorneoBack.Service;
@@ -19,6 +20,7 @@ namespace TorneoApi.Controllers
 
         
         [HttpPost("Crear")]
+        [Authorize]
         public IActionResult CreateTorneo([FromBody] Torneo torneo)
         {
             try
@@ -120,6 +122,7 @@ namespace TorneoApi.Controllers
         }
 
         [HttpDelete("Eliminar/{id}")]
+        [Authorize]
         public IActionResult DeleteTorneo(int id){
             try
             {
@@ -163,8 +166,10 @@ namespace TorneoApi.Controllers
             }
         }
 
-
+       
         [HttpPut("Editar")]
+        [Authorize]
+        //[Authorize(Roles = "Admin")]
         public IActionResult UpdateTorneo([FromBody]Torneo torneo)
         {
            try

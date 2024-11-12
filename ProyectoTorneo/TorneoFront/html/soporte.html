@@ -133,7 +133,7 @@
   </header>
   <div class="d-flex container-sm py-4" id="boxForm">
 
-    <div class="md-4"id="formularioAltaTorneo" style="display: none;">
+    <div class="md-4" id="formularioAltaTorneo" style="display: none;">
       <h2 class="text-white text-start" id="tituloForm">Alta Torneo</h2>
       <form class="Formulario" id="altaTorneoForm" style="color: white" method="post">
         <div class="mb-3">
@@ -200,28 +200,14 @@
   <script src="../js/soporte/alta_torneo.js"></script>
   <script src="../js/soporte/traer_torneos.js"></script>
   <script src="../js/soporte/borrar_torneo.js"></script>
-  <script src="../js/soporte/editar_torneo.js"></script>
   <script src="../js/iniciosesion.js"></script>
   <script src="../js/soporte/usuarios_torneo.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       fetchTorneos();
-      actualizarEstadoBoton();
-      OcultarSecciones();
     });
   </script>
-   <script>
-    document.getElementById('botonEliminar').addEventListener('click', function (event) {
-      event.preventDefault(); // Evita el envío del formulario tradicional
-      borrarTorneo(); // Llama a tu función para borrar el torneo
-    });
-  </script>
-  <script>
-    document.getElementById('BotonEditarTorneo').addEventListener('click', function (event) {
-      event.preventDefault(); // Evita el envío del formulario tradicional
-      actualizarTorneo(); // Llama a tu función para editar el torneo
-    });
-  </script>
+   
 </body>
 
 </html>

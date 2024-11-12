@@ -2,6 +2,7 @@ function borrarTorneo(boton) {
     // Obtiene el id_torneo desde el atributo data-id del botón
     const idTorneo = boton.getAttribute("data-id");
     console.log("ID del torneo a borrar:", idTorneo); // Depuración
+    const token = localStorage.getItem('jwtToken');
 
     // Muestra una alerta de confirmación
     const confirmacion = confirm("¿Estás seguro de que deseas borrar este torneo?");
@@ -12,6 +13,10 @@ function borrarTorneo(boton) {
     // Llama a la API para borrar el torneo con el id correspondiente
     fetch(`http://localhost:5014/Api/Torneo/Eliminar/${idTorneo}`, {
         method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` 
+        }
     })
     .then(response => {
         if (response.ok) {

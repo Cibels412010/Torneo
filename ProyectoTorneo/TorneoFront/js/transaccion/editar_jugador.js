@@ -184,6 +184,5 @@ function modificacionesEditarHtml(){
     document.getElementById('verEquiposVolver').textContent = 'Volver a equipos';
     document.getElementById('JugadoresTituloForm').textContent = 'Nuevo Jugador';
     document.getElementById('guardarEquipoBtn').textContent = 'Editar Equipo';
-
     document.getElementById('idJugador').style.opacity = 0.5;
 }

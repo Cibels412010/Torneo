@@ -30,12 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.appendChild(FechaFundacionCell);
     
                 const actionsCell = document.createElement('td');
-                actionsCell.className = 'btn-edit-deleteEquipos';
+                actionsCell.className = 'btn-edit-deleteEquipos id="botonEditarEquipo"';
                 actionsCell.innerHTML = `
                                 <button 
-                                    type="button" 
-                                    class="btn btn-primary me-2" 
-                                    style="background: rgb(45, 126, 231);" 
+                                    type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231)"
                                     data-id="${equipo.idEquipo}" 
                                     onclick="editarEquipo(${equipo.idEquipo})" 
                                     id="botonEditarEquipo">
@@ -46,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 class="btn btn-danger"
                                 data-id="${equipo.idEquipo}"
                                 onclick="borrarEquipo(this)"
-                                style="opacity: 0.7">
+                                style="background-color: #20212b">
                                 Borrar</button>
                                 </div>
 
