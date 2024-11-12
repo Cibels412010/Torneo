@@ -19,6 +19,8 @@ public partial class Partido
 
     public int? IdArbitro { get; set; }
 
+    public int? N_fecha { get; set; }
+
     public virtual Equipo? Equipo1Navigation { get; set; }
 
     public virtual Equipo? Equipo2Navigation { get; set; }

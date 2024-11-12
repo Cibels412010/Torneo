@@ -15,6 +15,7 @@ namespace TorneoBack.Dtos
         public int IdCancha { get; set; }
         public string torneo { get; set; }
         public string arbitro { get; set; }
+        public int n_fecha { get; set; }
         // Agregar/quitar cualquier campo necesario
     }
 }

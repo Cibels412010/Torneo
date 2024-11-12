@@ -93,7 +93,7 @@ public partial class TorneoContext : DbContext
     public virtual DbSet<VVerificacionArbitro> VVerificacionArbitros { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-E045RR5\\SQLEXPRESS;Initial Catalog=TORNEO;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-93CJETI\\SQLEXPRESS;Initial Catalog=TORNEO;Integrated Security=True;Trust Server Certificate=True");
     //      => optionsBuilder.UseSqlServer("Data Source=DESKTOP-SIC4FR5\\SQLEXPRESS; Initial Catalog=torneo; Integrated Security=True;Trust Server Certificate=True");
 
     //Data Source=DESKTOP-SIC4FR5\\SQLEXPRESS; Initial Catalog=torneo; Integrated Security=True;
@@ -517,6 +517,8 @@ public partial class TorneoContext : DbContext
             entity.Property(e => e.IdArbitro).HasColumnName("id_arbitro");
             entity.Property(e => e.IdCancha).HasColumnName("id_cancha");
             entity.Property(e => e.IdTorneo).HasColumnName("id_torneo");
+            entity.Property(e => e.N_fecha).HasColumnName("n_fecha");
+
 
             entity.HasOne(d => d.Equipo1Navigation).WithMany(p => p.PartidoEquipo1Navigations)
                 .HasForeignKey(d => d.Equipo1)
@@ -537,6 +539,7 @@ public partial class TorneoContext : DbContext
             entity.HasOne(d => d.IdTorneoNavigation).WithMany(p => p.Partidos)
                 .HasForeignKey(d => d.IdTorneo)
                 .HasConstraintName("fk_partidos_torneos");
+            
         });
 
         modelBuilder.Entity<PosicionesJuego>(entity =>
