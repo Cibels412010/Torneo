@@ -23,13 +23,15 @@ async function login() {
       if (token) {
         localStorage.setItem("jwtToken", token);
         alert("Inicio de sesión exitoso");
-
         actualizarEstadoBoton();
+        OcultarSecciones();
       } else {
         console.error("El token no está presente en la respuesta");
       }
     } else {
       alert("Credenciales incorrectas");
+      actualizarEstadoBoton();
+      OcultarSecciones();
     }
   } catch (error) {
     console.error("Error en la solicitud:", error);
@@ -40,21 +42,26 @@ function logout() {
   localStorage.removeItem("jwtToken");
   alert("Sesión cerrada");
   actualizarEstadoBoton();
+  OcultarSecciones();
 }
+
+
 
 function actualizarEstadoBoton() {
   const token = localStorage.getItem("jwtToken");
   const boton = document.getElementById("miBoton");
   const dropdown = new bootstrap.Dropdown(boton);
-  dropdown.hide();
 
   if (token) {
     boton.textContent = "Cerrar sesión";
     boton.onclick = logout;
+    dropdown.hide();
   } else {
-    boton.textContent = "Iniciar sesión";
+    boton.textContent = "Soy Árbitro";
+    dropdown.hide();
   }
 }
+
 
 
 async function registrar(event) {
