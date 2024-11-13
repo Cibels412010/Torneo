@@ -186,12 +186,61 @@
                 <button type="button" class="btn btn-primary" style="background: rgb(45, 126, 231)"
                   href="../html/actualizar-torneo.html">Editar</button>
 
-                <button type="delete" class="btn btn-primary" id="botonBorrr" style="background-color: #20212b">Borrar</button>
+                <button type="delete" class="btn btn-primary" id="botonBorrar" style="background-color: #20212b">Borrar</button>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalErrorLabel">Error</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="mensajeError">
+            Hubo un problema al cargar los torneos. Inténtalo más tarde.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal de éxito -->
+<div class="modal fade" id="modalSuccess" tabindex="-1" aria-labelledby="modalSuccessLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" id="modalSuccessMessage">
+        <!-- Aquí se actualizará el mensaje de éxito -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfirmLabel">Confirmación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalConfirmMessage">
+          ¿Desea editar el torneo?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="confirmButton">Aceptar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
     </div>
   </div>
   </div>

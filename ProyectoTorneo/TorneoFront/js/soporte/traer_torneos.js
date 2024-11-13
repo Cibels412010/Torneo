@@ -3,7 +3,10 @@ async function fetchTorneos() {
         actualizarEstadoBoton();
         const response = await fetch("http://localhost:5014/Api/Torneo/Torneos");
         if (!response.ok) {
-            throw new Error("Error en la BD: " + response.statusText);
+            const mensajeError = `Hubo un problema al cargar los torneos: ${error.message}. Inténtalo más tarde.`;
+            document.getElementById('modalErrorMessage').innerText = mensajeError;
+            const modalError = new bootstrap.Modal(document.getElementById('modalError'));
+            modalError.show();
         }
         const torneos = await response.json();
         OcultarSecciones();
@@ -48,19 +51,17 @@ async function fetchTorneos() {
         OcultarSecciones();
         actualizarEstadoBoton();
     } catch (error) {
-        console.error("Error en operación fetch: ", error);
-        alert("Hubo un problema al cargar los torneos. Inténtalo más tarde.");
+        const mensajeError = `Error en operación fetch: ${error.message}. Inténtalo más tarde.`;
+        document.getElementById('modalErrorMessage').innerText = mensajeError;
+        const modalError = new bootstrap.Modal(document.getElementById('modalError'));
+        modalError.show();
     }
 }
 
-// Llamar a la función al cargar la página
-//document.addEventListener("DOMContentLoaded", fetchTorneos);
-
-//Redirigir a otra URL para editar el torneo
 function actualizarTorneo(idTorneo) {
-    const confirmar = confirm("¿Desea editar el torneo?");
-    console.log(idTorneo);
-    if(confirmar){
-        window.location.href = `../html/soporte.html?id=${idTorneo}`;
-    }
+    
+        mostrarModalConfirmacion("¿Desea editar el torneo?", function() {
+            window.location.href = `../html/soporte.html?id=${idTorneo}`;
+        });
+    
 }
