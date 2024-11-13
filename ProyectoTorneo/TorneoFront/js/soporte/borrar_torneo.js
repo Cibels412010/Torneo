@@ -33,34 +33,3 @@ document.getElementById('botonBorrar').addEventListener('click', function() {
     borrarTorneo(this);
 });
 
-function mostrarModalConfirmacion(mensaje, accionConfirmacion) {
-    // Cambia el mensaje en el modal
-    document.getElementById('modalConfirmMessage').innerText = mensaje;
-
-    // Muestra el modal
-    const modalConfirm = new bootstrap.Modal(document.getElementById('modalConfirm'));
-    modalConfirm.show();
-
-    // Remueve cualquier evento previo y agrega el nuevo evento de confirmación
-    const botonConfirmar = document.getElementById('confirmButton');
-    botonConfirmar.replaceWith(botonConfirmar.cloneNode(true));
-    document.getElementById('confirmButton').addEventListener('click', function confirmarHandler() {
-        modalConfirm.hide();
-        accionConfirmacion();
-    });
-}
-function mostrarModalExito(mensaje) {
-    const mensajeElemento = document.getElementById('modalSuccessMessage');
-
-    if (!mensajeElemento) {
-        console.error("Elemento modalSuccessMessage no encontrado");
-        return;
-    }
-
-    // Cambia el mensaje en el modal de éxito
-    mensajeElemento.innerText = mensaje;
-
-    // Muestra el modal de éxito
-    const modalSuccess = new bootstrap.Modal(document.getElementById('modalSuccess'));
-    modalSuccess.show();
-}

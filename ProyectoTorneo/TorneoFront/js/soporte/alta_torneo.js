@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         catch (error) {
             console.error("Error en operación fetch: ", error);
-            alert("Hubo un problema al cargar el torneo. Inténtalo más tarde.");
+           mostrarModalExito("Error al cargar el torneo");
         }
 
     }else{
@@ -43,22 +43,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         let isValid = true;
 
-        if (name === "") {
-            alert("Es obligatorio ingresar nombre");
-            isValid = false;
-        }
 
         const today = new Date();
         const beginDate = new Date(fechaInicio);
         const endDate = new Date(fechaFin);
 
         if (torneoId === 0 && (fechaInicio === "" || beginDate <= today)) {
-            alert("El torneo debe empezar en el futuro.");
+            mostrarModalExito("La fecha de inicio debe ser posterior a la fecha actual.");
             isValid = false;
         }
 
         if (torneoId === 0 && (fechaFin === "" || beginDate >= endDate)) {
-            alert("La fecha de fin debe ser posterior a la fecha de inicio.");
+            mostrarModalConfirmacion("La fecha de fin debe ser posterior a la fecha de inicio")
             isValid = false;
         }
 
@@ -83,12 +79,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             
 
             if (response.ok) {
-                alert("Operación exitosa!");
+                mostrarModalExito("¡Torneo guardado exitosamente!");
                 form.reset();
                fetchTorneos();
                
             } else {
-                alert("Error, intente nuevamente en un momento.");
+                mostrarModalConfirmacion("Hubo un error al intentar guardar el torneo.");
             }
         } catch (error) {
             console.error("Error:", error);

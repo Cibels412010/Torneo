@@ -256,6 +256,38 @@
       </div>
     </div>
   </div>
+  <!-- Modal de éxito -->
+<div class="modal fade" id="modalSuccess" tabindex="-1" aria-labelledby="modalSuccessLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" id="modalSuccessMessage">
+        <!-- Aquí se actualizará el mensaje de éxito -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfirmLabel">Confirmación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalConfirmMessage">
+          ¿Desea eliminar el jugador?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="confirmButton">Aceptar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
   <footer class="footer mt-auto py-2 bg-body-tertiary text-center" style="bottom: 0; width: 100%;">
     <div class="container">
       <span class="text-muted">TUP-UTN Programación II.</span>
@@ -263,6 +295,7 @@
   </footer>
   <script src="../js/transaccion/equipo_jugadores.js"></script>
   <script src="../js/transaccion/editar_jugador.js"></script>
+  <script src="../js/transaccion/borrar_equipo.js"></script>
   <script src="../js/iniciosesion.js"></script>
 </body>
 

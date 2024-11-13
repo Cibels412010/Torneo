@@ -22,7 +22,7 @@ async function login() {
 
       if (token) {
         localStorage.setItem("jwtToken", token);
-        alert("Inicio de sesión exitoso");
+        mostrarModalExito("Inicio de sesión exitoso");
         actualizarEstadoBoton();
         OcultarSecciones();
       } else {
@@ -30,6 +30,7 @@ async function login() {
       }
     } else {
       alert("Credenciales incorrectas");
+      mostrarModalExito("Usuario o contraseña incorrectos");
       actualizarEstadoBoton();
       OcultarSecciones();
     }
@@ -39,11 +40,15 @@ async function login() {
 }
 
 function logout() {
-  localStorage.removeItem("jwtToken");
-  alert("Sesión cerrada");
   actualizarEstadoBoton();
-  OcultarSecciones();
-}
+
+  mostrarModalConfirmacion("¿Está seguro que desea cerrar sesión?", function() {
+    localStorage.removeItem("jwtToken");
+    OcultarSecciones();
+    actualizarEstadoBoton();
+
+  })
+};
 
 
 
@@ -130,4 +135,32 @@ function OcultarSecciones() {
   } 
 }
 
+
+function mostrarModalConfirmacion(mensaje, accionConfirmacion) {
+  // Cambia el mensaje en el modal
+  const mensajeElemento = document.getElementById('modalConfirmMessage');
+  mensajeElemento.innerText = mensaje;
+
+  // Muestra el modal
+  const modalConfirm = new bootstrap.Modal(document.getElementById('modalConfirm'));
+  modalConfirm.show();
+
+  // Remueve cualquier evento previo y agrega el nuevo evento de confirmación
+  const botonConfirmar = document.getElementById('confirmButton');
+  botonConfirmar.replaceWith(botonConfirmar.cloneNode(true));
+  document.getElementById('confirmButton').addEventListener('click', function confirmarHandler() {
+      modalConfirm.hide();
+      accionConfirmacion();
+  });
+}
+function mostrarModalExito(mensaje) {
+  const mensajeElemento = document.getElementById('modalSuccessMessage');
+
+  // Cambia el mensaje en el modal de éxito
+  mensajeElemento.innerText = mensaje;
+
+  // Muestra el modal de éxito
+  const modalSuccess = new bootstrap.Modal(document.getElementById('modalSuccess'));
+  modalSuccess.show();
+}
 // Llamar a la función al cargar la página

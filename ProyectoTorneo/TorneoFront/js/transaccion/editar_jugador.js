@@ -16,13 +16,13 @@ async function editarJugador(jugadorId) {
         });
         
         if (!response.ok) {
-            throw new Error('No autorizado o token expirado');
+            mostrarModalExito("Token invalido o error al cargar los datos del jugador");
         }
         const jugador = await response.json();
         console.log('Jugador:', jugador);
         cargarJugadorEnFormulario(jugador); 
     } catch (error) {
-        console.error('Error al cargar los datos del jugador:', error);
+        mostrarModalExito("Error al cargar los datos del jugador: " + error);
     }
 }
 

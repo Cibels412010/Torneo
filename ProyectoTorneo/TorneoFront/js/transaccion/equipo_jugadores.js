@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }});
 
             if (!response.ok) {
-                throw new Error('Error al obtener el equipo');
+                mostrarModalExito("Token invalido o error al cargar los datos del equipo");
             }
 
             const equipo = await response.json();
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
         } catch (error) {
-            console.error('Error al cargar los datos del equipo:', error);
+           mostrarModalExito("Error al cargar los datos del equipo: " + error);
         }
     }
 });
@@ -54,8 +54,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
     const fechaFundacion = document.getElementById('fechaFundacion').value;
 
     if (!nombreEquipo || !fechaFundacion) {
-        alert('Por favor complete todos los campos');
-        return;
+       mostrarModalExito("Por favor, complete todos los campos del formulario.");
     }
 
     window.idEquipo = idEquipo;
@@ -67,8 +66,7 @@ document.getElementById('equipoForm').addEventListener('submit', function(event)
     document.querySelectorAll(' #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador').forEach(element => {
         element.disabled = false;
     });
-    alert(`Equipo '${nombreEquipo}' parcialmente guardado. Agregue jugadores a continuación o presione GUARDAR CAMBIOS para confirmar.`);
-
+    mostrarModalExito(`Equipo '${nombreEquipo}' parcialmente guardado. Agregue jugadores a continuación.`);
 });
 
 // ! este me carga los jugadores del formulario a la tbla de jugadores
@@ -104,7 +102,7 @@ document.getElementById('jugadorForm').addEventListener('submit', function(event
 
     if (duplicado) {
 
-        alert(`El jugador con ID ${jugador.id} fue actualizado.`);
+        mostrarModalExito(`El jugador con ID ${jugador.id} ya existe.`);
         actualizarJugadorEnTabla(jugador);
         return; // Detener el proceso si hay un duplicado
     } else {
@@ -143,7 +141,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
 
         // Verificar si el jugador ya está en la lista antes de agregarlo
         if (jugadores.some(j => j.dni === jugador.dni)) {
-            alert(`El jugador con DNI ${jugador.dni} ya ha sido agregado.`);
+            mostrarModalExito(`El jugador con DNI ${jugador.dni} ya ha sido agregado.`);
             return; 
         }
         jugadores.push(jugador);
@@ -170,17 +168,16 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
 
 
         if (response.ok) {
-            alert("Equipo generado correctamente!");
+            mostrarModalExito("Equipo generado correctamente!");
             document.getElementById('jugadorForm').reset();
             document.getElementById('equipoForm').reset();
             document.getElementById('jugadoresTableBody').innerHTML = '';
             document.getElementById('jugadorForm').style.opacity = 0.5;
         } else {
-            alert("Error al enviar el torneo");
+            mostrarModalExito("Error al enviar el equipo");
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("Ocurrió un error al intentar cargar el Equipo");
+        mostrarModalExito("Error interno al enviar el equipo" + error);
     }
 });
 
