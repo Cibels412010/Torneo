@@ -39,7 +39,7 @@ namespace TorneoBack.Service.Contracts
         List<VResultadoPartido> GetAllResultados();
 
         //eventos
-        List<Evento> GetEventosByPartido(int id);
+        List<EventoDto> GetEventosByPartido(int id);
         bool AddEvento(Evento evento);
         bool DeleteEvento(int id);
     }

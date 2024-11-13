@@ -108,7 +108,7 @@ namespace TorneoBack.Service
         }
 
         //eventos
-        public List<Evento> GetEventosByPartido(int id)
+        public List<EventoDto> GetEventosByPartido(int id)
         {
             return _eventosRepository.GetByIdPartido(id);
         }
