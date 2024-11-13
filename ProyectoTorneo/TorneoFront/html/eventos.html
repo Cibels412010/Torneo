@@ -249,6 +249,18 @@
       <span class="text-muted">TUP-UTN Programación II.</span>
     </div>
   </footer>
+  
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const partidoId = urlParams.get('id');
+    console.log(partidoId); // Para asegurarte de que obtuviste el valor del ID
+
+    // Llama al archivo traer_eventos.js y pasa el partidoId
+    const script = document.createElement('script');
+    script.src = `../js/dashboard/traer_eventos.js`;  // No es necesario agregar el parámetro en la URL
+    document.body.appendChild(script);
+  </script>
+
   <script src="../js/iniciosesion.js"></script>
    
 </body>
