@@ -8,6 +8,11 @@ async function fetchTorneos() {
         console.log(torneos);
 
         const tableBody = document.getElementById("torneosTableBody");
+        if (!tableBody) {
+            console.error("Elemento 'torneosTableBody' no encontrado en el DOM");
+            return;
+        }
+        
         tableBody.innerHTML = ""; // Limpiar el contenido existente
 
         torneos.forEach((torneo) => {
@@ -29,21 +34,19 @@ async function fetchTorneos() {
             const actionsCell = document.createElement("td");
             actionsCell.className = "btn-edit-delete";
             actionsCell.innerHTML = `
-            <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-                <button type="button" class="btn btn-primary me-2" style="display: none" id="botonEditarTorneo_${torneo.idTorneo}" onclick="actualizarTorneo(${torneo.idTorneo})">Editar</button>
-                <button type="button" class="btn btn-primary" style="background-color: #20212b" style="display: none" id="botonEliminar_${torneo.idTorneo}" data-id="${torneo.idTorneo}" onclick="borrarTorneo(this)">Borrar</button>
-            </div>
-        `;
-        
-
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-primary me-2" style="display: none" id="botonEditarTorneo_${torneo.idTorneo}" onclick="actualizarTorneo(${torneo.idTorneo})">Editar</button>
+                    <button type="button" class="btn btn-danger" style="display: none" id="botonEliminar_${torneo.idTorneo}" data-id="${torneo.idTorneo}" onclick="borrarTorneo(this)">Borrar</button>
+                </div>
+            `;
+            
             row.appendChild(actionsCell);
-
             tableBody.appendChild(row);
         });
         OcultarSecciones();
+        actualizarEstadoBoton();
     } catch (error) {
         console.error("Error en operación fetch: ", error);
-        // Mostrar un mensaje al usuario, por ejemplo, en un alert
         alert("Hubo un problema al cargar los torneos. Inténtalo más tarde.");
     }
 }

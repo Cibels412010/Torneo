@@ -67,7 +67,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const response = await fetch('http://localhost:5014/Api/Torneo/Crear', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${localStorage.getItem('jwtToken')}`
+
                 },
                 body: JSON.stringify({
                     idTorneo: torneoId,
@@ -104,4 +106,3 @@ function cargarTorneoEnFormulario(torneo) {
     document.getElementById("fechaInicio").value = torneo.fechaInicio.substring(0, 10);
     document.getElementById("fechaFin").value = torneo.fechaFin.substring(0, 10);
 }
-

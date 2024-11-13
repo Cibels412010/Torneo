@@ -58,6 +58,7 @@ function actualizarEstadoBoton() {
     dropdown.hide();
   } else {
     boton.textContent = "Soy Árbitro";
+    boton.onclick = null;
     dropdown.hide();
   }
 }
