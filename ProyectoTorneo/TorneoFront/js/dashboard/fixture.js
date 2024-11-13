@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  actualizarEstadoBoton();
-  OcultarSecciones();
+  
     document.querySelectorAll('.detalles-btn').forEach((button) => {
       button.addEventListener('click', (event) => {
         const partidoId = event.target.getAttribute('data-id');

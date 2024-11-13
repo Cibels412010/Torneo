@@ -91,7 +91,7 @@ function agregarJugadorATabla(jugador) {
         <td>${jugador.dni || 123 }</td>
         <td>${jugador.fichaMedica ? 'Sí' : 'No'}</td>
         <td>${jugador.fechaNacimiento}</td>
-        <td>${(() => {
+          <td>${(() => {
             switch (jugador.idPosicion) {
                 case 1:
                     return 'Arquero';
