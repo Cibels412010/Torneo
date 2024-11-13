@@ -1,7 +1,7 @@
 function borrarEquipo(boton) {
     const idEquipo = boton.getAttribute("data-id");
     console.log("ID del equipo a borrar:", idEquipo); // Depuración
-
+    const token = localStorage.getItem('jwtToken');
     // Muestra una alerta de confirmación
     const confirmacion = confirm("¿Estás seguro de que deseas borrar este equipo?");
     if (!confirmacion) {
@@ -11,6 +11,10 @@ function borrarEquipo(boton) {
     // Llama a la API para borrar el torneo con el id correspondiente
     fetch(`http://localhost:5014/Api/Equipo/Eliminar/${idEquipo}`, {
         method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
     })
     .then(response => {
         if (response.ok) {
@@ -25,6 +29,8 @@ function borrarEquipo(boton) {
 }
 
 // Asumiendo que el botón tiene un id 'botonEditar'
-document.getElementById('botonEditar').addEventListener('click', function() {
-    borrarTorneo(this);
+document.querySelectorAll('[id^="botonBorrarEquipo_"]').forEach(boton => {
+    boton.addEventListener('click', function() {
+        borrarEquipo(this);
+    });
 });

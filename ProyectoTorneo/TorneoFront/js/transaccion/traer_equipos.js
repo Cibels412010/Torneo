@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 const idCell = document.createElement('th');
                 idCell.scope = 'row';
+                idCell.style.display = 'none';
                 idCell.textContent = equipo.idEquipo;
                 row.appendChild(idCell);
     
@@ -31,12 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 const actionsCell = document.createElement('td');
                 actionsCell.className = 'btn-edit-deleteEquipos id="botonEditarEquipo"';
-                actionsCell.innerHTML = `
+                actionsCell.innerHTML = `<div class="btn-group btn-group-sm" role="group">
                                 <button 
-                                    type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231)"
+                                    type="button" class="btn btn-primary me-2" style="background: rgb(45, 126, 231);"
                                     data-id="${equipo.idEquipo}" 
                                     onclick="editarEquipo(${equipo.idEquipo})" 
-                                    id="botonEditarEquipo">
+                                    id="botonEditarEquipo_${equipo.idEquipo}">
                                     Editar
                                 </button>
 
@@ -44,21 +45,25 @@ document.addEventListener('DOMContentLoaded', function() {
                                 class="btn btn-danger"
                                 data-id="${equipo.idEquipo}"
                                 onclick="borrarEquipo(this)"
-                                style="background-color: #20212b">
+                                style="background-color: #20212b; "
+                                id="botonBorrarEquipo_${equipo.idEquipo}">
                                 Borrar</button>
                                 </div>
 
                 `;
                 row.appendChild(actionsCell);
-    
                 tableBody.appendChild(row);
+                actualizarEstadoBoton();
+                OcultarSecciones();
             });
-    
+            
         } catch (error) {
             console.error('Error en operación fetch: ', error);
         }
     }
     fetchEquipos();
+    actualizarEstadoBoton();
+    OcultarSecciones();
 });
 
 // ! redirige a la pagina de edicion de equipo

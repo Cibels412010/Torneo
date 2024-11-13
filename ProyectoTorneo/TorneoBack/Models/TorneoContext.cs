@@ -93,7 +93,7 @@ public partial class TorneoContext : DbContext
     public virtual DbSet<VVerificacionArbitro> VVerificacionArbitros { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-93CJETI\\SQLEXPRESS;Initial Catalog=TORNEO;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-E045RR5\\SQLEXPRESS;Initial Catalog=torneo;Integrated Security=True;Trust Server Certificate=True");
     //      => optionsBuilder.UseSqlServer("Data Source=DESKTOP-SIC4FR5\\SQLEXPRESS; Initial Catalog=torneo; Integrated Security=True;Trust Server Certificate=True");
 
     //Data Source=DESKTOP-SIC4FR5\\SQLEXPRESS; Initial Catalog=torneo; Integrated Security=True;

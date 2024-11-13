@@ -6,14 +6,56 @@ document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const equipoId = urlParams.get("id");
   console.log(equipoId);
+
+  const equipoForm = document.getElementById("equipoForm");
+  if (equipoForm) {
+    equipoForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Habilitar botones de cambios si el formulario es válido
+      document
+        .querySelectorAll("#guardarCambiosBtn, #botonEditarJugador, #botonBorrarJugadores, #AgregarJugador")
+        .forEach((element) => {
+          if (element) element.disabled = false;
+        });
+
+      // Obtener datos del formulario
+      const idEquipo = document.getElementById("idEquipo").value || 0;
+      const nombreEquipo = document.getElementById("nombreEquipo").value;
+      const fechaFundacion = document.getElementById("fechaFundacion").value;
+
+      if (!nombreEquipo || !fechaFundacion) {
+        alert("Por favor complete todos los campos");
+        return;
+      }
+
+      window.idEquipo = idEquipo;
+      window.equipoNombre = nombreEquipo;
+      window.equipoFechaFundacion = fechaFundacion;
+
+      // Habilitar formulario de jugadores
+      const jugadorForm = document.getElementById("jugadorForm");
+      if (jugadorForm) {
+        jugadorForm.style.opacity = 1;
+      }
+      document
+        .querySelectorAll(
+          "#AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador"
+        )
+        .forEach((element) => {
+          if (element) element.disabled = false;
+        });
+
+      alert(`Equipo '${nombreEquipo}' parcialmente guardado. Agregue jugadores a continuación o presione GUARDAR CAMBIOS para confirmar.`);
+    });
+  }
+
   if (equipoId) {
     modificacionesEditarHtml();
 
     try {
       // Llama a la API para obtener los datos del equipo
-      const response = await fetch(
-        `http://localhost:5014/Api/Equipo/Equipo/${equipoId}`
-      );
+      const response = await fetch(`http://localhost:5014/Api/Equipo/Equipo/${equipoId}`);
 
       if (!response.ok) {
         throw new Error("Error al obtener el equipo");
@@ -21,8 +63,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const equipo = await response.json();
 
+      // Cargar equipo y jugadores en los formularios
       cargarEquiposEnFormulario(equipo);
-
       cargarJugadoresEnTabla(equipo);
     } catch (error) {
       console.error("Error al cargar los datos del equipo:", error);
@@ -30,91 +72,50 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// ! Envio el formulario de equipo, habilito el formulario de jugadores
-document
-  .getElementById("equipoForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
 
-    document
-      .querySelectorAll(
-        " #guardarCambiosBtn, #botonEditarJugador, #botonBorrarJugadores, #AgregarJugador"
-      )
-      .forEach((element) => {
-        element.disabled = false;
-      });
-    // Obtener los datos del equipo
+// // ! este me carga los jugadores del formulario a la tbla de jugadores
+// document
+//   .getElementById("jugadorForm")
+//   .addEventListener("submit", function (event) {
+//     event.preventDefault();
 
-    const idEquipo = document.getElementById("idEquipo").value || 0;
-    const nombreEquipo = document.getElementById("nombreEquipo").value;
-    const fechaFundacion = document.getElementById("fechaFundacion").value;
+//     const jugador = {
+//       id: document.getElementById("idJugador").value || 0,
+//       nombre: document.getElementById("nombreJugador").value,
+//       apellido: document.getElementById("apellidoJugador").value,
+//       dni: parseInt(document.getElementById("dniJugador").value),
+//       fichaMedica: document.getElementById("flexRadioDefault1").checked,
+//       fechaNacimiento: document.getElementById("fechaNacimientoJugador").value,
+//       posicion: parseInt(document.getElementById("posicionJugador").value) || 0,
+//       rol: parseInt(document.getElementById("rolJugador").value) || 0,
+//       accions: "",
+//     };
+//     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
 
-    if (!nombreEquipo || !fechaFundacion) {
-      alert("Por favor complete todos los campos");
-      return;
-    }
+//     const rows = document.querySelectorAll("#jugadoresTableBody tr");
 
-    window.idEquipo = idEquipo;
-    window.equipoNombre = nombreEquipo;
-    window.equipoFechaFundacion = fechaFundacion;
+//     // Verificar si el jugador ya existe en la tabla antes de agregarlo
+//     const duplicado = Array.from(rows).some((row) => {
+//       const cells = row.querySelectorAll("td");
+//       const idJugadorExistente = parseInt(cells[0].textContent.trim(), 10);
+//       const dniExistente = parseInt(cells[3].textContent.trim(), 10); // DNI del jugador existente
 
-    // Habilitar el formulario de jugadores
-    document.getElementById("jugadorForm").style.opacity = 1;
-    document
-      .querySelectorAll(
-        " #AgregarJugador, #nombreJugador, #apellidoJugador, #dniJugador, #flexRadioDefault1, #flexRadioDefault2, #fechaNacimientoJugador, #posicionJugador, #rolJugador"
-      )
-      .forEach((element) => {
-        element.disabled = false;
-      });
-    alert(
-      `Equipo '${nombreEquipo}' parcialmente guardado. Agregue jugadores a continuación o presione GUARDAR CAMBIOS para confirmar.`
-    );
-  });
+//       document.getElementById("jugadorForm").reset();
+//       // Si el jugador ya existe por ID o DNI
+//       return idJugadorExistente !== jugador.id && dniExistente === jugador.dni;
+//     });
 
-// ! este me carga los jugadores del formulario a la tbla de jugadores
-document
-  .getElementById("jugadorForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+//     if (duplicado) {
+//       alert(`El jugador con ID ${jugador.id} fue actualizado.`);
+//       actualizarJugadorEnTabla(jugador);
+//       return; // Detener el proceso si hay un duplicado
+//     } else {
+//       agregarJugadorATabla(jugador);
+//     }
 
-    const jugador = {
-      id: document.getElementById("idJugador").value || 0,
-      nombre: document.getElementById("nombreJugador").value,
-      apellido: document.getElementById("apellidoJugador").value,
-      dni: parseInt(document.getElementById("dniJugador").value),
-      fichaMedica: document.getElementById("flexRadioDefault1").checked,
-      fechaNacimiento: document.getElementById("fechaNacimientoJugador").value,
-      posicion: parseInt(document.getElementById("posicionJugador").value) || 0,
-      rol: parseInt(document.getElementById("rolJugador").value) || 0,
-      accions: "",
-    };
-    // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
-
-    const rows = document.querySelectorAll("#jugadoresTableBody tr");
-
-    // Verificar si el jugador ya existe en la tabla antes de agregarlo
-    const duplicado = Array.from(rows).some((row) => {
-      const cells = row.querySelectorAll("td");
-      const idJugadorExistente = parseInt(cells[0].textContent.trim(), 10);
-      const dniExistente = parseInt(cells[3].textContent.trim(), 10); // DNI del jugador existente
-
-      document.getElementById("jugadorForm").reset();
-      // Si el jugador ya existe por ID o DNI
-      return idJugadorExistente !== jugador.id && dniExistente === jugador.dni;
-    });
-
-    if (duplicado) {
-      alert(`El jugador con ID ${jugador.id} fue actualizado.`);
-      actualizarJugadorEnTabla(jugador);
-      return; // Detener el proceso si hay un duplicado
-    } else {
-      agregarJugadorATabla(jugador);
-    }
-
-    // Limpiar el formulario de jugador
-    document.getElementById("jugadorForm").reset();
-  });
+//     // Limpiar el formulario de jugador
+//     document.getElementById("jugadorForm").reset();
+//   });
 
 // ! mando el equipo con sus jugdores al backend cuando toco gurdar cambios
 document

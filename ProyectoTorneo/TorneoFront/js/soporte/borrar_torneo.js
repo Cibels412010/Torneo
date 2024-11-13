@@ -31,6 +31,6 @@ function borrarTorneo(boton) {
 }
 
 // Asumiendo que el botón tiene un id 'botonEditar'
-document.getElementById('botonBorrr').addEventListener('click', function() {
+document.getElementById('botonBorrar').addEventListener('click', function() {
     borrarTorneo(this);
 });

@@ -61,7 +61,7 @@
                 style="background-color: #20212B;">
                 Soy Árbitro
               </button>
-              <form class="dropdown-menu py-4 p-4" id="formularioInicioSesion" ">
+              <form class="dropdown-menu py-4 p-4" id="formularioInicioSesion">
                 <div class="mb-3">
                   <label for="username" class="form-label">Nombre de usuario</label>
                   <input type="text" name="username" class="form-control" id="username"
@@ -142,10 +142,10 @@
                     <table class="table table-striped table-bordered text-white mt-3 py-30" id="tablaEquipos">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col" style="display: none;">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Fecha Fundacion</th>
-                                <th scope="col"style="opacity: 0.9;">Acciones</th>
+                                <th scope="col"style="opacity: 0.9;" ></th>
                             </tr>
                         </thead>
                         <tbody id="equiposTableBody">
@@ -160,9 +160,9 @@
             <span class="text-muted">TUP-UTN Programación II.</span>
         </div>
     </footer>
-    <script src="../js/transaccion/traer_equipos.js"></script>
-    <script src="../js/transaccion/borrar_equipo.js"></script>
-    <script src="../js/transaccion/equipo_jugadores.js"></script>
-    <script src="../js/iniciosesion.js"></script>
-</body>
+  </body>
+  <script src="../js/transaccion/traer_equipos.js"></script>
+  <script src="../js/transaccion/borrar_equipo.js"></script>
+  <script src="../js/transaccion/equipo_jugadores.js"></script>
+  <script src="../js/iniciosesion.js"></script>
 </html>

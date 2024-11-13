@@ -19,20 +19,21 @@ namespace TorneoBack.Repository
         public List<PartidoDto> GetAllPartidos()
         {
             return _context.Partidos
-                .OrderBy(p => p.Fecha) // Ordena por fecha, de la más antigua a la más reciente
+                .OrderBy(p => p.Fecha)
                 .Select(p => new PartidoDto
                 {
                     IdPartido = p.IdPartido,
-                    NombreEquipo1 = p.Equipo1Navigation.Nombre,
-                    NombreEquipo2 = p.Equipo2Navigation.Nombre,
-                    Fecha = (DateTime)p.Fecha,
-                    IdCancha = (int)p.IdCancha,
-                    torneo = p.IdTorneoNavigation.Nombre,
-                    arbitro = p.IdArbitroNavigation.Apellido,
-                    n_fecha = p.N_fecha.HasValue ? (int)p.N_fecha : 0
+                    NombreEquipo1 = p.Equipo1Navigation != null ? p.Equipo1Navigation.Nombre : "Desconocido",
+                    NombreEquipo2 = p.Equipo2Navigation != null ? p.Equipo2Navigation.Nombre : "Desconocido",
+                    Fecha = p.Fecha ?? new DateTime(1753, 1, 1),
+                    IdCancha = p.IdCancha ?? 0,
+                    torneo = p.IdTorneoNavigation != null ? p.IdTorneoNavigation.Nombre : "Sin Torneo",
+                    arbitro = p.IdArbitroNavigation != null ? p.IdArbitroNavigation.Apellido : "Sin Árbitro",
+                    n_fecha = p.N_fecha ?? 0
                 })
-        .ToList();
+                .ToList();
         }
+
 
         public List<VResultadoPartido> GetAllResultados()
         {

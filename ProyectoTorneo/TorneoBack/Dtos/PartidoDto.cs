@@ -9,13 +9,13 @@ namespace TorneoBack.Dtos
     public class PartidoDto
     {
         public int IdPartido { get; set; }
-        public string NombreEquipo1 { get; set; }
-        public string NombreEquipo2 { get; set; }
-        public DateTime Fecha { get; set; }
-        public int IdCancha { get; set; }
-        public string torneo { get; set; }
-        public string arbitro { get; set; }
-        public int n_fecha { get; set; }
+        public string? NombreEquipo1 { get; set; }
+        public string? NombreEquipo2 { get; set; }
+        public DateTime? Fecha { get; set; }
+        public int? IdCancha { get; set; }
+        public string? torneo { get; set; }
+        public string? arbitro { get; set; }
+        public int? n_fecha { get; set; }
         // Agregar/quitar cualquier campo necesario
     }
 }

@@ -105,3 +105,22 @@ async function registrar(event) {
     alert("Ocurrió un error en la conexión. Por favor, revisa tu conexión y vuelve a intentarlo.");
   }
 }
+
+
+function OcultarSecciones() {
+  const token = localStorage.getItem('jwtToken');
+    
+  // Formulario de alta torneo
+  const formularioAltaTorneo = document.getElementById('formularioAltaTorneo');
+  if (formularioAltaTorneo) {
+    formularioAltaTorneo.style.display = token ? 'block' : 'none';
+  }
+
+  // Obtener todos los botones que necesitan ser ocultados o mostrados
+  const botones = document.querySelectorAll('[id^="botonEditarTorneo_"], [id^="botonEliminar_"], [id^="botonEditarEquipo_"], [id^="botonBorrarEquipo_"]');
+
+  // Establecer el estilo de visualización según la presencia del token
+  botones.forEach(boton => {
+    if (boton) boton.style.display = token ? 'block' : 'none';
+  });
+}
