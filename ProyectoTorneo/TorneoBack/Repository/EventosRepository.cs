@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TorneoApi.Models;
+using TorneoBack.Dtos;
 using TorneoBack.Repository.Contracts;
 
 namespace TorneoBack.Repository
@@ -27,9 +28,20 @@ namespace TorneoBack.Repository
             throw new NotImplementedException();
         }
 
-        public List<Evento> GetByIdPartido(int idPartido)
+        public List<EventoDto> GetByIdPartido(int idPartido)
         {
-            return _context.Eventos.Where(e => e.IdPartido == idPartido).ToList();
+            return _context.Eventos
+                .Where(e => e.IdPartido == idPartido)
+                .Select(e => new EventoDto
+                {
+                    IdEvento = e.IdEvento,
+                    TipoEvento = e.TipoEventoNavigation.Descripcion,
+                    IdPartido = e.IdPartido,
+                    ApellidoJugador = e.IdJugadorNavigation.Apellido,
+                    NombreJugador = e.IdJugadorNavigation.Nombre,
+                    Minuto = (short)e.Minuto
+                }
+                ).ToList();
         }
     }
 }
