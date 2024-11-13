@@ -42,25 +42,26 @@ builder.Services.AddAuthorization(options =>
 
 // Agregar servicios al contenedor.
 builder.Services.AddControllers();
-// Configuración de Swagger para desarrollo.
+// Configuraciï¿½n de Swagger para desarrollo.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configuración de la base de datos.
+// Configuraciï¿½n de la base de datos.
 builder.Services.AddDbContext<TorneoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configuración de repositorios y servicios.
+// Configuraciï¿½n de repositorios y servicios.
 builder.Services.AddScoped<IJugadorRepository, JugadorRepository>();
 builder.Services.AddScoped<ITorneoRepository, TorneoRepository>();
 builder.Services.AddScoped<IEquiposRepository, EquiposRepository>();
 builder.Services.AddScoped<ITorneoService, TorneoService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPartidosRepository, PartidosRepository>();
+builder.Services.AddScoped<IEventosRepository, EventosRepository>();
 
 
 
 
-// Configuración de CORS para permitir todos los orígenes, métodos y encabezados.
+// Configuraciï¿½n de CORS para permitir todos los orï¿½genes, mï¿½todos y encabezados.
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirTodo", policy =>
@@ -73,7 +74,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configuración del pipeline HTTP.
+// Configuraciï¿½n del pipeline HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -82,10 +83,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Aplicar la política CORS que permite cualquier origen.
+// Aplicar la polï¿½tica CORS que permite cualquier origen.
 app.UseCors("PermitirTodo");
 
-// Usar la autenticación
+// Usar la autenticaciï¿½n
 app.UseAuthentication();
 app.UseAuthorization();
 

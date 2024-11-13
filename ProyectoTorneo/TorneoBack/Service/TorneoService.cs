@@ -20,12 +20,14 @@ namespace TorneoBack.Service
         private readonly IEquiposRepository _equiposRepository;
         private readonly IJugadorRepository _jugadorRepository;
         private readonly IPartidosRepository _partidosRepository;
-        public TorneoService(ITorneoRepository torneoRepository, IJugadorRepository jugadorRepository, IEquiposRepository equiposRepository, IPartidosRepository partidosRepository)
+        private readonly IEventosRepository _eventosRepository;
+        public TorneoService(ITorneoRepository torneoRepository, IJugadorRepository jugadorRepository, IEquiposRepository equiposRepository, IPartidosRepository partidosRepository, IEventosRepository eventosRepository)
         {
             _torneoRepository = torneoRepository;
             _jugadorRepository = jugadorRepository;
             _equiposRepository = equiposRepository;
             _partidosRepository = partidosRepository;
+            _eventosRepository = eventosRepository;
         }
 
                
@@ -103,6 +105,20 @@ namespace TorneoBack.Service
         public List<VResultadoPartido> GetAllResultados()
         {
             return _partidosRepository.GetAllResultados();
+        }
+
+        //eventos
+        public List<Evento> GetEventosByPartido(int id)
+        {
+            return _eventosRepository.GetByIdPartido(id);
+        }
+        public bool AddEvento(Evento evento)
+        {
+            return _eventosRepository.AddEvento(evento);
+        }
+        public bool DeleteEvento(int id)
+        {
+            return _eventosRepository.DeleteEvento(id);
         }
     }
 }

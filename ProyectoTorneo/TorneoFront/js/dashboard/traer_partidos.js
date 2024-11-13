@@ -10,7 +10,6 @@ document.getElementById('partidosSelector').addEventListener('change', () => {
   const numeroFecha = document.getElementById('partidosSelector').value;
   if (numeroFecha !== "0") {
     fetchPartidosPorFecha(numeroFecha);
-    console.log("holis");
   }
 });
 
@@ -35,11 +34,19 @@ function fetchPartidosPorFecha(fecha) {
             <div class="card-body">
               <h5 class="card-title text-center">${partido.nombreEquipo1} vs ${partido.nombreEquipo2}</h5>
               <p class="card-text text-center">Fecha: ${new Date(partido.fecha).toLocaleDateString()}</p>
+              <button type="button" class="btn btn-primary btn-sm detalles-btn" data-id="${partido.idPartido}">Detalles</button>
             </div>
           </div>
         `;
 
         partidosContainer.appendChild(card);
+      });
+    }).then(() => {
+      document.querySelectorAll('.detalles-btn').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const partidoId = event.target.getAttribute('data-id');
+          window.location.href = `../html/eventos.html?id=${partidoId}`;
+        });
       });
     })
     .catch(error => {
