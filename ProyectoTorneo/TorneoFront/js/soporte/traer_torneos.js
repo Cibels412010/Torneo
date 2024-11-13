@@ -1,10 +1,12 @@
 async function fetchTorneos() {
     try {
+        actualizarEstadoBoton();
         const response = await fetch("http://localhost:5014/Api/Torneo/Torneos");
         if (!response.ok) {
             throw new Error("Error en la BD: " + response.statusText);
         }
         const torneos = await response.json();
+        OcultarSecciones();
         console.log(torneos);
 
         const tableBody = document.getElementById("torneosTableBody");

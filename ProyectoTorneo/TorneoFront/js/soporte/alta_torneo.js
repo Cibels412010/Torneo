@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     var torneoId = urlParams.get('id');
     console.log(torneoId);
+    actualizarEstadoBoton();
+    OcultarSecciones();
 
     if (torneoId) {
 

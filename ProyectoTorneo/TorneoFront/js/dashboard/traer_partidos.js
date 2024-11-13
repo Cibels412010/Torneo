@@ -14,6 +14,7 @@ document.getElementById('partidosSelector').addEventListener('change', () => {
 });
 
 function fetchPartidosPorFecha(fecha) {
+ 
   fetch('http://localhost:5014/Api/Partido/Partidos')
     .then(response => response.json())
     .then(data => {

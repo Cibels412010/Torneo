@@ -123,4 +123,11 @@ function OcultarSecciones() {
   botones.forEach(boton => {
     if (boton) boton.style.display = token ? 'block' : 'none';
   });
+
+  const agregarEquipo = document.getElementById('dropdown_AgregarEquipo');
+  if(agregarEquipo){
+    agregarEquipo.style.display = token ? 'block' : 'none';
+  } 
 }
+
+// Llamar a la función al cargar la página

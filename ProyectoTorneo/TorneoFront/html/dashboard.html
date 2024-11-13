@@ -35,7 +35,7 @@
                   aria-expanded="false">Equipos</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="Equipos.html">Ver equipos</a></li>
-                  <li><a class="dropdown-item" href="transaccion.html">Agregar equipo</a></li>
+                  <li><a class="dropdown-item" href="transaccion.html" id="dropdown_AgregarEquipo">Agregar equipo</a></li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -229,5 +229,11 @@
     <script src="../js/dashboard/traer_goleadores.js"></script>
     <script src="../js/dashboard/traer_fairplay.js"></script>
     <script src="../js/iniciosesion.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+      actualizarEstadoBoton();
+      OcultarSecciones();
+    });
+    </script>
   </body>
 </html>

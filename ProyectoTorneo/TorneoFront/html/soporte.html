@@ -37,7 +37,7 @@
                 aria-expanded="false">Equipos</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="Equipos.html">Ver equipos</a></li>
-                <li><a class="dropdown-item" href="transaccion.html">Agregar equipo</a></li>
+                <li><a class="dropdown-item" href="transaccion.html"  id="dropdown_AgregarEquipo">Agregar equipo</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -204,9 +204,9 @@
   <script src="../js/soporte/traer_torneos.js"></script>
   <script src="../js/soporte/borrar_torneo.js"></script>
   <script src="../js/iniciosesion.js"></script>
-  <script src="../js/soporte/usuarios_torneo.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      OcultarSecciones();      
       fetchTorneos();
     });
   </script>
