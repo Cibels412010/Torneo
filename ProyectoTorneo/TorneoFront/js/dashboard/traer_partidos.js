@@ -1,8 +1,16 @@
 // fetch al endpoint de partidos y llenado dinámico del HTML
-document.getElementById('filtrarFecha').addEventListener('click', () => {
-  const numeroFecha = document.getElementById('numeroFecha').value;
-  if (numeroFecha) {
+// document.getElementById('filtrarFecha').addEventListener('click', () => {
+//   const numeroFecha = document.getElementById('numeroFecha').value;
+//   if (numeroFecha) {
+//     fetchPartidosPorFecha(numeroFecha);
+//   }
+// });
+
+document.getElementById('partidosSelector').addEventListener('change', () => {
+  const numeroFecha = document.getElementById('partidosSelector').value;
+  if (numeroFecha !== "0") {
     fetchPartidosPorFecha(numeroFecha);
+    console.log("holis");
   }
 });
 
@@ -40,4 +48,4 @@ function fetchPartidosPorFecha(fecha) {
 }
 
 // Cargar todos los partidos al inicio
-fetchPartidosPorFecha('');
+//fetchPartidosPorFecha('');
