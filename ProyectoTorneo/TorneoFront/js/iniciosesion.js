@@ -98,7 +98,7 @@ async function registrar(event) {
       }
     } else {
       const errorText = await response.text();
-      alert("Error en el registro: " + errorText); // Muestra el mensaje de error devuelto por el backend
+      alert("Solo el admin puede registrar usuarios. Error en el registro: " + errorText); // Muestra el mensaje de error devuelto por el backend
     }
   } catch (error) {
     console.error("Error en la solicitud:", error);

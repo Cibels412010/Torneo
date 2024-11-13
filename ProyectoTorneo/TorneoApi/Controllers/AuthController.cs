@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TorneoApi.Models;
 using TorneoBack.Service.Contracts;
 
@@ -16,6 +17,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
+    
     public async Task<IActionResult> Register([FromBody] Usuario usuarioDto)
     {
         if (_context.Usuarios.Any(u => u.NombreUsuario == usuarioDto.NombreUsuario))

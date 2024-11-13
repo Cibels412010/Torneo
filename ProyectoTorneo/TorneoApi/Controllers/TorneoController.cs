@@ -168,8 +168,7 @@ namespace TorneoApi.Controllers
 
        
         [HttpPut("Editar")]
-        [Authorize]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult UpdateTorneo([FromBody]Torneo torneo)
         {
            try

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TorneoApi.Models;
 using TorneoBack.DTOs;
 using TorneoBack.Service.Contracts;
@@ -57,6 +58,7 @@ namespace TorneoApi.Controllers
 
 
         [HttpPost("CrearTransaction")]
+        [Authorize]
         public IActionResult AddEquipo([FromBody] EquipoDto equipoDto)
         {
             try
@@ -83,6 +85,7 @@ namespace TorneoApi.Controllers
         }
 
         [HttpDelete("Eliminar/{id}")]
+        [Authorize]
         public IActionResult DeleteEquipo(int id)
         {
             try

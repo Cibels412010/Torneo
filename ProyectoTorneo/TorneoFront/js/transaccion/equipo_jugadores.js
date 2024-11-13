@@ -73,49 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-// // ! este me carga los jugadores del formulario a la tbla de jugadores
-// document
-//   .getElementById("jugadorForm")
-//   .addEventListener("submit", function (event) {
-//     event.preventDefault();
 
-//     const jugador = {
-//       id: document.getElementById("idJugador").value || 0,
-//       nombre: document.getElementById("nombreJugador").value,
-//       apellido: document.getElementById("apellidoJugador").value,
-//       dni: parseInt(document.getElementById("dniJugador").value),
-//       fichaMedica: document.getElementById("flexRadioDefault1").checked,
-//       fechaNacimiento: document.getElementById("fechaNacimientoJugador").value,
-//       posicion: parseInt(document.getElementById("posicionJugador").value) || 0,
-//       rol: parseInt(document.getElementById("rolJugador").value) || 0,
-//       accions: "",
-//     };
-//     // Verificar si el DNI ya existe en la tabla antes de agregar el jugador
-
-//     const rows = document.querySelectorAll("#jugadoresTableBody tr");
-
-//     // Verificar si el jugador ya existe en la tabla antes de agregarlo
-//     const duplicado = Array.from(rows).some((row) => {
-//       const cells = row.querySelectorAll("td");
-//       const idJugadorExistente = parseInt(cells[0].textContent.trim(), 10);
-//       const dniExistente = parseInt(cells[3].textContent.trim(), 10); // DNI del jugador existente
-
-//       document.getElementById("jugadorForm").reset();
-//       // Si el jugador ya existe por ID o DNI
-//       return idJugadorExistente !== jugador.id && dniExistente === jugador.dni;
-//     });
-
-//     if (duplicado) {
-//       alert(`El jugador con ID ${jugador.id} fue actualizado.`);
-//       actualizarJugadorEnTabla(jugador);
-//       return; // Detener el proceso si hay un duplicado
-//     } else {
-//       agregarJugadorATabla(jugador);
-//     }
-
-//     // Limpiar el formulario de jugador
-//     document.getElementById("jugadorForm").reset();
-//   });
 
 // ! mando el equipo con sus jugdores al backend cuando toco gurdar cambios
 document
@@ -175,6 +133,7 @@ document
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+           "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(equipoData),
       });
