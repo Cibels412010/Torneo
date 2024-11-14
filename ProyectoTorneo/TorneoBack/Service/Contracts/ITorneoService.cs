@@ -33,6 +33,7 @@ namespace TorneoBack.Service.Contracts
 
         //jugadores
         JugadorDto GetJugadorById(int id);
+        public List<JugadorDto> GetByEquipo(string nombreEquipo);
 
         //partidos
         List<PartidoDto> GetAllPartidos();
