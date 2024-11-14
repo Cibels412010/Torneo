@@ -41,6 +41,7 @@ namespace TorneoBack.Repository
         {
             return _context.Eventos
                 .Where(e => e.IdPartido == idPartido)
+                .OrderBy(e => e.Minuto) // Order by "Minuto"
                 .Select(e => new EventoDto
                 {
                     IdEvento = e.IdEvento,
