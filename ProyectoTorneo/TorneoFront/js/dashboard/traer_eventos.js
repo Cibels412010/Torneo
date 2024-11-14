@@ -18,7 +18,7 @@ fetch(`http://localhost:5014/Api/Evento/Eventos/${partidoId}`)
         <td>${evento.tipoEvento}</td>
         <td class="btn-edit-delete">
           <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-            <button type="delete" class="btn btn-primary" id="botonBorrr" data-id="${evento.idEvento}" onclick="borrarEvento(this)" style="background-color: #20212b">Borrar</button>
+            <button type="delete" class="btn btn-primary" id="botonBorrr_${evento.idEvento}" data-id="${evento.idEvento}" onclick="borrarEvento(this)" style="background-color: #20212b">Borrar</button>
           </div>
         </td>
       `;

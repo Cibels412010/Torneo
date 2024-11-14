@@ -127,7 +127,7 @@ function OcultarSecciones() {
   }
 
   // Obtener todos los botones que necesitan ser ocultados o mostrados
-  const botones = document.querySelectorAll('[id^="botonEditarTorneo_"], [id^="botonEliminar_"], [id^="botonEditarEquipo_"], [id^="botonBorrarEquipo_"]');
+  const botones = document.querySelectorAll('[id^="botonBorrr_"],[id^="botonEditarTorneo_"], [id^="botonEliminar_"], [id^="botonEditarEquipo_"], [id^="botonBorrarEquipo_"]');
 
   // Establecer el estilo de visualización según la presencia del token
   botones.forEach(boton => {
