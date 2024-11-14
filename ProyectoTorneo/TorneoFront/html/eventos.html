@@ -165,10 +165,16 @@
             />
         </div>
         <div class="mb-3">
-            <label for="jugadorEvento" class="form-label">Equipo</label>
-            <select class="form-select" id="jugadorEvento" required>
-              <!-- acá irían lxs jugadorxs-->
+            <label for="equipoEvento" class="form-label">Equipo</label>
+            <select class="form-select" id="equipoEvento" required>
+              <!-- acá irían lxs equipoxs-->
             </select>
+        </div>
+        <div class="mb-3">
+          <label for="jugadorEvento" class="form-label">Jugador/a</label>
+          <select class="form-select" id="jugadorEvento" required>
+            <!-- acá irían lxs equipoxs-->
+          </select>
         </div>
         <div class="mb-3">
           <button class="btn btn-primary" style="background: rgb(45, 126, 231)" type="submit" id="btnEnviar">
@@ -191,7 +197,7 @@
           <tr>
             <th scope="col">Minuto</th>
             <th scope="col">Equipo</th>
-            <th scope="col">Jugador</th>
+            <th scope="col">equipo</th>
             <th scope="col">Evento</th>
             <th scope="col"></th>
           </tr>
@@ -199,7 +205,7 @@
         <tbody id="eventosTableBody">
           <tr>
             <th scope="row" id="minutoEvento"></th>
-            <td id="jugadorEvento"></td>
+            <td id="equipoEvento"></td>
             <td id="eventoEvento"></td>
             <td class="btn-edit-delete">
               <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
@@ -259,8 +265,8 @@
     console.log(partidoId, equipo1, equipo2); // Para asegurarte de que obtuviste el valor del ID
 
   // Función para llenar el combobox con los nombres de equipo1 y equipo2
-  function llenarComboBoxJugadores() {
-    const jugadorEventoSelect = document.getElementById('jugadorEvento');
+  function llenarComboBoxequipoes() {
+    const equipoEventoSelect = document.getElementById('equipoEvento');
 
     // Crear opción predeterminada
     const optionPlaceholder = document.createElement('option');
@@ -268,7 +274,7 @@
     optionPlaceholder.textContent = "Seleccione un equipo";
     optionPlaceholder.selected = true;
     optionPlaceholder.disabled = true;
-    jugadorEventoSelect.appendChild(optionPlaceholder);
+    equipoEventoSelect.appendChild(optionPlaceholder);
 
     // Crear opciones para cada equipo
     const optionEquipo1 = document.createElement('option');
@@ -280,12 +286,12 @@
     optionEquipo2.textContent = equipo2;
 
     // Agregar opciones al combobox
-    jugadorEventoSelect.appendChild(optionEquipo1);
-    jugadorEventoSelect.appendChild(optionEquipo2);
+    equipoEventoSelect.appendChild(optionEquipo1);
+    equipoEventoSelect.appendChild(optionEquipo2);
   }
 
   // Llenar el combobox al cargar la página
-  llenarComboBoxJugadores();
+  llenarComboBoxequipoes();
 
     // Llama al archivo traer_eventos.js y pasa el partidoId
     const script = document.createElement('script');
