@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TorneoApi.Models;
 using TorneoBack.Service.Contracts;
 
 namespace TorneoApi.Controllers
@@ -25,6 +26,22 @@ namespace TorneoApi.Controllers
                 }
 
                 return Ok(eventos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
+        [HttpPost("Evento")]
+        public IActionResult AddEvento([FromBody] Evento evento)
+        {
+            try
+            {
+                if (_servicio.AddEvento(evento))
+                {
+                    return Ok("Evento agregado correctamente.");
+                }
+                return BadRequest("No se pudo agregar el evento.");
             }
             catch (Exception ex)
             {

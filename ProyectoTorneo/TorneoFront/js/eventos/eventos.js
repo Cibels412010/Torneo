@@ -1,3 +1,4 @@
+//Cargar combo jugadores a partir del equipo seleccionado
 const equipoSelector = document.getElementById("equipoEvento");
 equipoSelector.addEventListener("change", function(){
     const equipo = equipoSelector.value;
@@ -18,5 +19,48 @@ equipoSelector.addEventListener("change", function(){
                 `;
             });
         });
+    }
+});
+
+//Guardar evento
+const form = document.getElementById("altaEventoForm");
+form.addEventListener("submit", async(event) => {
+    event.preventDefault();
+    const equipo = document.getElementById("equipoEvento").value;
+    const jugador = document.getElementById("jugadorEvento").value;
+    const minuto = document.getElementById("minuto").value;
+    const tipoEvento = document.getElementById("tipoEvento").value;
+    const urlParams = new URLSearchParams(window.location.search);
+    const partidoId = urlParams.get('id');
+    if(equipo == "0" || jugador == "0" || minuto == "" || tipoEvento == "0"){
+        mostrarModalConfirmacion("Por favor complete todos los campos.");
+        return;
+    }
+    try {
+        const response = await fetch('http://localhost:5014/Api/Evento/Evento', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${localStorage.getItem('jwtToken')}`
+            },
+            body: JSON.stringify({
+                tipoEvento: tipoEvento,
+                idPartido: partidoId,
+                idJugador: jugador,
+                minuto: minuto,
+            })
+        });
+        if (response.ok) {
+            mostrarModalExito("¡Evento guardado exitosamente!");
+            form.reset();
+            //recargar la página
+            location.reload();
+
+        } else {
+            mostrarModalConfirmacion("Hubo un error al intentar guardar el evento.");
+        }
+    } catch (error) {
+        console.error('Error al guardar el evento:', error);
+        mostrarModalConfirmacion("Hubo un error al intentar guardar el evento.");
     }
 });
