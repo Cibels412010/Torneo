@@ -25,7 +25,16 @@ namespace TorneoBack.Repository
 
         public bool DeleteEvento(int id)
         {
-            throw new NotImplementedException();
+            Evento evento = _context.Eventos.FirstOrDefault(e => e.IdEvento == id);
+            if (evento == null)
+            {
+                return false;
+            }
+            else
+            {
+                _context.Eventos.Remove(evento);
+                return _context.SaveChanges() > 0;
+            }
         }
 
         public List<EventoDto> GetByIdPartido(int idPartido)

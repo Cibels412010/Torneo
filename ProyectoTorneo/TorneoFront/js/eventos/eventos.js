@@ -55,7 +55,6 @@ form.addEventListener("submit", async(event) => {
             form.reset();
             //recargar la página
             location.reload();
-
         } else {
             mostrarModalConfirmacion("Hubo un error al intentar guardar el evento.");
         }

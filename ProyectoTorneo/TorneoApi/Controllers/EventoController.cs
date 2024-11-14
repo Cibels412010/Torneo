@@ -48,5 +48,21 @@ namespace TorneoApi.Controllers
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
         }
+        [HttpDelete("Evento/{id}")]
+        public IActionResult DeleteEvento(int id)
+        {
+            try
+            {
+                if (_servicio.DeleteEvento(id))
+                {
+                    return Ok("Evento eliminado correctamente.");
+                }
+                return BadRequest("No se pudo eliminar el evento.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+            }
+        }
     }
 }
