@@ -38,5 +38,27 @@ namespace TorneoBack.Repository
 
             return jugadorDto;
         }
+        //GetBy Nombre de Equipo
+        public List<JugadorDto> GetByEquipo(string nombreEquipo)
+        {
+            var jugadores = _context.Jugadores
+                .Where(j => j.IdEquipoNavigation.Nombre == nombreEquipo)
+                .Select(j => new JugadorDto
+                {
+                    IdJugador = j.IdJugador,
+                    Nombre = j.Nombre,
+                    Apellido = j.Apellido,
+                    Dni = j.Dni,
+                    FichaMedica = j.FichaMedica,
+                    FechaNacimiento = j.FechaNacimiento,
+                    IdEquipo = j.IdEquipo,
+                    IdPosicion = j.IdPosicion,
+                    Rol = j.Rol,
+                    Borrado = j.Borrado
+                })
+                .ToList();
+
+            return jugadores;
+        }
     }
 }

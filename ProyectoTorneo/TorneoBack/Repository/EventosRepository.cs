@@ -25,18 +25,29 @@ namespace TorneoBack.Repository
 
         public bool DeleteEvento(int id)
         {
-            throw new NotImplementedException();
+            Evento evento = _context.Eventos.FirstOrDefault(e => e.IdEvento == id);
+            if (evento == null)
+            {
+                return false;
+            }
+            else
+            {
+                _context.Eventos.Remove(evento);
+                return _context.SaveChanges() > 0;
+            }
         }
 
         public List<EventoDto> GetByIdPartido(int idPartido)
         {
             return _context.Eventos
                 .Where(e => e.IdPartido == idPartido)
+                .OrderBy(e => e.Minuto) // Order by "Minuto"
                 .Select(e => new EventoDto
                 {
                     IdEvento = e.IdEvento,
                     TipoEvento = e.TipoEventoNavigation.Descripcion,
                     IdPartido = e.IdPartido,
+                    NombreEquipo = e.IdJugadorNavigation.IdEquipoNavigation.Nombre,
                     ApellidoJugador = e.IdJugadorNavigation.Apellido,
                     NombreJugador = e.IdJugadorNavigation.Nombre,
                     Minuto = (short)e.Minuto

@@ -13,12 +13,12 @@ fetch(`http://localhost:5014/Api/Evento/Eventos/${partidoId}`)
       const row = document.createElement('tr');
       row.innerHTML = `
         <th scope="row">${evento.minuto}</th>
+        <td>${evento.nombreEquipo}</td>
         <td>${evento.nombreJugador} ${evento.apellidoJugador}</td>
         <td>${evento.tipoEvento}</td>
         <td class="btn-edit-delete">
           <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-primary" style="background: rgb(45, 126, 231)">Editar</button>
-            <button type="delete" class="btn btn-primary" id="botonBorrr" style="background-color: #20212b">Borrar</button>
+            <button type="delete" class="btn btn-primary" id="botonBorrr" data-id="${evento.idEvento}" onclick="borrarEvento(this)" style="background-color: #20212b">Borrar</button>
           </div>
         </td>
       `;

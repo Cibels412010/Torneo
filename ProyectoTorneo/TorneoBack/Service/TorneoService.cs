@@ -73,6 +73,10 @@ namespace TorneoBack.Service
         {
             return _equiposRepository.GetById(id);
         }
+        public List<JugadorDto> GetByEquipo(string nombreEquipo)
+        {
+            return _jugadorRepository.GetByEquipo(nombreEquipo);
+        }
         public List<VTablaPosicione> GetAllPosiciones()
         {
             return _torneoRepository.GetAllPosiciones();

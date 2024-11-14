@@ -35,7 +35,12 @@ function fetchPartidosPorFecha(fecha) {
             <div class="card-body">
               <h5 class="card-title text-center">${partido.nombreEquipo1} vs ${partido.nombreEquipo2}</h5>
               <p class="card-text text-center">Fecha: ${new Date(partido.fecha).toLocaleDateString()}</p>
-              <button type="button" class="btn btn-primary btn-sm detalles-btn" data-id="${partido.idPartido}">Detalles</button>
+              <button type="button" class="btn btn-primary btn-sm detalles-btn" 
+                data-id="${partido.idPartido}"
+                data-equipo1="${partido.nombreEquipo1}" 
+                data-equipo2="${partido.nombreEquipo2}">
+                Detalles
+              </button>
             </div>
           </div>
         `;
@@ -46,7 +51,9 @@ function fetchPartidosPorFecha(fecha) {
       document.querySelectorAll('.detalles-btn').forEach((button) => {
         button.addEventListener('click', (event) => {
           const partidoId = event.target.getAttribute('data-id');
-          window.location.href = `../html/eventos.html?id=${partidoId}`;
+          const equipo1 = encodeURIComponent(event.target.getAttribute('data-equipo1'));
+          const equipo2 = encodeURIComponent(event.target.getAttribute('data-equipo2'));
+          window.location.href = `../html/eventos.html?id=${partidoId}&equipo1=${equipo1}&equipo2=${equipo2}`;
         });
       });
     })

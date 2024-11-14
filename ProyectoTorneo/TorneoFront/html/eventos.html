@@ -165,15 +165,17 @@
             />
         </div>
         <div class="mb-3">
-            <label for="EquipoEvento" class="form-label">Equipo</label>
-            <select class="form-select" id="EquipoEvento" required>
+
+            <label for="equipoEvento" class="form-label">Equipo</label>
+            <select class="form-select" id="equipoEvento" required>
+              <!-- acá irían lxs equipoxs-->
             </select>
-        </div>      
+        </div>
         <div class="mb-3">
-            <label for="jugadorEvento" class="form-label">Jugador/a</label>
-            <select class="form-select" id="jugadorEvento" required>
-              <!-- acá irían lxs jugadorxs-->
-            </select>
+          <label for="jugadorEvento" class="form-label">Jugador/a</label>
+          <select class="form-select" id="jugadorEvento" required>
+            <!-- acá irían lxs equipoxs-->
+          </select>
         </div>
         <div class="mb-3">
           <button class="btn btn-primary" style="background: rgb(45, 126, 231)" type="submit" id="btnEnviar">
@@ -195,7 +197,8 @@
         <thead>
           <tr>
             <th scope="col">Minuto</th>
-            <th scope="col">Jugador</th>
+            <th scope="col">Equipo</th>
+            <th scope="col">equipo</th>
             <th scope="col">Evento</th>
             <th scope="col"></th>
           </tr>
@@ -203,7 +206,7 @@
         <tbody id="eventosTableBody">
           <tr>
             <th scope="row" id="minutoEvento"></th>
-            <td id="jugadorEvento"></td>
+            <td id="equipoEvento"></td>
             <td id="eventoEvento"></td>
             <td class="btn-edit-delete">
               <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
@@ -258,7 +261,38 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const partidoId = urlParams.get('id');
-    console.log(partidoId); // Para asegurarte de que obtuviste el valor del ID
+    const equipo1 = decodeURIComponent(urlParams.get('equipo1'));
+    const equipo2 = decodeURIComponent(urlParams.get('equipo2'));
+    console.log(partidoId, equipo1, equipo2); // Para asegurarte de que obtuviste el valor del ID
+
+  // Función para llenar el combobox con los nombres de equipo1 y equipo2
+  function llenarComboBoxequipoes() {
+    const equipoEventoSelect = document.getElementById('equipoEvento');
+
+    // Crear opción predeterminada
+    const optionPlaceholder = document.createElement('option');
+    optionPlaceholder.value = "";
+    optionPlaceholder.textContent = "Seleccione un equipo";
+    optionPlaceholder.selected = true;
+    optionPlaceholder.disabled = true;
+    equipoEventoSelect.appendChild(optionPlaceholder);
+
+    // Crear opciones para cada equipo
+    const optionEquipo1 = document.createElement('option');
+    optionEquipo1.value = equipo1;
+    optionEquipo1.textContent = equipo1;
+
+    const optionEquipo2 = document.createElement('option');
+    optionEquipo2.value = equipo2;
+    optionEquipo2.textContent = equipo2;
+
+    // Agregar opciones al combobox
+    equipoEventoSelect.appendChild(optionEquipo1);
+    equipoEventoSelect.appendChild(optionEquipo2);
+  }
+
+  // Llenar el combobox al cargar la página
+  llenarComboBoxequipoes();
 
     // Llama al archivo traer_eventos.js y pasa el partidoId
     const script = document.createElement('script');
@@ -267,6 +301,8 @@
   </script>
 
   <script src="../js/iniciosesion.js"></script>
+  <script src="../js/eventos/eventos.js"></script>
+  <script src="../js/eventos/borrar_evento.js"></script>
    
 </body>
 

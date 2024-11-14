@@ -12,6 +12,7 @@ namespace TorneoBack.Repository.Contracts
     {
         
         public JugadorDto GetById(int id);
-        
+        public List<JugadorDto> GetByEquipo(string nombreEquipo);
+
     }
 }
