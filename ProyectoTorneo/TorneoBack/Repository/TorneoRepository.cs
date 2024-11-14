@@ -91,12 +91,12 @@ namespace TorneoBack.Repository
         }
         public List<Goleadore> GetAllGoleadores()
         {
-            return _context.Goleadores.OrderByDescending(g => g.GolesMarcados).ToList();
+            return _context.Goleadores.Take(15).OrderByDescending(g => g.GolesMarcados).ToList();
         }
 
         public List<VFairPlay> GetAllFairPlay()
         {
-            return _context.VFairPlays.OrderByDescending(f => f.Puntaje).ToList();
+            return _context.VFairPlays.Take(15).OrderByDescending(f => f.Puntaje).ToList();
         }
     }
 }

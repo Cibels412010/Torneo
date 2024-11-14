@@ -17,6 +17,8 @@ function borrarEvento(boton){
             if (response.ok) {
                 mostrarModalExito("Evento eliminado exitosamente");
                 boton.closest("tr").remove();
+                location.reload();
+                
             } else {
                 mostrarModalExito("Hubo un error al intentar borrar el evento");
             }
@@ -31,4 +33,5 @@ function borrarEvento(boton){
 // Asumiendo que el botón tiene un id 'botonBorrar'
 document.getElementById('botonBorrr').addEventListener('click', function() {
     borrarEvento(this);
+    
 });
