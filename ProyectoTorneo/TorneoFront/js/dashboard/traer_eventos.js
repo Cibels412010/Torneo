@@ -13,6 +13,7 @@ fetch(`http://localhost:5014/Api/Evento/Eventos/${partidoId}`)
       const row = document.createElement('tr');
       row.innerHTML = `
         <th scope="row">${evento.minuto}</th>
+        <td>${evento.nombreEquipo}</td>
         <td>${evento.nombreJugador} ${evento.apellidoJugador}</td>
         <td>${evento.tipoEvento}</td>
         <td class="btn-edit-delete">
