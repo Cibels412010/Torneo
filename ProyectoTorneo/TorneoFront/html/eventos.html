@@ -137,7 +137,7 @@
 
     <div class="md-4" id="formularioAltaEvento">
       <h2 class="text-white text-start" id="tituloForm">Nuevo evento</h2>
-      <form class="Formulario" id="altaEventoForm" style="color: white" method="post">
+      <form class="Formulario" id="altaEventoForm" style="color: white;" method="post">
         <div class="mb-3">
             <label for="tipoEvento" class="form-label">Incidencia</label>
             <select class="form-select" id="tipoEvento" required>
@@ -308,7 +308,11 @@
   <script src="../js/iniciosesion.js"></script>
   <script src="../js/eventos/eventos.js"></script>
   <script src="../js/eventos/borrar_evento.js"></script>
-   
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      OcultarSecciones();    
+    });
+  </script>
 </body>
 
 </html>

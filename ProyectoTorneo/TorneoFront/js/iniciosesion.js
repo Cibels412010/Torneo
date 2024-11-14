@@ -121,6 +121,11 @@ function OcultarSecciones() {
     formularioAltaTorneo.style.display = token ? 'block' : 'none';
   }
 
+  const formularioAltaEvento = document.getElementById('formularioAltaEvento');
+  if(formularioAltaEvento){
+    formularioAltaEvento.style.display = token ? 'block' : 'none';
+  }
+
   // Obtener todos los botones que necesitan ser ocultados o mostrados
   const botones = document.querySelectorAll('[id^="botonEditarTorneo_"], [id^="botonEliminar_"], [id^="botonEditarEquipo_"], [id^="botonBorrarEquipo_"]');
 
