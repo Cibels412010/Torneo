@@ -65,3 +65,34 @@ function actualizarTorneo(idTorneo) {
         });
     
 }
+
+async function cargarComboTorneos() {
+    try {
+        const response = await fetch("http://localhost:5014/Api/Torneo/Torneos");
+        if (!response.ok) {
+            mostrarModalExito("Hubo un problema al cargar los torneos");
+            return;
+        }
+        
+        const torneos = await response.json();
+        const selectTorneos = document.getElementById("torneosCombo");
+        if (!selectTorneos) {
+            console.error("El elemento 'torneosCombo' no se encontró en el DOM.");
+            return;
+        }
+
+        // Limpiar las opciones actuales
+        selectTorneos.innerHTML = '<option selected>Seleccione un torneo</option>';
+        
+        torneos.forEach(torneo => {
+            const option = document.createElement("option");
+            option.value = torneo.idTorneo;
+            option.textContent = torneo.nombre;
+            selectTorneos.appendChild(option);
+        });
+
+    } catch (error) {
+        mostrarModalExito(`Error en operación fetch: ${error.message}. Inténtalo más tarde.`);
+    }
+}
+
