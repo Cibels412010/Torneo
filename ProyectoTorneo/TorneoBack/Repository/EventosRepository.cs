@@ -37,6 +37,7 @@ namespace TorneoBack.Repository
                     IdEvento = e.IdEvento,
                     TipoEvento = e.TipoEventoNavigation.Descripcion,
                     IdPartido = e.IdPartido,
+                    NombreEquipo = e.IdJugadorNavigation.IdEquipoNavigation.Nombre,
                     ApellidoJugador = e.IdJugadorNavigation.Apellido,
                     NombreJugador = e.IdJugadorNavigation.Nombre,
                     Minuto = (short)e.Minuto
