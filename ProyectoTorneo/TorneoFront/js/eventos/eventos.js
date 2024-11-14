@@ -22,6 +22,14 @@ equipoSelector.addEventListener("change", function(){
     }
 });
 
+//Cargar resultado en DOM
+document.addEventListener("DOMContentLoaded", async() => {
+    
+
+
+
+});
+
 //Guardar evento
 const form = document.getElementById("altaEventoForm");
 form.addEventListener("submit", async(event) => {
