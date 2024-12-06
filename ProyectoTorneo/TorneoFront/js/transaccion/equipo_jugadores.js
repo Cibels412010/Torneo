@@ -136,7 +136,7 @@ document.getElementById('guardarCambiosBtn').addEventListener('click', async () 
             idEquipo: 0,
             // Asegúrate de que la posición es un número
             idPosicion: cells[6].innerText === 'Arquero' ? 1 : cells[6].innerText === 'Defensa' ? 2 : cells[6].innerText === 'Centrocampista' ? 3 : cells[6].innerText === 'Delantero' ? 4 : 0,
-            rol: cells[7].innerText === 'Capitán' ? 1 : cells[7].innerText === 'Subcapitán' ? 2 : cells[7].innerText === 'Delegado' ? 3 : null, // Asegúrate de que el rol es un número o null
+            rol: cells[7].innerText === 'Capitán' ? 1 : cells[7].innerText === 'Subcapitán' ? 2 : cells[7].innerText === 'Delegado' ? 3 : 0, // Asegúrate de que el rol es un número o null
         };
 
         // Verificar si el jugador ya está en la lista antes de agregarlo
@@ -236,7 +236,6 @@ function cargarJugadoresEnTabla(equipo){
                     nuevaFila.appendChild(fechaNacimientoCelda);
 
                     const posicionCelda = document.createElement('td');
-                    posicionCelda.textContent = jugador.idPosicion;
                     switch (jugador.idPosicion) {
                         case 1:
                             posicionCelda.textContent = 'Arquero';

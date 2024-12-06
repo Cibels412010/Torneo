@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function fetchPosiciones() {
+        const torneosCombo = document.getElementById("torneosCombo");
+        const torneoSeleccionado = torneosCombo.value;
+        
         fetch("http://localhost:5014/Api/Torneo/Posiciones", {
             method: 'GET',
             headers: {
