@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const equipo2 = encodeURIComponent(event.target.getAttribute('data-equipo2'));
 
       window.location.href = `/detalles.html?id=${partidoId}&equipo1=${equipo1}&equipo2=${equipo2}`;
+      OcultarSecciones();   
     });
   });
 });
